@@ -24,7 +24,7 @@ public class ShootingRam extends Subsystem {
 //    Encoder elevationEncoder = RobotMap.tiltingEncoder;
     
     public ShootingRam(){
-	LiveWindow.addActuator("Shooter", "shooter arm", shooterArm);
+	//LiveWindow.addActuator("Shooter", "shooter arm", shooterArm);
     }
     
     public void initDefaultCommand() {

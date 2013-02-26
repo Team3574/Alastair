@@ -42,12 +42,12 @@ public class Drive extends Subsystem {
 
 	myLocation = new DeadReckoner(leftWheelEncoder, rightWheelEncoder);
 
-	LiveWindow.addActuator("Drive", "back left", backLeftMotor);
-	LiveWindow.addActuator("Drive", "front left", frontLeftMotor);
-	LiveWindow.addSensor("Drive", "Left", leftWheelEncoder);
-	LiveWindow.addActuator("Drive", "back right", backRightMotor);
-	LiveWindow.addActuator("Drive", "front right", frontRightMotor);
-	LiveWindow.addSensor("Drive", "Right", rightWheelEncoder);
+	LiveWindow.addActuator("Drive", "back left " + backLeftMotor.getChannel(), backLeftMotor);
+	LiveWindow.addActuator("Drive", "front left " + frontLeftMotor.getChannel(), frontLeftMotor);
+	LiveWindow.addSensor("Drive", "Left ", leftWheelEncoder);
+	LiveWindow.addActuator("Drive", "back right " + backRightMotor.getChannel(), backRightMotor);
+	LiveWindow.addActuator("Drive", "front right " + frontRightMotor.getChannel(), frontRightMotor);
+	LiveWindow.addSensor("Drive", "Right ", rightWheelEncoder);
     }
 
     public void initDefaultCommand() {

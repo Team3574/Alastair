@@ -54,7 +54,7 @@ public class Flinger extends PIDSubsystem {
         this.setSetpoint(0.0);
 	
 	LiveWindow.addSensor("Flinger", "encoder", spinnerEncoder);
-        LiveWindow.addActuator("Flinger", "motor", spinnerMotor);
+        LiveWindow.addActuator("Flinger", "motor " + spinnerMotor.getChannel(), spinnerMotor);
         LiveWindow.addActuator("Flinger", "PID", getPIDController());
 	
         //enable();

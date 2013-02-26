@@ -22,7 +22,7 @@ public class Shifter extends Subsystem {
     
     //initilize subsystem here
     public Shifter(){
-	LiveWindow.addActuator("Shifter", "Shifter Port", shifterPort);
+	//LiveWindow.addActuator("Shifter", "Shifter Port", shifterPort);
     }
     
     public void initDefaultCommand() {

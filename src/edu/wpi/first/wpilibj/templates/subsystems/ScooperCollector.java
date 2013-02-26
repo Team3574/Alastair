@@ -30,8 +30,8 @@ public class ScooperCollector extends Subsystem {
 	LiveWindow.addSensor("ScooperCollector", "sensor port 1", collectSenPort1);
 	LiveWindow.addSensor("ScooperCollector", "sensor port 2", collectSenPort2);
 	LiveWindow.addSensor("ScooperCollector", "sensor port 3", collectSenPort3);
-	LiveWindow.addActuator("ScooperCollector", "Move up", moverUpperTalon);
-	LiveWindow.addActuator("ScooperCollector", "Collector", collectorTalon);
+	LiveWindow.addActuator("ScooperCollector", "Move up " + moverUpperTalon.getChannel(), moverUpperTalon);
+	LiveWindow.addActuator("ScooperCollector", "Collector " + collectorTalon.getChannel(), collectorTalon);
     }
 
     public void initDefaultCommand() {

@@ -23,10 +23,10 @@ public class Lifter extends Subsystem {
     Solenoid liftTheRobotRight = RobotMap.liftTheRobotRight;
 
     public Lifter(){
-	LiveWindow.addActuator("Lifter", "arm left", positionArmLeft);
-	LiveWindow.addActuator("Lifter", "arm right", positionArmRight);
-	LiveWindow.addActuator("Lifter", "lift left", liftTheRobotLeft);
-	LiveWindow.addActuator("Lifter", "lift right", liftTheRobotRight);
+	//LiveWindow.addActuator("Lifter", "arm left", positionArmLeft);
+	//LiveWindow.addActuator("Lifter", "arm right", positionArmRight);
+	//LiveWindow.addActuator("Lifter", "lift left", liftTheRobotLeft);
+	//LiveWindow.addActuator("Lifter", "lift right", liftTheRobotRight);
 	
     }
     
