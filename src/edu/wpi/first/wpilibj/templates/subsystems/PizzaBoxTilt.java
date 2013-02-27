@@ -66,6 +66,10 @@ public class PizzaBoxTilt extends PIDSubsystem {
 	return !shooterSeventy.get();
     }
     
+    public void resetEncoder(){ 
+	tiltingEncoder.reset();
+    } 
+    
     protected double returnPIDInput() {
         // Return your input value for the PID loop
         // e.g. a sensor, like a potentiometer:

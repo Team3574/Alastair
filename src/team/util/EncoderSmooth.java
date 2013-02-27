@@ -85,11 +85,11 @@ public class EncoderSmooth extends Encoder{
         double speed = ((lastSpeed * weightFactor) + reading)/(weightFactor + 1);
         this.lastSpeed = speed;
         this.lastEncoderCount = currnetEncoderCount;
-	LogDebugger.log(" speed " + lastEncoderCount);
+	//LogDebugger.log(" speed " + lastEncoderCount);
     }
     
     public double getRate(){
-	LogDebugger.log("get rate");
+	//LogDebugger.log("get rate");
 	return lastSpeed/scaleFactor; 
     }
     

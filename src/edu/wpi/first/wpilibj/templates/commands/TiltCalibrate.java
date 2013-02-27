@@ -11,9 +11,9 @@ import team.util.SwitchTrigger;
  *
  * @author team3574
  */
-public class PizzaBoxTiltCalibrate extends CommandBase {
+public class TiltCalibrate extends CommandBase {
     
-    public PizzaBoxTiltCalibrate() {
+    public TiltCalibrate() {
 	// Use requires() here to declare subsystem dependencies
 	requires(thePizzaBoxTilt);
     }
@@ -24,6 +24,11 @@ public class PizzaBoxTiltCalibrate extends CommandBase {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
+	thePizzaBoxTilt.setSetpoint(thePizzaBoxTilt.getSetpoint()+10);
+	if (thePizzaBoxTilt.getLimitSwitchZero()) {
+	    thePizzaBoxTilt.setSetpoint(0);
+	    thePizzaBoxTilt.resetEncoder();
+	}
 	
     }
 
