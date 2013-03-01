@@ -7,10 +7,11 @@
 //   NEO_GRB     Pixels are wired for GRB bitstream
 //   NEO_KHZ400  400 KHz bitstream (e.g. FLORA pixels)
 //   NEO_KHZ800  800 KHz bitstream (e.g. High Density LED strip)
-Adafruit_NeoPixel strip = Adafruit_NeoPixel(60, 6, NEO_GRB + NEO_KHZ800);
+Adafruit_NeoPixel strip = Adafruit_NeoPixel(87, 6, NEO_GRB + NEO_KHZ800);
 #include <Wire.h>
 void setup() {
   strip.begin();
+  
   strip.show(); // Initialize all pixels to 'off'
   Wire.begin(4);                // join i2c bus with address #4
   Wire.onReceive(receiveEvent); // register event  
@@ -20,7 +21,7 @@ int showPattern = -1;
 
 void loop() {
 //  shootColor(strip.Color(155, 0, 255));  shootColor(strip.Color(255, 0, 0));  shootColor(strip.Color(255, 255, 255));  shootColor(strip.Color(0, 0, 255));  
-  //meteor(20);
+  meteor(20);
   //delay(500);
   
   showPattern = 0;

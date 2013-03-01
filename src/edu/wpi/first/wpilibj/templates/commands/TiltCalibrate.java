@@ -10,7 +10,8 @@ import team.util.SwitchTrigger;
 /**
  *
  * @author team3574
- */
+ *  At the begin of the match it set the encoder to zero
+*/
 public class TiltCalibrate extends CommandBase {
     
     public TiltCalibrate() {
@@ -24,6 +25,7 @@ public class TiltCalibrate extends CommandBase {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
+	//moving the table to zero 
 	thePizzaBoxTilt.setSetpoint(thePizzaBoxTilt.getSetpoint()+10);
 	if (thePizzaBoxTilt.getLimitSwitchZero()) {
 	    thePizzaBoxTilt.setSetpoint(0);
@@ -34,7 +36,7 @@ public class TiltCalibrate extends CommandBase {
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-	return false;
+	return thePizzaBoxTilt.getLimitSwitchZero();
     }
 
     // Called once after isFinished returns true

@@ -22,6 +22,7 @@ import edu.wpi.first.wpilibj.templates.commands.Drive.Shift;
 import edu.wpi.first.wpilibj.templates.commands.Shoot;
 import edu.wpi.first.wpilibj.templates.commands.SpitOut;
 import edu.wpi.first.wpilibj.templates.commands.StowArms;
+import edu.wpi.first.wpilibj.templates.commands.TiltCalibrate;
 import edu.wpi.first.wpilibj.templates.commands.TiltNormal;
 import edu.wpi.first.wpilibj.templates.commands.TiltDown;
 import edu.wpi.first.wpilibj.templates.commands.TiltUp;
@@ -164,7 +165,7 @@ public class OI {
         SmartDashboard.putData("Flinger off", new FlingerOff());
         SmartDashboard.putData("flinger Pyramid mode", new FlingerPyrimidSpeed());
 	SmartDashboard.putData("Tune PID", new TunePID());
-        
+        SmartDashboard.putData("Tilt Calilbrate", new TiltCalibrate());
         
     }
     

@@ -43,8 +43,7 @@ public class PizzaBoxTilt extends PIDSubsystem {
 	LiveWindow.addSensor("PizzaBoxTilt", "70", shooterSeventy);
       
 
-	SmartDashboard.putBoolean("limitZero", shooterZero.get());
-	SmartDashboard.putBoolean("limitSeventy", shooterSeventy.get());
+	
         // Use these to get going:
         // setSetpoint() -  Sets where the PID controller should move the system
         //                  to
@@ -59,11 +58,11 @@ public class PizzaBoxTilt extends PIDSubsystem {
     
     
     public boolean getLimitSwitchZero(){
-	return !shooterZero.get();
+	return shooterZero.get();
     }
     
     public boolean getLimitSwitchSeventy(){
-	return !shooterSeventy.get();
+	return shooterSeventy.get();
     }
     
     public void resetEncoder(){ 
@@ -121,5 +120,7 @@ public class PizzaBoxTilt extends PIDSubsystem {
     public void updateStatus() {
 //	SmartDashboard.putNumber("tilt encoder", elevation);
 //	SmartDashboard.putNumber("Elevation Output", output);
+	SmartDashboard.putBoolean("limitZero", shooterZero.get());
+	SmartDashboard.putBoolean("limitSeventy", shooterSeventy.get());
     }
 }

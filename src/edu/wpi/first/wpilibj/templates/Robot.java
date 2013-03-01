@@ -66,7 +66,7 @@ public class Robot extends IterativeRobot {
      */
     public void autonomousPeriodic() {
         Scheduler.getInstance().run();
-        updateStatus();
+        statusUpdater();
     }
 
     public void teleopInit() {
@@ -84,14 +84,14 @@ public class Robot extends IterativeRobot {
      */
     public void teleopPeriodic() {
         Scheduler.getInstance().run();
-        updateStatus();
+        statusUpdater();
         RobotMap.airCompressor.start();
 	
         SmartDashboard.putBoolean("Air Compressor Full", RobotMap.airCompressor.getPressureSwitchValue());
     }
     
     public void disabledPeriodic(){
-        updateStatus();
+        statusUpdater();
     }
     Joystick j = new Joystick(1);
     /**
@@ -99,7 +99,8 @@ public class Robot extends IterativeRobot {
      */
     public void testPeriodic() {
         LiveWindow.run();
-        updateStatus();
+        statusUpdater();
+	//the test mode doesn't work with pnumatics so the joystick is wired to work instead.
 	if (j.getRawButton(XboxController.A)){
 	    RobotMap.shifterPort.set(true);
 	}else {
@@ -129,7 +130,7 @@ public class Robot extends IterativeRobot {
 	}
     }
     
-    public void updateStatus(){
+    public void statusUpdater(){
         CommandBase.theScooperCollector.updateStatus();
         CommandBase.theAccelerometer.updateStatus();
 	CommandBase.thePizzaBoxTilt.updateStatus(); 
