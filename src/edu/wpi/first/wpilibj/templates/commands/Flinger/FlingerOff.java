@@ -3,6 +3,7 @@
  * and open the template in the editor.
  */
 package edu.wpi.first.wpilibj.templates.commands.Flinger;
+import edu.wpi.first.wpilibj.templates.Constants;
 import edu.wpi.first.wpilibj.templates.commands.CommandBase;
 import edu.wpi.first.wpilibj.templates.subsystems.Flinger;
 /**
@@ -20,7 +21,7 @@ public class FlingerOff extends CommandBase {
     // Called just before this Command runs the first time
     protected void initialize() {
         
-        theFlinger.setSetpoint(Flinger.OFF);        
+        theFlinger.setSetpoint(Constants.FLINGER_OFF);        
         theFlinger.enable();
  
     }

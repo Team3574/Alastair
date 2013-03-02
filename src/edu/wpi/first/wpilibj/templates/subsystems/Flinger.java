@@ -37,11 +37,6 @@ public class Flinger extends PIDSubsystem {
     private static final double Kd = 0.0;
     private static final double Kf = 1.0;
     
-    public static final double NORMAL_SPEED = 1,
-            PYRIMID_SPEED = 0.5,
-            POWER_SAVING_MODE = 0.2,
-            OFF = 0;
-    
     // Initialize your subsystem here
     public Flinger() {
         super("FlingerMotor", Kp, Ki, Kd, Kf);

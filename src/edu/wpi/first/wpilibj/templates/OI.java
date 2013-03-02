@@ -147,10 +147,10 @@ public class OI {
         btnOtherRB.whenPressed(new TiltDown());
         btnOtherRB.whenReleased(new TiltNormal());
         
-        bi1.whenPressed(new LEDBlingControl(Bling.MARCH_RWB));
-        bi2.whenPressed(new LEDBlingControl(Bling.METEOR));
-        bi3.whenPressed(new LEDBlingControl(Bling.SHOOT));
-        bi4.whenPressed(new LEDBlingControl(Bling.FADE_PG));
+        bi1.whenPressed(new LEDBlingControl(Constants.BLING_MARCH_RWB));
+        bi2.whenPressed(new LEDBlingControl(Constants.BLING_METEOR));
+        bi3.whenPressed(new LEDBlingControl(Constants.BLING_SHOOT));
+        bi4.whenPressed(new LEDBlingControl(Constants.BLING_FADE_PG));
         resetLocation.whenPressed(new ResetDeadReckoner());
         //commandTestLog.whenPressed(new LogCommand())
       
