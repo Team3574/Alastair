@@ -7,11 +7,13 @@ import edu.wpi.first.wpilibj.templates.subsystems.Accelero;
 import edu.wpi.first.wpilibj.templates.subsystems.Drive;
 import edu.wpi.first.wpilibj.templates.subsystems.Flinger;
 import edu.wpi.first.wpilibj.templates.subsystems.Bling;
+import edu.wpi.first.wpilibj.templates.subsystems.Collector;
 import edu.wpi.first.wpilibj.templates.subsystems.ShootingRam;
 import edu.wpi.first.wpilibj.templates.subsystems.Lifter;
 import edu.wpi.first.wpilibj.templates.subsystems.PizzaBoxTilt;
-import edu.wpi.first.wpilibj.templates.subsystems.ScooperCollector;
+import edu.wpi.first.wpilibj.templates.subsystems.Elevator;
 import edu.wpi.first.wpilibj.templates.subsystems.Shifter;
+import edu.wpi.first.wpilibj.templates.subsystems.VideoMessageReceiver;
 import team.util.LogDebugger;
 
 
@@ -28,13 +30,15 @@ public abstract class CommandBase extends Command {
     //public static ExampleSubsystem exampleSubsystem = new ExampleSubsystem();
     public static Drive theDrive = new Drive ();
     public static Flinger theFlinger = new Flinger ();
-    public static ShootingRam thePizzaBox = new ShootingRam ();
+    public static ShootingRam theShootingRam = new ShootingRam ();
     public static Lifter theLifter = new Lifter ();
-    public static ScooperCollector theScooperCollector = new ScooperCollector ();
+    public static Elevator theElevator = new Elevator ();
     public static Shifter theShifter = new Shifter ();
     public static Accelero theAccelerometer = new Accelero();
     public static Bling theBling = new Bling();
     public static PizzaBoxTilt thePizzaBoxTilt = new PizzaBoxTilt();
+    public static Collector theCollector = new Collector();
+    public static VideoMessageReceiver theVideoMessageReceiver = new VideoMessageReceiver();
 
     public static void init() {
         // This MUST be here. If the OI creates Commands (which it very likely
@@ -49,10 +53,11 @@ public abstract class CommandBase extends Command {
         SmartDashboard.putData(theBling);
         SmartDashboard.putData(theFlinger);
         SmartDashboard.putData(theLifter);
-        SmartDashboard.putData(thePizzaBox);
-        SmartDashboard.putData(theScooperCollector);
+        SmartDashboard.putData(theShootingRam);
+        SmartDashboard.putData(theElevator);
         SmartDashboard.putData(theShifter);
         SmartDashboard.putData(thePizzaBoxTilt);
+	SmartDashboard.putData(theCollector);
         
 
         // Show what command your subsystem is running on the SmartDashboard

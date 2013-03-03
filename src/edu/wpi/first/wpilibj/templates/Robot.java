@@ -15,6 +15,7 @@ import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 import edu.wpi.first.wpilibj.networktables.NetworkTable;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+import edu.wpi.first.wpilibj.templates.commands.AutonomousShootOnly;
 import edu.wpi.first.wpilibj.templates.commands.CommandBase;
 import team.util.LogDebugger;
 import team.util.XboxController;
@@ -59,6 +60,8 @@ public class Robot extends IterativeRobot {
     public void autonomousInit() {
         // schedule the autonomous command (example)
         //autonomousCommand.start();
+	AutonomousShootOnly autonomousShootOnly = new AutonomousShootOnly();
+	autonomousShootOnly.start();
     }
 
     /**
@@ -131,7 +134,7 @@ public class Robot extends IterativeRobot {
     }
     
     public void statusUpdater(){
-        CommandBase.theScooperCollector.updateStatus();
+        CommandBase.theElevator.updateStatus();
         CommandBase.theAccelerometer.updateStatus();
 	CommandBase.thePizzaBoxTilt.updateStatus(); 
     }

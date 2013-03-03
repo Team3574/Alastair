@@ -4,7 +4,7 @@
  */
 package edu.wpi.first.wpilibj.templates.commands;
 
-import edu.wpi.first.wpilibj.templates.subsystems.ScooperCollector;
+import edu.wpi.first.wpilibj.templates.subsystems.Elevator;
 
 /**
  *
@@ -14,7 +14,7 @@ public class CollectorDoNothing extends CommandBase {
     
     public CollectorDoNothing() {
         // Use requires() here to declare subsystem dependencies
-       requires(theScooperCollector);
+       requires(theCollector);
     }
 
     // Called just before this Command runs the first time
@@ -23,8 +23,7 @@ public class CollectorDoNothing extends CommandBase {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-        theScooperCollector.setCollector(0.0);
-        theScooperCollector.setElevator(0.0);
+        theCollector.setCollector(0.0);
     }
 
     // Make this return true when this Command no longer needs to run execute()
