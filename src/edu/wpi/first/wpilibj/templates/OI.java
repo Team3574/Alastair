@@ -19,6 +19,9 @@ import edu.wpi.first.wpilibj.templates.commands.Lift;
 import edu.wpi.first.wpilibj.templates.commands.PickUp;
 import edu.wpi.first.wpilibj.templates.commands.Drive.ScaleShift;
 import edu.wpi.first.wpilibj.templates.commands.Drive.Shift;
+import edu.wpi.first.wpilibj.templates.commands.ElevatorDoNothing;
+import edu.wpi.first.wpilibj.templates.commands.PickUpElevator;
+import edu.wpi.first.wpilibj.templates.commands.PickUpCollector;
 import edu.wpi.first.wpilibj.templates.commands.Shoot;
 import edu.wpi.first.wpilibj.templates.commands.SpitOut;
 import edu.wpi.first.wpilibj.templates.commands.StowArms;
@@ -122,32 +125,32 @@ public class OI {
    
 //        btnA.whenPressed(new Lift());
 //        btnB.whenPressed(new DeployLifter());
+	btnB.whenPressed(new StowArms());
 //        btnX.whenPressed(new StowArms());
+	btnX.whenPressed(new DeployLifter());
+	btnY.whenPressed(new Lift());
 //        btnLB.whenPressed(new PickUp());
 //        btnLB.whenReleased(new CollectorDoNothing());
+	btnLB.whenPressed(new ScaleShift());
 //        btnRB.whenActive(new SpitOut());
 //        btnRB.whenInactive(new CollectorDoNothing());
-        btnRT.whenPressed(new PickUp());
-        btnRT.whenReleased(new CollectorDoNothing());
-        btnLT.whenPressed(new SpitOut());
-        btnLT.whenReleased(new CollectorDoNothing());
-	
-        btnRB.whenReleased(new Shift());
-        btnX.whenPressed(new DeployLifter());
-        btnY.whenPressed(new Lift());
-        btnB.whenPressed(new StowArms());
-        btnLB.whenPressed(new ScaleShift());
-	
-	
+	btnRB.whenReleased(new Shift());
+	btnRT.whenPressed(new PickUpCollector());
+	btnRT.whenReleased(new CollectorDoNothing());
+	btnLT.whenPressed(new PickUpElevator());
+	btnLT.whenReleased(new ElevatorDoNothing());
+
+
+        
         btnOtherA.whenPressed(new FlingerNormal());
         btnOtherB.whenPressed(new FlingerOff());
         btnOtherX.whenPressed(new FlingerPowerSavingMode());
         btnOtherY.whenPressed(new FlingerPyrimidSpeed());
-        btnOtherRT.whenPressed(new Shoot());
 //        btnOtherA.whenPressed(new LEDBlingControl(Bling.MARCH_RWB));
 //        btnOtherB.whenPressed(new LEDBlingControl(Bling.METEOR));
 //        btnOtherX.whenPressed(new LEDBlingControl(Bling.SHOOT));
 //        btnOtherY.whenPressed(new LEDBlingControl(Bling.FADE_PG));
+	btnOtherRT.whenPressed(new Shoot());
         btnOtherLB.whenPressed(new TiltDown());
         btnOtherLB.whenReleased(new TiltNormal());
         btnOtherRB.whenPressed(new TiltUp());

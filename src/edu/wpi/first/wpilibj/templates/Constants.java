@@ -19,7 +19,7 @@ public class Constants {
     public static final int BLING_FADE_PG = 1;
     public static final int BLING_SHOOT = 3;
     
-    private static final int TILT_SCALE = -1350;
+    public static final int TILT_SCALE = -1350;
     // private static final int TILT_DEGREE_SCALE = TILT_SCALE/70;
     
     public static final int TILT_CROSS_COURT = (-150);

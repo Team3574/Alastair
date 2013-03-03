@@ -5,7 +5,7 @@
 package edu.wpi.first.wpilibj.templates.commands;
 
 import edu.wpi.first.wpilibj.templates.Constants;
-import edu.wpi.first.wpilibj.templates.subsystems.ScooperCollector;
+import edu.wpi.first.wpilibj.templates.subsystems.Elevator;
 
 /**
  *
@@ -17,7 +17,8 @@ public class PickUp extends CommandBase {
     public PickUp() {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
-        requires (theScooperCollector);
+        requires (theElevator);
+	requires(theCollector);
     }
 
     // Called just before this Command runs the first time
@@ -27,11 +28,11 @@ public class PickUp extends CommandBase {
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
 	if (this.shouldCollectNow()){
-	    theScooperCollector.setCollector(1.0);
-	    theScooperCollector.setElevator(1.0);
+	    theCollector.setCollector(1.0);
+	    theElevator.setElevator(1.0);
 	} else {
-	    theScooperCollector.setCollector(0.0);
-	    theScooperCollector.setElevator(0.0);
+	    theCollector.setCollector(0.0);
+	    theElevator.setElevator(0.0);
 	}
     }
     

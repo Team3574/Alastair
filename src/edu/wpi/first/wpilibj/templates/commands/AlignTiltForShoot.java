@@ -2,25 +2,25 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package edu.wpi.first.wpilibj.templates.commands.Drive;
+package edu.wpi.first.wpilibj.templates.commands;
 
 import edu.wpi.first.wpilibj.networktables.NetworkTable;
-import edu.wpi.first.wpilibj.networktables2.client.NetworkTableClient;
-import edu.wpi.first.wpilibj.templates.commands.CommandBase;
+import edu.wpi.first.wpilibj.templates.Constants;
 
 /**
  *
  * @author team3574
  */
-public class AlignForShoot extends CommandBase {
+public class AlignTiltForShoot extends CommandBase {
     private static final double NOTHING_FOUND = -10000.0;
     
-    double targetOffsetX;
+    double targetOffsetY;
     
-    public AlignForShoot() {
-        // Use requires() here to declare subsystem dependencies
-        // eg. requires(chassis);
-        requires(theDrive);
+    
+    public AlignTiltForShoot() {
+	// Use requires() here to declare subsystem dependencies
+	// eg. requires(chassis);
+	requires(thePizzaBoxTilt);
     }
 
     // Called just before this Command runs the first time
@@ -29,16 +29,17 @@ public class AlignForShoot extends CommandBase {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-	targetOffsetX = theVideoMessageReceiver.getTopX();
-        if (theVideoMessageReceiver.getTopExists()
-		&& targetOffsetX > NOTHING_FOUND) {
-            theDrive.goVariable(targetOffsetX, 0.0);
-        }
+	targetOffsetY = theVideoMessageReceiver.getTopY();
+	if (theVideoMessageReceiver.getTopExists()
+		&& targetOffsetY > NOTHING_FOUND) {
+
+	    thePizzaBoxTilt.setSetpoint(thePizzaBoxTilt.getTiltEncoder() + Constants.TILT_SCALE / 2.0 * targetOffsetY);
+	}
     }
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-        return false;
+	return false;
     }
 
     // Called once after isFinished returns true

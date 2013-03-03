@@ -8,12 +8,12 @@ package edu.wpi.first.wpilibj.templates.commands;
  *
  * @author team3574
  */
-public class Shoot extends CommandBase {
+public class ElevatorDoNothing extends CommandBase {
     
-    public Shoot() {
-        // Use requires() here to declare subsystem dependencies
-        requires(theShootingRam);
-        this.setTimeout(0.75);
+    public ElevatorDoNothing() {
+	// Use requires() here to declare subsystem dependencies
+	// eg. requires(chassis);
+	requires(theElevator);
     }
 
     // Called just before this Command runs the first time
@@ -22,17 +22,12 @@ public class Shoot extends CommandBase {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-        if (this.timeSinceInitialized() < 0.25) {
-            theShootingRam.kickerOut();
-        }
-        else {
-            theShootingRam.kickerIn();
-        }
+	theElevator.setElevator(0.0);
     }
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-        return this.isTimedOut();
+	return false;
     }
 
     // Called once after isFinished returns true

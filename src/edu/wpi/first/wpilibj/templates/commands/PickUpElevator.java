@@ -4,35 +4,45 @@
  */
 package edu.wpi.first.wpilibj.templates.commands;
 
+import edu.wpi.first.wpilibj.templates.Constants;
+
 /**
  *
  * @author team3574
  */
-public class Shoot extends CommandBase {
+public class PickUpElevator extends CommandBase {
     
-    public Shoot() {
-        // Use requires() here to declare subsystem dependencies
-        requires(theShootingRam);
-        this.setTimeout(0.75);
+    public PickUpElevator() {
+	// Use requires() here to declare subsystem dependencies
+	// eg. requires(chassis);
+	requires(theElevator);
     }
 
     // Called just before this Command runs the first time
     protected void initialize() {
+	
     }
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-        if (this.timeSinceInitialized() < 0.25) {
-            theShootingRam.kickerOut();
-        }
-        else {
-            theShootingRam.kickerIn();
-        }
+	if (this.shouldCollectNow()){
+	    theElevator.setElevator(1.0);
+	} else {
+	    theElevator.setElevator(0.0);
+	}
+    }
+    
+    public boolean shouldCollectNow() {
+	if (thePizzaBoxTilt.getTiltEncoder() <= Constants.TILT_DONT_COLLECT){
+	    return false;
+	} else {
+	    return true;
+	}
     }
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-        return this.isTimedOut();
+	return false;
     }
 
     // Called once after isFinished returns true

@@ -11,39 +11,33 @@ import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj.templates.RobotMap;
 import edu.wpi.first.wpilibj.templates.commands.CollectorDoNothing;
+import edu.wpi.first.wpilibj.templates.commands.ElevatorDoNothing;
 
 
 /**
  *
  * @author team3574
  */
-public class ScooperCollector extends Subsystem {
+public class Elevator extends Subsystem {
     Talon moverUpperTalon = RobotMap.moverUpperTalon;
-    Talon collectorTalon = RobotMap.collectorTalon;
     
     DigitalInput collectSenPort1 = RobotMap.collectSenPort1;
     DigitalInput collectSenPort2 = RobotMap.collectSenPort2;
     DigitalInput collectSenPort3 = RobotMap.collectSenPort3;
     
         //initilize subsystem here
-    public ScooperCollector(){
-	LiveWindow.addSensor("ScooperCollector", "sensor port 1", collectSenPort1);
-	LiveWindow.addSensor("ScooperCollector", "sensor port 2", collectSenPort2);
-	LiveWindow.addSensor("ScooperCollector", "sensor port 3", collectSenPort3);
-	LiveWindow.addActuator("ScooperCollector", "Move up " + moverUpperTalon.getChannel(), moverUpperTalon);
-	LiveWindow.addActuator("ScooperCollector", "Collector " + collectorTalon.getChannel(), collectorTalon);
+    public Elevator(){
+	LiveWindow.addSensor("Elevator", "sensor port 1", collectSenPort1);
+	LiveWindow.addSensor("Elevator", "sensor port 2", collectSenPort2);
+	LiveWindow.addSensor("Elevator", "sensor port 3", collectSenPort3);
+	LiveWindow.addActuator("Elevator", "Move up " + moverUpperTalon.getChannel(), moverUpperTalon);
     }
 
     public void initDefaultCommand() {
         // Set the default command for a subsystem here.
         //setDefaultCommand(new MySpecialCommand());
         //setDefaultCommand(new LogCollectSensor());
-        setDefaultCommand(new CollectorDoNothing());
-    }
-    
-    public void setCollector(double speed) {
-	// collector is wired such that running it positive spits out
-        collectorTalon.set(-speed);
+        setDefaultCommand(new ElevatorDoNothing());
     }
     
     public void setElevator(double speed) {

@@ -12,13 +12,13 @@ public class SpitOut extends CommandBase {
     
     public SpitOut() {
         // Use requires() here to declare subsystem dependencies
-         requires(theScooperCollector);
+         requires(theElevator);
     }
 
     // Called just before this Command runs the first time
     protected void initialize() {
-        theScooperCollector.setCollector(-1.0);
-        theScooperCollector.setElevator(-1.0);
+        
+        theElevator.setElevator(-1.0);
     }
 
     // Called repeatedly when this Command is scheduled to run

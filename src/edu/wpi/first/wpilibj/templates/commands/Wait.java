@@ -4,35 +4,36 @@
  */
 package edu.wpi.first.wpilibj.templates.commands;
 
+import team.util.LogDebugger;
+
 /**
  *
  * @author team3574
  */
-public class Shoot extends CommandBase {
+public class Wait extends CommandBase {
+    public double m_timeSeconds;
     
-    public Shoot() {
-        // Use requires() here to declare subsystem dependencies
-        requires(theShootingRam);
-        this.setTimeout(0.75);
+    public Wait(double timeSeconds) {
+	// Use requires() here to declare subsystem dependencies
+	// eg. requires(chassis);
+	m_timeSeconds = timeSeconds;
+	this.setTimeout(m_timeSeconds);
+//	LogDebugger.log("Wait instanced");
     }
 
     // Called just before this Command runs the first time
     protected void initialize() {
+//	LogDebugger.log("Wait initialized");
     }
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-        if (this.timeSinceInitialized() < 0.25) {
-            theShootingRam.kickerOut();
-        }
-        else {
-            theShootingRam.kickerIn();
-        }
     }
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-        return this.isTimedOut();
+//	LogDebugger.log("Wait done? " + isTimedOut());
+	return this.isTimedOut();
     }
 
     // Called once after isFinished returns true
