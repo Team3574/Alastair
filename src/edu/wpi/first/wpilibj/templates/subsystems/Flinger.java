@@ -25,12 +25,6 @@ import team.util.PIDCalculate;
 public class Flinger extends PIDSubsystem {
     EncoderSmooth spinnerEncoder = RobotMap.spinnerEncoder;
     Jaguar spinnerMotor = RobotMap.spinnerMotor;
-    
-    
-    
-    private double lastSpeed = 0.0;
-    private double lastSpinnerCount = 0.0;
-    private double weightFactor = 10.0;
 
     private static final double Kp = 0.1;
     private static final double Ki = 0.0;
@@ -64,9 +58,6 @@ public class Flinger extends PIDSubsystem {
         // Set the default command for a subsystem here.
         //setDefaultCommand(new MySpecialCommand());
     }
-    
-    
-    
     
     protected double returnPIDInput() {
         // Return your input value for the PID loop

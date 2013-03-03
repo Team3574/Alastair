@@ -23,8 +23,8 @@ public class CollectorDoNothing extends CommandBase {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-        theScooperCollector.setCollectorMotor(0.0);
-        theScooperCollector.setElevatorMotor(0.0);
+        theScooperCollector.setCollector(0.0);
+        theScooperCollector.setElevator(0.0);
     }
 
     // Make this return true when this Command no longer needs to run execute()

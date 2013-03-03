@@ -13,7 +13,7 @@ public class MotorScaler {
     
     public MotorScaler(){
         lastSpeed = 0.0;
-        maxChange = 0.05;
+        maxChange = 0.2;
     }
     public MotorScaler(double _maxChange){
         lastSpeed = 0.0;

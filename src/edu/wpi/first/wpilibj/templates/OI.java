@@ -25,6 +25,7 @@ import edu.wpi.first.wpilibj.templates.commands.StowArms;
 import edu.wpi.first.wpilibj.templates.commands.TiltCalibrate;
 import edu.wpi.first.wpilibj.templates.commands.TiltNormal;
 import edu.wpi.first.wpilibj.templates.commands.TiltDown;
+import edu.wpi.first.wpilibj.templates.commands.TiltToPreset;
 import edu.wpi.first.wpilibj.templates.commands.TiltUp;
 import edu.wpi.first.wpilibj.templates.commands.testCommands.LogCommand;
 import edu.wpi.first.wpilibj.templates.commands.testCommands.ResetDeadReckoner;
@@ -66,6 +67,7 @@ public class OI {
     Button btnLT = new JoystickTrigger(stick, Axis.triggers, AxisSide.left);
     Button btnRT = new JoystickTrigger(stick, Axis.triggers, AxisSide.right);
     
+    
     Joystick otherStick = new Joystick(2);
     
     Button btnOtherA = new JoystickButton(otherStick, XboxController.A);
@@ -77,10 +79,15 @@ public class OI {
     Button btnOtherLT = new JoystickTrigger(otherStick, Axis.triggers, AxisSide.left);
     Button btnOtherRT = new JoystickTrigger(otherStick, Axis.triggers, AxisSide.right);
     
+    
     InternalButton bi1 = new InternalButton();
     InternalButton bi2 = new InternalButton();
     InternalButton bi3 = new InternalButton();
     InternalButton bi4 = new InternalButton();
+    InternalButton bi5 = new InternalButton();
+    InternalButton bi6 = new InternalButton();
+    InternalButton bi7 = new InternalButton();
+    InternalButton bi8 = new InternalButton();
     InternalButton resetLocation = new InternalButton();
     
    
@@ -120,19 +127,18 @@ public class OI {
 //        btnLB.whenReleased(new CollectorDoNothing());
 //        btnRB.whenActive(new SpitOut());
 //        btnRB.whenInactive(new CollectorDoNothing());
-        btnLT.whenPressed(new PickUp());
+        btnRT.whenPressed(new PickUp());
+        btnRT.whenReleased(new CollectorDoNothing());
+        btnLT.whenPressed(new SpitOut());
         btnLT.whenReleased(new CollectorDoNothing());
-        btnRT.whenActive(new SpitOut());
-        btnRT.whenInactive(new CollectorDoNothing());
+	
         btnRB.whenReleased(new Shift());
         btnX.whenPressed(new DeployLifter());
         btnY.whenPressed(new Lift());
         btnB.whenPressed(new StowArms());
         btnLB.whenPressed(new ScaleShift());
-        
-        
-        
-      
+	
+	
         btnOtherA.whenPressed(new FlingerNormal());
         btnOtherB.whenPressed(new FlingerOff());
         btnOtherX.whenPressed(new FlingerPowerSavingMode());
@@ -142,24 +148,34 @@ public class OI {
 //        btnOtherB.whenPressed(new LEDBlingControl(Bling.METEOR));
 //        btnOtherX.whenPressed(new LEDBlingControl(Bling.SHOOT));
 //        btnOtherY.whenPressed(new LEDBlingControl(Bling.FADE_PG));
-        btnOtherLB.whenPressed(new TiltUp());
+        btnOtherLB.whenPressed(new TiltDown());
         btnOtherLB.whenReleased(new TiltNormal());
-        btnOtherRB.whenPressed(new TiltDown());
+        btnOtherRB.whenPressed(new TiltUp());
         btnOtherRB.whenReleased(new TiltNormal());
         
+	
         bi1.whenPressed(new LEDBlingControl(Constants.BLING_MARCH_RWB));
         bi2.whenPressed(new LEDBlingControl(Constants.BLING_METEOR));
         bi3.whenPressed(new LEDBlingControl(Constants.BLING_SHOOT));
         bi4.whenPressed(new LEDBlingControl(Constants.BLING_FADE_PG));
+	bi5.whenPressed(new TiltToPreset(Constants.TILT_CLOSE));
+        bi6.whenPressed(new TiltToPreset(Constants.TILT_CROSS_COURT));
+        bi7.whenPressed(new TiltToPreset(Constants.TILT_MID_COURT));
+        bi8.whenPressed(new TiltToPreset(Constants.TILT_PYRIMID_TOP));
         resetLocation.whenPressed(new ResetDeadReckoner());
         //commandTestLog.whenPressed(new LogCommand())
       
+	
         //SmartDashboard.putData("Command Test Log", commandTestLog);
         SmartDashboard.putData("Reset Location", resetLocation);
         SmartDashboard.putData("MARCH_RWB", bi1);
         SmartDashboard.putData("METEOR", bi2);
         SmartDashboard.putData("SHOOT", bi3);
         SmartDashboard.putData("FADE_PG", bi4);
+	SmartDashboard.putData("TILT_CLOSE", bi5);
+        SmartDashboard.putData("TILT_CROSS_COURT", bi6);
+        SmartDashboard.putData("TILT_MID_COURT", bi7);
+        SmartDashboard.putData("TILT_PYRIMID_TOP", bi8);
         SmartDashboard.putData("flinger Normal", new FlingerNormal());
         SmartDashboard.putData("flinger power saving mode", new FlingerPowerSavingMode());
         SmartDashboard.putData("Flinger off", new FlingerOff());

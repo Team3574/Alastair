@@ -19,11 +19,16 @@ public class Constants {
     public static final int BLING_FADE_PG = 1;
     public static final int BLING_SHOOT = 3;
     
-    public static final int TILT_CROSS_COURT = 8;
-    public static final int TILT_MID_COURT = 24;
-    public static final int TILT_CLOSE = 35;
-    public static final int TILT_PYRIMID_TOP = 68;
+    private static final int TILT_SCALE = -1350;
+    // private static final int TILT_DEGREE_SCALE = TILT_SCALE/70;
     
+    public static final int TILT_CROSS_COURT = (-150);
+    public static final int TILT_MID_COURT = (-450);
+    public static final int TILT_CLOSE = (-600);
+    public static final int TILT_PYRIMID_TOP = (-1280);
+    
+    public static final int TILT_DONT_COLLECT = (-500);
+   
         // Put methods for controlling this subsystem
     // here. Call these from Commands.
     

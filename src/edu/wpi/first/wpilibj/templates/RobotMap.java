@@ -61,7 +61,7 @@ public class RobotMap {
     public static Solenoid shifterPort = new Solenoid (7);
     
 // THIS IS CAUSING THE ENTIRE ROBOT NOT TO WORK.  DO NOT UNCOMMENT UNLESS YOU HAVE A LOT OF TIME ON YOUR HANDS 
-//    seems to work again, just advise proceed with caution
+//    seems to work again, I just advise you to proceed with caution
 //    public static ADXL345_I2C accelerometer = new ADXL345_I2C(1, ADXL345_I2C.DataFormat_Range.k2G);
 
     public RobotMap () {

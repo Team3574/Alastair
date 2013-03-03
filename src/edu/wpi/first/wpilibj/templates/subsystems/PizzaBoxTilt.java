@@ -69,12 +69,17 @@ public class PizzaBoxTilt extends PIDSubsystem {
 	tiltingEncoder.reset();
     } 
     
+    public int getTiltEncoder (){
+	return tiltingEncoder.get();
+    }
+    
     protected double returnPIDInput() {
         // Return your input value for the PID loop
         // e.g. a sensor, like a potentiometer:
         // yourPot.getAverageVoltage() / kYourMaxVoltage;
         int elevation = tiltingEncoder.get();
-        SmartDashboard.putNumber("tilt encoder", elevation);
+
+//	SmartDashboard.putNumber("tilt encoder", elevation);
         return elevation;
     }
     
@@ -118,8 +123,7 @@ public class PizzaBoxTilt extends PIDSubsystem {
     }
 
     public void updateStatus() {
-//	SmartDashboard.putNumber("tilt encoder", elevation);
-//	SmartDashboard.putNumber("Elevation Output", output);
+	SmartDashboard.putNumber("tilt encoder", tiltingEncoder.get());
 	SmartDashboard.putBoolean("limitZero", shooterZero.get());
 	SmartDashboard.putBoolean("limitSeventy", shooterSeventy.get());
     }

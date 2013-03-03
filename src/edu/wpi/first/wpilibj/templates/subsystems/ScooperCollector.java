@@ -41,11 +41,12 @@ public class ScooperCollector extends Subsystem {
         setDefaultCommand(new CollectorDoNothing());
     }
     
-    public void setCollectorMotor(double speed) {
-        collectorTalon.set(speed);
+    public void setCollector(double speed) {
+	// collector is wired such that running it positive spits out
+        collectorTalon.set(-speed);
     }
     
-    public void setElevatorMotor(double speed) {
+    public void setElevator(double speed) {
         moverUpperTalon.set(speed);
     }
     
