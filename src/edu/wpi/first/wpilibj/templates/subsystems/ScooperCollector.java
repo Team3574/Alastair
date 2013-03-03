@@ -51,18 +51,15 @@ public class ScooperCollector extends Subsystem {
     }
     
     public boolean isPresentSensor1() {
-//        return collectSenPort1.get();
-	return true;
+        return collectSenPort1.get();
     }
     
     public boolean isPresentSensor2() {
-//        return collectSenPort2.get();
-	return true;
+        return collectSenPort2.get();
     }
     
     public boolean isPresentSensor3() {
-//        return collectSenPort3.get();
-	return true;
+        return collectSenPort3.get();
     }
     
     public void updateStatus(){
