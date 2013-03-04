@@ -28,7 +28,7 @@ public class Drive extends Subsystem {
     Jaguar backLeftMotor = RobotMap.backLeftMotor;
     Encoder leftWheelEncoder = RobotMap.leftWheelEncoder;
     Encoder rightWheelEncoder = RobotMap.rightWheelEncoder;
-
+    
     double scaler = 1;
     
     DeadReckoner myLocation;

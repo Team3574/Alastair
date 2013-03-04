@@ -33,7 +33,7 @@ public class RobotMap {
     public static Encoder rightWheelEncoder = new Encoder (11, 12, true);
 
     public static Encoder tiltingEncoder = new Encoder (5, 6);
-    public static EncoderSmooth spinnerEncoder = new EncoderSmooth (7, 8);
+    public static EncoderSmooth spinnerEncoder = new EncoderSmooth (7, 8, true);
 
     // TODO: note these do not yet exist in production bot!!
     public static DigitalInput collectSenPort1 = new DigitalInput (4);

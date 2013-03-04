@@ -4,18 +4,15 @@
  */
 package edu.wpi.first.wpilibj.templates.commands;
 
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
-import edu.wpi.first.wpilibj.templates.RobotMap;
-
 /**
  *
  * @author team3574
  */
-public class TiltDown extends CommandBase {
+public class MoveForwardForXTime extends CommandBase {
     
-    public TiltDown() {
-        // Use requires() here to declare subsystem dependencies
-        requires(thePizzaBoxTilt);
+    public MoveForwardForXTime() {
+	// Use requires() here to declare subsystem dependencies
+	// eg. requires(chassis);
     }
 
     // Called just before this Command runs the first time
@@ -24,14 +21,11 @@ public class TiltDown extends CommandBase {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-//        thePizzaBoxTilt.manualGo(-0.5);
-        thePizzaBoxTilt.setSetpoint(thePizzaBoxTilt.getSetpoint()+2);
-//       System.out.println("Tilt Down" + thePizzaBoxTilt.manualGo(speed));
     }
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-        return false;
+	return false;
     }
 
     // Called once after isFinished returns true

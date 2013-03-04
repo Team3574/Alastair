@@ -10,9 +10,9 @@ package edu.wpi.first.wpilibj.templates;
  */
 public class Constants {
     public static final double FLINGER_POWER_SAVING_MODE = 0.2;
-    public static final double FLINGER_PYRIMID_SPEED = 0.5;
-    public static final double FLINGER_NORMAL_SPEED = 1;
-    public static final double FLINGER_OFF = 0;
+    public static final double FLINGER_PYRIMID_SPEED = 0.55;
+    public static final double FLINGER_NORMAL_SPEED = 1.0;
+    public static final double FLINGER_OFF = 0.0;
     
     public static final int BLING_METEOR = 0;
     public static final int BLING_MARCH_RWB = 2;
@@ -24,7 +24,7 @@ public class Constants {
     
     public static final int TILT_CROSS_COURT = (-150);
     public static final int TILT_MID_COURT = (-450);
-    public static final int TILT_CLOSE = (-600);
+    public static final int TILT_CLOSE = (-519);
     public static final int TILT_PYRIMID_TOP = (-1280);
     
     public static final int TILT_DONT_COLLECT = (-500);

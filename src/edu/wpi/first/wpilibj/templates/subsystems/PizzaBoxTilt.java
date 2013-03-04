@@ -20,8 +20,8 @@ import team.util.LogDebugger;
  */
 public class PizzaBoxTilt extends PIDSubsystem {
 
-    private static final double Kp = 0.002;
-    private static final double Ki = 0.0001;
+    private static final double Kp = 0.009;
+    private static final double Ki = 0.000;
     private static final double Kd = 0.0;
     
     Talon tiltingTalon = RobotMap.tiltingTalon;

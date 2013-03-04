@@ -137,8 +137,8 @@ public class OI {
 	btnRB.whenReleased(new Shift());
 	btnRT.whenPressed(new PickUpCollector());
 	btnRT.whenReleased(new CollectorDoNothing());
-	btnLT.whenPressed(new PickUpElevator());
-	btnLT.whenReleased(new ElevatorDoNothing());
+	btnRT.whenPressed(new PickUpElevator());
+	btnRT.whenReleased(new ElevatorDoNothing());
 
 
         
