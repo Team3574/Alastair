@@ -6,6 +6,7 @@ package team.util;
 
 import edu.wpi.first.wpilibj.DigitalSource;
 import edu.wpi.first.wpilibj.Encoder;
+import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.tables.ITable;
 
 /**
@@ -14,8 +15,10 @@ import edu.wpi.first.wpilibj.tables.ITable;
  */
 public class EncoderSmooth extends Encoder{
 
+    Timer time = new Timer();
     private double lastSpeed = 0.0;
     private double lastEncoderCount = 0.0;
+    private double lastTimeCount = 0.0;
     private double weightFactor = 1.0;
     private double scaleFactor = 1.0;
 	    
@@ -79,18 +82,31 @@ public class EncoderSmooth extends Encoder{
 	super(aSource, bSource, indexSource);
     }
     
+    public void start() {
+	time = new Timer();
+	time.reset();
+	time.start();
+	super.start();
+    }
+
     public void update(){
-	double currnetEncoderCount = get();
-        double reading = currnetEncoderCount - this.lastEncoderCount;
-        double speed = ((lastSpeed * weightFactor) + reading)/(weightFactor + 1);
-        this.lastSpeed = speed;
-        this.lastEncoderCount = currnetEncoderCount;
-	//LogDebugger.log(" speed " + lastEncoderCount);
+	
     }
     
     public double getRate(){
-	//LogDebugger.log("get rate");
-	return lastSpeed/scaleFactor; 
+	// get these once so they don't change during calculations
+	double currentTimeCount = time.get();
+	double currnetEncoderCount = get();
+
+	// do the calculations
+	double reading = (currnetEncoderCount - this.lastEncoderCount)/(currentTimeCount - lastTimeCount);
+        double speed = ((lastSpeed * weightFactor) + reading)/(weightFactor + 1);
+	
+	// set the values for the next time through
+        this.lastSpeed = speed;
+        this.lastEncoderCount = currnetEncoderCount;
+	this.lastTimeCount = currentTimeCount;
+	return lastSpeed/scaleFactor;
     }
     
    public void reset(){

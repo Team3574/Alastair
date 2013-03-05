@@ -6,6 +6,7 @@ package edu.wpi.first.wpilibj.templates.commands.Flinger;
 import edu.wpi.first.wpilibj.templates.Constants;
 import edu.wpi.first.wpilibj.templates.commands.CommandBase;
 import edu.wpi.first.wpilibj.templates.subsystems.Flinger;
+import team.util.LogDebugger;
 
 /**
  *
@@ -24,6 +25,7 @@ public class FlingerNormal extends CommandBase {
     protected void initialize() {
         theFlinger.setSetpoint(Constants.FLINGER_NORMAL_SPEED);
         theFlinger.enable();
+	LogDebugger.log("Flinger Normal init!");
     }
 
     // Called repeatedly when this Command is scheduled to run

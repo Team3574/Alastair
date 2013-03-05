@@ -35,7 +35,8 @@ public class Flinger extends PIDSubsystem {
     public Flinger() {
         super("FlingerMotor", Kp, Ki, Kd, Kf);
         spinnerEncoder.setSmoothWeightFactor(10.0);
-	spinnerEncoder.setScaleFactor(120.0);
+	// this is the max number speed encountered
+	spinnerEncoder.setScaleFactor(24300.0);
         spinnerEncoder.start();
         
         LogDebugger.log("Flinger Started!");
@@ -64,16 +65,15 @@ public class Flinger extends PIDSubsystem {
         // e.g. a sensor, like a potentiometer:
         // yourPot.getAverageVoltage() / kYourMaxVoltage;
         spinnerEncoder.update(); 
-	return spinnerEncoder.getRate();
+	double spinnerEncoderValue = spinnerEncoder.getRate();
+	SmartDashboard.putNumber("Flinger Encoder Value",spinnerEncoderValue);
+	return spinnerEncoderValue;
     }
     
     protected void usePIDOutput(double output) {
         // Use output to drive your system, like a motor
         // e.g. yourMotor.set(output);
-        // setSetpoint(DriverStation.getInstance().getAnalogIn(4) / 5);
         SmartDashboard.putNumber("Flinger setpoint", this.getSetpoint());
-        SmartDashboard.putNumber("Flinger Error", output);
-        SmartDashboard.putNumber("Flinger Motor get", spinnerMotor.get());
 
         spinnerMotor.set(output);
     }

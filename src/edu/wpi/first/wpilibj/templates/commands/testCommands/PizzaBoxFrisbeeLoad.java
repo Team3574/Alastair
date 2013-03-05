@@ -5,7 +5,7 @@
 package edu.wpi.first.wpilibj.templates.commands.testCommands;
 
 import edu.wpi.first.wpilibj.templates.commands.CommandBase;
-import edu.wpi.first.wpilibj.templates.subsystems.PizzaBoxTilt;
+import edu.wpi.first.wpilibj.templates.subsystems.Tilt;
 
 /**
  *
@@ -16,7 +16,7 @@ public class PizzaBoxFrisbeeLoad extends CommandBase {
     
     public PizzaBoxFrisbeeLoad() {
 	// Use requires() here to declare subsystem dependencies
-	 requires(thePizzaBoxTilt);
+	 requires(theTilt);
     }
 
     // Called just before this Command runs the first time

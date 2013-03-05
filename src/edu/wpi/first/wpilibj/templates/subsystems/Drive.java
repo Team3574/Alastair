@@ -78,9 +78,8 @@ public class Drive extends Subsystem {
 	backLeftMotor.set(leftSpeed * scaler);
 	frontRightMotor.set(-rightSpeed * scaler);
 	backRightMotor.set(-rightSpeed * scaler);
+	this.updateDeadReckoner();
 
-	SmartDashboard.putNumber("Left Encoder", leftWheelEncoder.get());
-	SmartDashboard.putNumber("Right Encoder", rightWheelEncoder.get());
     }
 
     public void shiftScale() {
@@ -90,5 +89,14 @@ public class Drive extends Subsystem {
 	} else {
 	    scaler = 1.0;
 	}
+    }
+
+    public void updateStatus() {
+	SmartDashboard.putNumber("Location x", myLocation.getLocation().getXLocation());
+	SmartDashboard.putNumber("Location y", myLocation.getLocation().getYLocation());
+	SmartDashboard.putNumber("Location heading", myLocation.getLocation().getHeading());
+	SmartDashboard.putNumber("Left Encoder", leftWheelEncoder.get());
+	SmartDashboard.putNumber("Right Encoder", rightWheelEncoder.get());
+
     }
 }

@@ -9,8 +9,6 @@ package team.util;
 
 import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.buttons.Button;
-import edu.wpi.first.wpilibj.buttons.DigitalIOButton;
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 /**
  *

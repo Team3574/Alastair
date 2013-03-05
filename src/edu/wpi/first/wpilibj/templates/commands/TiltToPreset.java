@@ -4,6 +4,8 @@
  */
 package edu.wpi.first.wpilibj.templates.commands;
 
+import team.util.LogDebugger;
+
 /**
  *
  * @author team3574
@@ -14,7 +16,7 @@ public class TiltToPreset extends CommandBase {
     public TiltToPreset(int preset) {
 	// Use requires() here to declare subsystem dependencies
 	// eg. requires(chassis);
-	requires(thePizzaBoxTilt);
+	requires(theTilt);
 	
 	m_preset = preset;
 	
@@ -22,7 +24,8 @@ public class TiltToPreset extends CommandBase {
 
     // Called just before this Command runs the first time
     protected void initialize() {
-	thePizzaBoxTilt.setSetpoint(m_preset);
+	theTilt.setSetpoint(m_preset);
+	LogDebugger.log("Tilt To Preset init!");
     }
 
     // Called repeatedly when this Command is scheduled to run

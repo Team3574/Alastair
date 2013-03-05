@@ -16,7 +16,7 @@ public class TiltCalibrate extends CommandBase {
     
     public TiltCalibrate() {
 	// Use requires() here to declare subsystem dependencies
-	requires(thePizzaBoxTilt);
+	requires(theTilt);
     }
 
     // Called just before this Command runs the first time
@@ -26,17 +26,17 @@ public class TiltCalibrate extends CommandBase {
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
 	//moving the table to zero 
-	thePizzaBoxTilt.setSetpoint(thePizzaBoxTilt.getSetpoint()+10);
-	if (thePizzaBoxTilt.getLimitSwitchZero()) {
-	    thePizzaBoxTilt.setSetpoint(0);
-	    thePizzaBoxTilt.resetEncoder();
+	theTilt.setSetpoint(theTilt.getSetpoint()+10);
+	if (theTilt.getLimitSwitchZero()) {
+	    theTilt.setSetpoint(0);
+	    theTilt.resetEncoder();
 	}
 	
     }
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-	return thePizzaBoxTilt.getLimitSwitchZero();
+	return theTilt.getLimitSwitchZero();
     }
 
     // Called once after isFinished returns true

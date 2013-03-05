@@ -2,34 +2,43 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package edu.wpi.first.wpilibj.templates.commands;
+package edu.wpi.first.wpilibj.templates.commands.Drive;
 
 import edu.wpi.first.wpilibj.templates.RobotMap;
+import edu.wpi.first.wpilibj.templates.commands.CommandBase;
+import team.util.LogDebugger;
 
 /**
  *
  * @author team3574
  */
 public class MoveForwardForXAmount extends CommandBase {
+    public int m_xAmount;
+    public double m_leftSpeed;
+    public double m_rightSpeed;	    
 
-    public MoveForwardForXAmount() {
+    public MoveForwardForXAmount(int xAmount, double leftSpeed, double rightSpeed) {
 	// Use requires() here to declare subsystem dependencies
 	// eg. requires(chassis);
+	m_xAmount = xAmount;
+	m_leftSpeed = leftSpeed;
+	m_rightSpeed = rightSpeed;
 	requires(theDrive);
     }
 
     // Called just before this Command runs the first time
     protected void initialize() {
+	LogDebugger.log("Move Forward For X Amount init!");
     }
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-	theDrive.goVariable(-0.5, -0.5);
+	theDrive.goVariable(m_leftSpeed, m_rightSpeed);
     }
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-	if (RobotMap.rightWheelEncoder.get() >= 300) {
+	if (RobotMap.rightWheelEncoder.get() >= m_xAmount) {
 	    theDrive.goVariable(0.0, 0.0);
 	    return true;
 	} else {

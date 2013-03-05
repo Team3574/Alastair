@@ -23,7 +23,7 @@ public class Wait extends CommandBase {
 
     // Called just before this Command runs the first time
     protected void initialize() {
-//	LogDebugger.log("Wait initialized");
+	LogDebugger.log("Wait initialized");
     }
 
     // Called repeatedly when this Command is scheduled to run

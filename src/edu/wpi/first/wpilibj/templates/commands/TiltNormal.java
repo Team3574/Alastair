@@ -12,12 +12,12 @@ public class TiltNormal extends CommandBase {
     
     public TiltNormal() {
         // Use requires() here to declare subsystem dependencies
-       requires(thePizzaBoxTilt);
+       requires(theTilt);
     }
 
     // Called just before this Command runs the first time
     protected void initialize() {
-	thePizzaBoxTilt.enable();
+	theTilt.enable();
     }
 
     // Called repeatedly when this Command is scheduled to run

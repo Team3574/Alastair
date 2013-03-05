@@ -20,7 +20,7 @@ public class AlignTiltForShoot extends CommandBase {
     public AlignTiltForShoot() {
 	// Use requires() here to declare subsystem dependencies
 	// eg. requires(chassis);
-	requires(thePizzaBoxTilt);
+	requires(theTilt);
     }
 
     // Called just before this Command runs the first time
@@ -33,7 +33,7 @@ public class AlignTiltForShoot extends CommandBase {
 	if (theVideoMessageReceiver.getTopExists()
 		&& targetOffsetY > NOTHING_FOUND) {
 
-	    thePizzaBoxTilt.setSetpoint(thePizzaBoxTilt.getTiltEncoder() + Constants.TILT_SCALE / 2.0 * targetOffsetY);
+	    theTilt.setSetpoint(theTilt.getTiltEncoder() + Constants.TILT_SCALE / 2.0 * targetOffsetY);
 	}
     }
 

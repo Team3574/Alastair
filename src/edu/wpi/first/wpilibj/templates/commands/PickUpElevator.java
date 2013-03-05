@@ -33,7 +33,7 @@ public class PickUpElevator extends CommandBase {
     }
     
     public boolean shouldCollectNow() {
-	if (thePizzaBoxTilt.getTiltEncoder() <= Constants.TILT_DONT_COLLECT){
+	if (theTilt.getTiltEncoder() <= Constants.TILT_DONT_COLLECT){
 	    return false;
 	} else {
 	    return true;

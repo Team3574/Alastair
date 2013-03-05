@@ -4,7 +4,7 @@
  */
 package edu.wpi.first.wpilibj.templates.commands;
 
-import edu.wpi.first.wpilibj.templates.subsystems.PizzaBoxTilt;
+import edu.wpi.first.wpilibj.templates.subsystems.Tilt;
 
 /**
  *
@@ -14,7 +14,7 @@ public class TiltUp extends CommandBase {
     
     public TiltUp() {
         // Use requires() here to declare subsystem dependencies
-        requires(thePizzaBoxTilt);
+        requires(theTilt);
     }
 
     // Called just before this Command runs the first time
@@ -23,9 +23,7 @@ public class TiltUp extends CommandBase {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-//        thePizzaBoxTilt.manualGo(0.5);
-        thePizzaBoxTilt.setSetpoint(thePizzaBoxTilt.getSetpoint()-2);
-//        System.out.println("Tilt Up" + 1.0);
+        theTilt.setSetpoint(theTilt.getSetpoint()-2);
     }
 
     // Make this return true when this Command no longer needs to run execute()

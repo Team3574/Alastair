@@ -11,9 +11,9 @@ import edu.wpi.first.wpilibj.templates.commands.CommandBase;
  *
  * @author team3574
  */
-public class ScaleShift extends CommandBase {
+public class SoftwareShift extends CommandBase {
     
-    public ScaleShift() {
+    public SoftwareShift() {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
     }

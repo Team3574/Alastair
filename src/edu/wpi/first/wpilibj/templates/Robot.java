@@ -8,14 +8,18 @@
 package edu.wpi.first.wpilibj.templates;
 
 
+import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.Relay;
+import edu.wpi.first.wpilibj.buttons.DigitalIOButton;
+import edu.wpi.first.wpilibj.command.CommandGroup;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 import edu.wpi.first.wpilibj.networktables.NetworkTable;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
-import edu.wpi.first.wpilibj.templates.commands.AutonomousShootAndDrive;
+import edu.wpi.first.wpilibj.templates.commands.autonomous.AutonomousTimeOutTest;
+import edu.wpi.first.wpilibj.templates.commands.autonomous.AutonomousShootAndDrive;
 import edu.wpi.first.wpilibj.templates.commands.CommandBase;
 import team.util.LogDebugger;
 import team.util.XboxController;
@@ -60,8 +64,20 @@ public class Robot extends IterativeRobot {
     public void autonomousInit() {
         // schedule the autonomous command (example)
         //autonomousCommand.start();
-	AutonomousShootAndDrive autonomousShootAndDrive = new AutonomousShootAndDrive();
-	autonomousShootAndDrive.start();
+//	CommandGroup autonomousCommand = new AutonomousShootAndDrive();
+//	CommandGroup autonomousCommand = new AutonomousTimeOutTest();
+	CommandGroup autonomousCommand;
+	
+	if (DriverStation.getInstance().getDigitalIn(1)) {
+	    autonomousCommand = new AutonomousShootAndDrive();
+	} else if(DriverStation.getInstance().getDigitalIn(2)) {
+	    autonomousCommand = new AutonomousTimeOutTest();
+	}
+	else {
+	    autonomousCommand = new AutonomousTimeOutTest();
+	}
+	autonomousCommand.start();
+
     }
 
     /**
@@ -69,6 +85,8 @@ public class Robot extends IterativeRobot {
      */
     public void autonomousPeriodic() {
         Scheduler.getInstance().run();
+        RobotMap.airCompressor.start();
+
         statusUpdater();
     }
 
@@ -86,6 +104,7 @@ public class Robot extends IterativeRobot {
      * This function is called periodically during operator control
      */
     public void teleopPeriodic() {
+	
         Scheduler.getInstance().run();
         statusUpdater();
         RobotMap.airCompressor.start();
@@ -93,49 +112,76 @@ public class Robot extends IterativeRobot {
         SmartDashboard.putBoolean("Air Compressor Full", RobotMap.airCompressor.getPressureSwitchValue());
     }
     
-    public void disabledPeriodic(){
-        statusUpdater();
+    Joystick joy;
+    boolean CustomTest = false;
+
+    public void testInit() {
+	joy = new Joystick(1);
+	
+		if (!DriverStation.getInstance().getDigitalIn(5)
+		&& !DriverStation.getInstance().getDigitalIn(6)
+		&& !DriverStation.getInstance().getDigitalIn(7)) {
+		    CustomTest = true;
+		    // use the regular dashboard
+		    LiveWindow.setEnabled(false);
+		}
+
     }
-    Joystick j = new Joystick(1);
     /**
      * This function is called periodically during test mode
      */
     public void testPeriodic() {
-        LiveWindow.run();
-        statusUpdater();
-	//the test mode doesn't work with pnumatics so the joystick is wired to work instead.
-	if (j.getRawButton(XboxController.A)){
-	    RobotMap.shifterPort.set(true);
-	}else {
-	    RobotMap.shifterPort.set(false);
-	}
 	
-	if (j.getRawButton(XboxController.B)){
-	    RobotMap.shooterArm.set(true);
-	}else {
-	    RobotMap.shooterArm.set(false);
-	}
-	
-	if (j.getRawButton(XboxController.X)){
-	    RobotMap.liftTheRobotLeft.set(true);
-	    RobotMap.liftTheRobotRight.set(true);
-	}else {
-	    RobotMap.liftTheRobotLeft.set(false);
-	    RobotMap.liftTheRobotRight.set(false);
-	}
-	
-	if (j.getRawButton(XboxController.Y)){
-	    RobotMap.positionArmLeft.set(true);
-	    RobotMap.positionArmRight.set(true);
-	}else {
-	    RobotMap.positionArmLeft.set(false);
-	    RobotMap.positionArmRight.set(false);
+	// we use a special version if 
+	if (CustomTest) {
+	    // do custom stuff!
+
+	// otherwise use the regular live window fun stuff
+	} else {
+	    LiveWindow.run();
+	    statusUpdater();
+	    //the test mode doesn't work with pnumatics so the joystick is wired to work instead.
+	    if (joy.getRawButton(XboxController.A)) {
+		RobotMap.shifterPort.set(true);
+	    } else {
+		RobotMap.shifterPort.set(false);
+	    }
+
+	    if (joy.getRawButton(XboxController.B)) {
+		RobotMap.shooterArm.set(true);
+	    } else {
+		RobotMap.shooterArm.set(false);
+	    }
+
+	    if (joy.getRawButton(XboxController.X)) {
+		RobotMap.liftTheRobotLeft.set(true);
+		RobotMap.liftTheRobotRight.set(true);
+	    } else {
+		RobotMap.liftTheRobotLeft.set(false);
+		RobotMap.liftTheRobotRight.set(false);
+	    }
+
+	    if (joy.getRawButton(XboxController.Y)) {
+		RobotMap.positionArmLeft.set(true);
+		RobotMap.positionArmRight.set(true);
+	    } else {
+		RobotMap.positionArmLeft.set(false);
+		RobotMap.positionArmRight.set(false);
+	    }
 	}
     }
     
+    public void disabledInit() {
+	// overridden so it would stop complaining on start up.
+    }
+
+    public void disabledPeriodic() {
+	statusUpdater();
+    }
+
     public void statusUpdater(){
         CommandBase.theElevator.updateStatus();
-        CommandBase.theAccelerometer.updateStatus();
-	CommandBase.thePizzaBoxTilt.updateStatus(); 
+	CommandBase.theDrive.updateStatus();
+	CommandBase.theTilt.updateStatus(); 
     }
 }

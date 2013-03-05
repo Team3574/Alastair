@@ -11,14 +11,13 @@ import edu.wpi.first.wpilibj.command.PIDSubsystem;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj.templates.RobotMap;
-import edu.wpi.first.wpilibj.templates.commands.testCommands.TunePID;
 import team.util.LogDebugger;
 
 /**
  *
  * @author team3574
  */
-public class PizzaBoxTilt extends PIDSubsystem {
+public class Tilt extends PIDSubsystem {
 
     private static final double Kp = 0.009;
     private static final double Ki = 0.000;
@@ -31,7 +30,7 @@ public class PizzaBoxTilt extends PIDSubsystem {
     DigitalInput shooterSeventy = RobotMap.shooterSeventy;
 
     // Initialize your subsystem here
-    public PizzaBoxTilt() {
+    public Tilt() {
         super("PizzaBoxTilt", Kp, Ki, Kd);
         tiltingEncoder.start();
         LogDebugger.log("pizza box constructor");
@@ -53,7 +52,6 @@ public class PizzaBoxTilt extends PIDSubsystem {
     
     public void initDefaultCommand() {
         // Set the default command for a subsystem here.
-//        setDefaultCommand(new TunePID());
     }
     
     
@@ -93,7 +91,6 @@ public class PizzaBoxTilt extends PIDSubsystem {
 	    this.getPIDController().reset();
 	}
         tiltingTalon.set(output);
-        SmartDashboard.putNumber("Elevation Output", output);
     }
     
     public void setPID (double p,double i,double d) {
@@ -107,19 +104,6 @@ public class PizzaBoxTilt extends PIDSubsystem {
 //        LogDebugger.log("changed setpoint");
         super.setSetpoint(setPoint);
         this.enable();
-    }
-    
-    //TODO: if we need this, then it needs to be re-worked and checked
-    public void manualGo(double speed){
-        this.disable();
-        
-        tiltingTalon.set(speed);
-//        this.setSetpoint(tiltingEncoder.get());
-        
-        SmartDashboard.putNumber("Tilt/Elevation Value", tiltingTalon.get());
-        LogDebugger.log("Manual Go!");
-        
-//        this.enable();
     }
 
     public void updateStatus() {

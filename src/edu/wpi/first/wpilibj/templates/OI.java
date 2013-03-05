@@ -17,11 +17,13 @@ import edu.wpi.first.wpilibj.templates.commands.Flinger.FlingerPowerSavingMode;
 import edu.wpi.first.wpilibj.templates.commands.LEDBlingControl;
 import edu.wpi.first.wpilibj.templates.commands.Lift;
 import edu.wpi.first.wpilibj.templates.commands.PickUp;
-import edu.wpi.first.wpilibj.templates.commands.Drive.ScaleShift;
+import edu.wpi.first.wpilibj.templates.commands.Drive.SoftwareShift;
 import edu.wpi.first.wpilibj.templates.commands.Drive.Shift;
 import edu.wpi.first.wpilibj.templates.commands.ElevatorDoNothing;
 import edu.wpi.first.wpilibj.templates.commands.PickUpElevator;
 import edu.wpi.first.wpilibj.templates.commands.PickUpCollector;
+import edu.wpi.first.wpilibj.templates.commands.ShiftGear1;
+import edu.wpi.first.wpilibj.templates.commands.ShiftGear2;
 import edu.wpi.first.wpilibj.templates.commands.Shoot;
 import edu.wpi.first.wpilibj.templates.commands.SpitOut;
 import edu.wpi.first.wpilibj.templates.commands.StowArms;
@@ -32,7 +34,6 @@ import edu.wpi.first.wpilibj.templates.commands.TiltToPreset;
 import edu.wpi.first.wpilibj.templates.commands.TiltUp;
 import edu.wpi.first.wpilibj.templates.commands.testCommands.LogCommand;
 import edu.wpi.first.wpilibj.templates.commands.testCommands.ResetDeadReckoner;
-import edu.wpi.first.wpilibj.templates.commands.testCommands.TunePID;
 import edu.wpi.first.wpilibj.templates.subsystems.Bling;
 import edu.wpi.first.wpilibj.templates.subsystems.Flinger;
 import team.util.JoystickTrigger;
@@ -62,8 +63,6 @@ public class OI {
     Button btnB = new JoystickButton(stick, XboxController.B);
     Button btnX = new JoystickButton(stick, XboxController.X);
     Button btnY = new JoystickButton(stick, XboxController.Y);
-    //Button btnLB = new JoystickButton(stick, XboxController.LB);
-    //Button commandTestLog = new JoystickButton(stick, XboxController.RB);
     Button btnLB = new JoystickButton(stick, XboxController.LB);
     Button btnRB = new JoystickButton(stick, XboxController.RB);
     Button btnLSC = new JoystickButton(stick, XboxController.LeftStickClick);
@@ -83,15 +82,16 @@ public class OI {
     Button btnOtherRT = new JoystickTrigger(otherStick, Axis.triggers, AxisSide.right);
     
     
-    InternalButton bi1 = new InternalButton();
-    InternalButton bi2 = new InternalButton();
-    InternalButton bi3 = new InternalButton();
-    InternalButton bi4 = new InternalButton();
-    InternalButton bi5 = new InternalButton();
-    InternalButton bi6 = new InternalButton();
-    InternalButton bi7 = new InternalButton();
-    InternalButton bi8 = new InternalButton();
+    InternalButton biMarchBling = new InternalButton();
+    InternalButton biMeteorBling = new InternalButton();
+    InternalButton biShootBling = new InternalButton();
+    InternalButton biFadeBling = new InternalButton();
+    InternalButton biCloseTilt = new InternalButton();
+    InternalButton biCrossCourtTilt = new InternalButton();
+    InternalButton biMidCourtTilt = new InternalButton();
+    InternalButton biPyrimidTopTilt = new InternalButton();
     InternalButton resetLocation = new InternalButton();
+    InternalButton tiltCalibrate = new InternalButton();
     
    
    
@@ -123,18 +123,11 @@ public class OI {
     public OI(){
          LogDebugger.log("OI constructor");
    
-//        btnA.whenPressed(new Lift());
-//        btnB.whenPressed(new DeployLifter());
 	btnB.whenPressed(new StowArms());
-//        btnX.whenPressed(new StowArms());
 	btnX.whenPressed(new DeployLifter());
 	btnY.whenPressed(new Lift());
-//        btnLB.whenPressed(new PickUp());
-//        btnLB.whenReleased(new CollectorDoNothing());
-	btnLB.whenPressed(new ScaleShift());
-//        btnRB.whenActive(new SpitOut());
-//        btnRB.whenInactive(new CollectorDoNothing());
-	btnRB.whenReleased(new Shift());
+	btnLB.whenPressed(new ShiftGear2());
+	btnRB.whenReleased(new ShiftGear1());
 	btnRT.whenPressed(new PickUpCollector());
 	btnRT.whenReleased(new CollectorDoNothing());
 	btnRT.whenPressed(new PickUpElevator());
@@ -146,10 +139,6 @@ public class OI {
         btnOtherB.whenPressed(new FlingerOff());
         btnOtherX.whenPressed(new FlingerPowerSavingMode());
         btnOtherY.whenPressed(new FlingerPyrimidSpeed());
-//        btnOtherA.whenPressed(new LEDBlingControl(Bling.MARCH_RWB));
-//        btnOtherB.whenPressed(new LEDBlingControl(Bling.METEOR));
-//        btnOtherX.whenPressed(new LEDBlingControl(Bling.SHOOT));
-//        btnOtherY.whenPressed(new LEDBlingControl(Bling.FADE_PG));
 	btnOtherRT.whenPressed(new Shoot());
         btnOtherLB.whenPressed(new TiltDown());
         btnOtherLB.whenReleased(new TiltNormal());
@@ -157,34 +146,27 @@ public class OI {
         btnOtherRB.whenReleased(new TiltNormal());
         
 	
-        bi1.whenPressed(new LEDBlingControl(Constants.BLING_MARCH_RWB));
-        bi2.whenPressed(new LEDBlingControl(Constants.BLING_METEOR));
-        bi3.whenPressed(new LEDBlingControl(Constants.BLING_SHOOT));
-        bi4.whenPressed(new LEDBlingControl(Constants.BLING_FADE_PG));
-	bi5.whenPressed(new TiltToPreset(Constants.TILT_CLOSE));
-        bi6.whenPressed(new TiltToPreset(Constants.TILT_CROSS_COURT));
-        bi7.whenPressed(new TiltToPreset(Constants.TILT_MID_COURT));
-        bi8.whenPressed(new TiltToPreset(Constants.TILT_PYRIMID_TOP));
+        biMarchBling.whenPressed(new LEDBlingControl(Constants.BLING_MARCH_RWB));
+        biMeteorBling.whenPressed(new LEDBlingControl(Constants.BLING_METEOR));
+        biShootBling.whenPressed(new LEDBlingControl(Constants.BLING_SHOOT));
+        biFadeBling.whenPressed(new LEDBlingControl(Constants.BLING_FADE_PG));
+	biCloseTilt.whenPressed(new TiltToPreset(Constants.TILT_CLOSE));
+        biCrossCourtTilt.whenPressed(new TiltToPreset(Constants.TILT_CROSS_COURT));
+        biMidCourtTilt.whenPressed(new TiltToPreset(Constants.TILT_MID_COURT));
+        biPyrimidTopTilt.whenPressed(new TiltToPreset(Constants.TILT_PYRIMID_TOP));
         resetLocation.whenPressed(new ResetDeadReckoner());
-        //commandTestLog.whenPressed(new LogCommand())
-      
-	
-        //SmartDashboard.putData("Command Test Log", commandTestLog);
-        SmartDashboard.putData("Reset Location", resetLocation);
-        SmartDashboard.putData("MARCH_RWB", bi1);
-        SmartDashboard.putData("METEOR", bi2);
-        SmartDashboard.putData("SHOOT", bi3);
-        SmartDashboard.putData("FADE_PG", bi4);
-	SmartDashboard.putData("TILT_CLOSE", bi5);
-        SmartDashboard.putData("TILT_CROSS_COURT", bi6);
-        SmartDashboard.putData("TILT_MID_COURT", bi7);
-        SmartDashboard.putData("TILT_PYRIMID_TOP", bi8);
-        SmartDashboard.putData("flinger Normal", new FlingerNormal());
-        SmartDashboard.putData("flinger power saving mode", new FlingerPowerSavingMode());
-        SmartDashboard.putData("Flinger off", new FlingerOff());
-        SmartDashboard.putData("flinger Pyramid mode", new FlingerPyrimidSpeed());
-	SmartDashboard.putData("Tune PID", new TunePID());
-        SmartDashboard.putData("Tilt Calilbrate", new TiltCalibrate());
+	tiltCalibrate.whenPressed(new TiltCalibrate());
+
+	SmartDashboard.putData("Reset Location", resetLocation);
+        SmartDashboard.putData("MARCH_RWB", biMarchBling);
+        SmartDashboard.putData("METEOR", biMeteorBling);
+        SmartDashboard.putData("SHOOT", biShootBling);
+        SmartDashboard.putData("FADE_PG", biFadeBling);
+	SmartDashboard.putData("TILT_CLOSE", biCloseTilt);
+        SmartDashboard.putData("TILT_CROSS_COURT", biCrossCourtTilt);
+        SmartDashboard.putData("TILT_MID_COURT", biMidCourtTilt);
+        SmartDashboard.putData("TILT_PYRIMID_TOP", biPyrimidTopTilt);
+        SmartDashboard.putData("Tilt Calilbrate", tiltCalibrate);
         
     }
     
