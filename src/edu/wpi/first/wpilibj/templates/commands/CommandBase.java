@@ -3,17 +3,16 @@ package edu.wpi.first.wpilibj.templates.commands;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj.templates.OI;
-import edu.wpi.first.wpilibj.templates.subsystems.Accelero;
 import edu.wpi.first.wpilibj.templates.subsystems.Drive;
 import edu.wpi.first.wpilibj.templates.subsystems.Flinger;
 import edu.wpi.first.wpilibj.templates.subsystems.Bling;
 import edu.wpi.first.wpilibj.templates.subsystems.Collector;
 import edu.wpi.first.wpilibj.templates.subsystems.ShootingRam;
 import edu.wpi.first.wpilibj.templates.subsystems.Lifter;
-import edu.wpi.first.wpilibj.templates.subsystems.PizzaBoxTilt;
+import edu.wpi.first.wpilibj.templates.subsystems.Tilt;
 import edu.wpi.first.wpilibj.templates.subsystems.Elevator;
 import edu.wpi.first.wpilibj.templates.subsystems.Shifter;
-import edu.wpi.first.wpilibj.templates.subsystems.VideoMessageReceiver;
+import team.util.messaging.VideoMessageReceiver;
 import team.util.LogDebugger;
 
 
@@ -34,9 +33,8 @@ public abstract class CommandBase extends Command {
     public static Lifter theLifter = new Lifter ();
     public static Elevator theElevator = new Elevator ();
     public static Shifter theShifter = new Shifter ();
-    public static Accelero theAccelerometer = new Accelero();
     public static Bling theBling = new Bling();
-    public static PizzaBoxTilt thePizzaBoxTilt = new PizzaBoxTilt();
+    public static Tilt theTilt = new Tilt();
     public static Collector theCollector = new Collector();
     public static VideoMessageReceiver theVideoMessageReceiver = new VideoMessageReceiver();
 
@@ -49,14 +47,13 @@ public abstract class CommandBase extends Command {
         LogDebugger.log("init command for command base.");
         oi = new OI();
         SmartDashboard.putData(theDrive);
-        SmartDashboard.putData(theAccelerometer);
         SmartDashboard.putData(theBling);
         SmartDashboard.putData(theFlinger);
         SmartDashboard.putData(theLifter);
         SmartDashboard.putData(theShootingRam);
         SmartDashboard.putData(theElevator);
         SmartDashboard.putData(theShifter);
-        SmartDashboard.putData(thePizzaBoxTilt);
+        SmartDashboard.putData(theTilt);
 	SmartDashboard.putData(theCollector);
         
 
