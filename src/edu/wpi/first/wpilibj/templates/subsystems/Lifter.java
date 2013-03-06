@@ -17,8 +17,8 @@ public class Lifter extends Subsystem {
     // Put methods for controlling this subsystem
     // here. Call these from Commands.
 
-    Solenoid positionArmLeft = RobotMap.positionArmLeft;
-    Solenoid positionArmRight = RobotMap.positionArmRight;
+//    Solenoid positionArmLeft = RobotMap.positionArmLeft;
+//    Solenoid positionArmRight = RobotMap.positionArmRight;
     Solenoid liftTheRobotLeft = RobotMap.liftTheRobotLeft;
     Solenoid liftTheRobotRight = RobotMap.liftTheRobotRight;
 
@@ -35,24 +35,24 @@ public class Lifter extends Subsystem {
 	//setDefaultCommand(new MySpecialCommand());
     }
 
-    public void stowLifterArms() {
+    public void unLiftArms() {
 	liftTheRobotLeft.set(false);
 	liftTheRobotRight.set(false);
     }
 
-    public void stowDeployedArms() {
-	positionArmLeft.set(false);
-	positionArmRight.set(false);
-    }
+//    public void stowDeployedArms() {
+//	positionArmLeft.set(false);
+//	positionArmRight.set(false);
+//    }
 
-    public void deployArmLeft() {
-	positionArmLeft.set(true);
+//    public void deployArmLeft() {
+//	positionArmLeft.set(true);
+//
+//    }
 
-    }
-
-    public void deployArmRight() {
-	positionArmRight.set(true);
-    }
+//    public void deployArmRight() {
+//	positionArmRight.set(true);
+//    }
 
     public void liftArmLeft() {
 	liftTheRobotLeft.set(true);
@@ -62,11 +62,11 @@ public class Lifter extends Subsystem {
 	liftTheRobotRight.set(true);
     }
 
-    public boolean getPlaced() {
-	if (positionArmLeft.get() && positionArmRight.get()) {
-	    return true;
-	} else {
-	    return false;
-	}
-    }
+//    public boolean getPlaced() {
+//	if (positionArmLeft.get() && positionArmRight.get()) {
+//	    return true;
+//	} else {
+//	    return false;
+//	}
+//    }
 }

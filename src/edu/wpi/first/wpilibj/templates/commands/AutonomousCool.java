@@ -2,27 +2,21 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package edu.wpi.first.wpilibj.templates.commands.autonomous;
+package edu.wpi.first.wpilibj.templates.commands;
 
 import edu.wpi.first.wpilibj.command.CommandGroup;
 import edu.wpi.first.wpilibj.templates.Constants;
-import edu.wpi.first.wpilibj.templates.commands.Flinger.FlingerMidCourtPlus;
 import edu.wpi.first.wpilibj.templates.commands.Drive.MoveForXAmount;
 import edu.wpi.first.wpilibj.templates.commands.Flinger.FlingerInfield;
-import edu.wpi.first.wpilibj.templates.commands.Shoot;
-import edu.wpi.first.wpilibj.templates.commands.TiltCalibrate;
-import edu.wpi.first.wpilibj.templates.commands.TiltToPreset;
-import edu.wpi.first.wpilibj.templates.commands.Wait;
 import edu.wpi.first.wpilibj.templates.commands.testCommands.ResetDeadReckoner;
-import team.util.LogDebugger;
 
 /**
  *
  * @author team3574
  */
-public class AutonomousDriveAndShootThree extends CommandGroup {
+public class AutonomousCool extends CommandGroup {
     
-    public AutonomousDriveAndShootThree() {
+    public AutonomousCool() {
 	addParallel(new ResetDeadReckoner());
 	addSequential(new TiltCalibrate());
 	
@@ -37,7 +31,26 @@ public class AutonomousDriveAndShootThree extends CommandGroup {
 	addSequential(new Shoot());
 	
 	addSequential(new Shoot());
-
+	
+	addSequential(new TiltCalibrate());
+	
+	addParallel(new PickUpElevator(), 5.0);
+	addParallel(new MoveForXAmount(2000, 0.5, 0.5));
+	addSequential(new PickUpCollector(), 5.0);
+	
+	addParallel(new PickUpElevator(), 3.0);
+	addSequential(new MoveForXAmount(900, -0.5, -0.5));
+	
+	addSequential(new TiltToPreset(Constants.TILT_PYRIMID_FRONT));
+	
+	addSequential(new Shoot());
+	
+	addSequential(new Shoot());
+	
+	addSequential(new Shoot());
+	
+	addSequential(new Shoot());
+	
 	// Add Commands here:
 	// e.g. addSequential(new Command1());
 	//      addSequential(new Command2());

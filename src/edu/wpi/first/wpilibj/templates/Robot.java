@@ -20,6 +20,7 @@ import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 import edu.wpi.first.wpilibj.networktables.NetworkTable;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+import edu.wpi.first.wpilibj.templates.commands.AutonomousCool;
 import edu.wpi.first.wpilibj.templates.commands.CollectorDoNothing;
 import edu.wpi.first.wpilibj.templates.commands.autonomous.AutonomousTimeOutTest;
 import edu.wpi.first.wpilibj.templates.commands.autonomous.AutonomousDriveAndShootThree;
@@ -57,6 +58,7 @@ public class Robot extends IterativeRobot {
 	autoChooser = new SendableChooser();
 	autoChooser.addDefault("Default forward, shoot 3x", new AutonomousDriveAndShootThree());
 	autoChooser.addObject("test timouts", new AutonomousTimeOutTest());
+	autoChooser.addObject("cool autonmous", new AutonomousCool());
 	SmartDashboard.putData("Autonomous Mode", autoChooser);
         
         

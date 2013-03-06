@@ -28,8 +28,8 @@ public class DriveWithJoysticks extends CommandBase {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-        double leftSpeed = motorScalerLeft.scale(oi.leftUpDown());
-        double rightSpeed = motorScalerRight.scale(oi.rightUpDown());
+        double leftSpeed = motorScalerLeft.scale(-oi.leftUpDown());
+        double rightSpeed = motorScalerRight.scale(-oi.rightUpDown());
         theDrive.goVariable(leftSpeed, rightSpeed); 
         
          

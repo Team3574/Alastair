@@ -29,8 +29,8 @@ public class RobotMap {
     public static Talon collectorTalon = new Talon (8);
     
     //Digital IO
-    public static Encoder leftWheelEncoder = new Encoder (9, 10, true);
-    public static Encoder rightWheelEncoder = new Encoder (11, 12);
+    public static Encoder leftWheelEncoder = new Encoder (9, 10);
+    public static Encoder rightWheelEncoder = new Encoder (11, 12, true);
 
     public static Encoder tiltingEncoder = new Encoder (5, 6);
     public static EncoderSmooth spinnerEncoder = new EncoderSmooth (7, 8, true);

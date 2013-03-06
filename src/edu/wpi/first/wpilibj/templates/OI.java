@@ -9,7 +9,6 @@ import edu.wpi.first.wpilibj.buttons.InternalButton;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj.templates.commands.CollectorDoNothing;
-import edu.wpi.first.wpilibj.templates.commands.DeployLifter;
 import edu.wpi.first.wpilibj.templates.commands.Flinger.FlingerPyrimidTopSpeed;
 import edu.wpi.first.wpilibj.templates.commands.Flinger.FlingerMidCourtPlus;
 import edu.wpi.first.wpilibj.templates.commands.Flinger.FlingerOff;
@@ -27,12 +26,12 @@ import edu.wpi.first.wpilibj.templates.commands.ShiftGear1;
 import edu.wpi.first.wpilibj.templates.commands.ShiftGear2;
 import edu.wpi.first.wpilibj.templates.commands.Shoot;
 import edu.wpi.first.wpilibj.templates.commands.SpitOut;
-import edu.wpi.first.wpilibj.templates.commands.StowArms;
 import edu.wpi.first.wpilibj.templates.commands.TiltCalibrate;
 import edu.wpi.first.wpilibj.templates.commands.TiltNormal;
 import edu.wpi.first.wpilibj.templates.commands.TiltDown;
 import edu.wpi.first.wpilibj.templates.commands.TiltToPreset;
 import edu.wpi.first.wpilibj.templates.commands.TiltUp;
+import edu.wpi.first.wpilibj.templates.commands.UnLift;
 import edu.wpi.first.wpilibj.templates.commands.testCommands.LogCommand;
 import edu.wpi.first.wpilibj.templates.commands.testCommands.ResetDeadReckoner;
 import edu.wpi.first.wpilibj.templates.subsystems.Bling;
@@ -129,9 +128,9 @@ public class OI {
     public OI(){
          LogDebugger.log("OI constructor");
    
-	btnB.whenPressed(new StowArms());
-	btnX.whenPressed(new DeployLifter());
-	btnY.whenPressed(new Lift());
+	
+	btnY.whenPressed(new UnLift());
+	btnA.whenPressed(new Lift());
 	btnLB.whenPressed(new ShiftGear2());
 	btnRB.whenReleased(new ShiftGear1());
 	btnRT.whenPressed(new PickUpCollector());

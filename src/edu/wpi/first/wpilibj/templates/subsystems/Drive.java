@@ -74,10 +74,10 @@ public class Drive extends Subsystem {
 
     public void goVariable(double leftSpeed, double rightSpeed) {
 	//robotDrive.tankDrive(leftSpeed, rightSpeed);
-	frontLeftMotor.set(leftSpeed * scaler);
-	backLeftMotor.set(leftSpeed * scaler);
-	frontRightMotor.set(-rightSpeed * scaler);
-	backRightMotor.set(-rightSpeed * scaler);
+	frontLeftMotor.set(-leftSpeed * scaler);
+	backLeftMotor.set(-leftSpeed * scaler);
+	frontRightMotor.set(rightSpeed * scaler);
+	backRightMotor.set(rightSpeed * scaler);
 	this.updateDeadReckoner();
 
     }

@@ -19,12 +19,12 @@ public class Lift extends CommandBase {
 
     // Called just before this Command runs the first time
     protected void initialize() {
-        if (theLifter.getPlaced()) {
+//        if (theLifter.getPlaced()) {
             theLifter.liftArmLeft();
             theLifter.liftArmRight();
-        } else {
-            LogDebugger.log("You cant lift, you havent placed!");
-        }
+//        } else {
+//            LogDebugger.log("You cant lift, you havent placed!");
+//        }
     } 
 
     // Called repeatedly when this Command is scheduled to run
