@@ -10,8 +10,8 @@ import edu.wpi.first.wpilibj.buttons.JoystickButton;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj.templates.commands.CollectorDoNothing;
 import edu.wpi.first.wpilibj.templates.commands.DeployLifter;
-import edu.wpi.first.wpilibj.templates.commands.Flinger.FlingerPyrimidSpeed;
-import edu.wpi.first.wpilibj.templates.commands.Flinger.FlingerNormal;
+import edu.wpi.first.wpilibj.templates.commands.Flinger.FlingerPyrimidTopSpeed;
+import edu.wpi.first.wpilibj.templates.commands.Flinger.FlingerMidCourtPlus;
 import edu.wpi.first.wpilibj.templates.commands.Flinger.FlingerOff;
 import edu.wpi.first.wpilibj.templates.commands.Flinger.FlingerPowerSavingMode;
 import edu.wpi.first.wpilibj.templates.commands.LEDBlingControl;
@@ -20,6 +20,7 @@ import edu.wpi.first.wpilibj.templates.commands.PickUp;
 import edu.wpi.first.wpilibj.templates.commands.Drive.SoftwareShift;
 import edu.wpi.first.wpilibj.templates.commands.Drive.Shift;
 import edu.wpi.first.wpilibj.templates.commands.ElevatorDoNothing;
+import edu.wpi.first.wpilibj.templates.commands.Flinger.FlingerInfield;
 import edu.wpi.first.wpilibj.templates.commands.PickUpElevator;
 import edu.wpi.first.wpilibj.templates.commands.PickUpCollector;
 import edu.wpi.first.wpilibj.templates.commands.ShiftGear1;
@@ -58,7 +59,6 @@ public class OI {
     
     
     Joystick stick = new Joystick(1);
-    
     Button btnA = new JoystickButton(stick, XboxController.A);
     Button btnB = new JoystickButton(stick, XboxController.B);
     Button btnX = new JoystickButton(stick, XboxController.X);
@@ -76,6 +76,8 @@ public class OI {
     Button btnOtherB = new JoystickButton(otherStick, XboxController.B);
     Button btnOtherX = new JoystickButton(otherStick, XboxController.X);
     Button btnOtherY = new JoystickButton(otherStick, XboxController.Y);
+    Button btnOtherStart = new JoystickButton(otherStick, XboxController.Start);
+    Button btnOtherSelect = new JoystickButton(otherStick, XboxController.Select);
     Button btnOtherLB = new JoystickButton(otherStick, XboxController.LB);
     Button btnOtherRB = new JoystickButton(otherStick, XboxController.RB);
     Button btnOtherLT = new JoystickTrigger(otherStick, Axis.triggers, AxisSide.left);
@@ -86,13 +88,17 @@ public class OI {
     InternalButton biMeteorBling = new InternalButton();
     InternalButton biShootBling = new InternalButton();
     InternalButton biFadeBling = new InternalButton();
-    InternalButton biCloseTilt = new InternalButton();
-    InternalButton biCrossCourtTilt = new InternalButton();
-    InternalButton biMidCourtTilt = new InternalButton();
-    InternalButton biPyrimidTopTilt = new InternalButton();
-    InternalButton resetLocation = new InternalButton();
-    InternalButton tiltCalibrate = new InternalButton();
     
+    InternalButton tiltCalibrate = new InternalButton();
+    InternalButton biTiltPyrFront = new InternalButton();
+    InternalButton biTiltPyrBack = new InternalButton();
+    InternalButton biTiltPyrMiddle = new InternalButton();
+    InternalButton biTiltCrossCourt = new InternalButton();
+    InternalButton biTiltMidCourt = new InternalButton();
+    InternalButton biTiltPyrimidTop = new InternalButton();
+
+    InternalButton resetLocation = new InternalButton();
+
    
    
     // Another type of button you can create is a DigitalIOButton, which is
@@ -132,42 +138,58 @@ public class OI {
 	btnRT.whenReleased(new CollectorDoNothing());
 	btnRT.whenPressed(new PickUpElevator());
 	btnRT.whenReleased(new ElevatorDoNothing());
-
-
+	
         
-        btnOtherA.whenPressed(new FlingerNormal());
-        btnOtherB.whenPressed(new FlingerOff());
-        btnOtherX.whenPressed(new FlingerPowerSavingMode());
-        btnOtherY.whenPressed(new FlingerPyrimidSpeed());
+        btnOtherY.whenPressed(new FlingerMidCourtPlus());
+        btnOtherY.whenPressed(new TiltToPreset(Constants.TILT_CROSS_COURT));
+        btnOtherX.whenPressed(new FlingerMidCourtPlus());
+        btnOtherX.whenPressed(new TiltToPreset(Constants.TILT_MID_COURT));
+        btnOtherB.whenPressed(new FlingerInfield());
+        btnOtherB.whenPressed(new TiltToPreset(Constants.TILT_PYRIMID_BACK));
+        btnOtherA.whenPressed(new FlingerInfield());
+        btnOtherA.whenPressed(new TiltToPreset(Constants.TILT_PYRIMID_FRONT));
+        btnOtherStart.whenPressed(new FlingerPyrimidTopSpeed());
+        btnOtherStart.whenPressed(new TiltToPreset(Constants.TILT_PYRIMID_TOP));
+        btnOtherSelect.whenPressed(new FlingerOff());
 	btnOtherRT.whenPressed(new Shoot());
         btnOtherLB.whenPressed(new TiltDown());
         btnOtherLB.whenReleased(new TiltNormal());
         btnOtherRB.whenPressed(new TiltUp());
         btnOtherRB.whenReleased(new TiltNormal());
         
-	
+
+	// bling
         biMarchBling.whenPressed(new LEDBlingControl(Constants.BLING_MARCH_RWB));
         biMeteorBling.whenPressed(new LEDBlingControl(Constants.BLING_METEOR));
         biShootBling.whenPressed(new LEDBlingControl(Constants.BLING_SHOOT));
         biFadeBling.whenPressed(new LEDBlingControl(Constants.BLING_FADE_PG));
-	biCloseTilt.whenPressed(new TiltToPreset(Constants.TILT_CLOSE));
-        biCrossCourtTilt.whenPressed(new TiltToPreset(Constants.TILT_CROSS_COURT));
-        biMidCourtTilt.whenPressed(new TiltToPreset(Constants.TILT_MID_COURT));
-        biPyrimidTopTilt.whenPressed(new TiltToPreset(Constants.TILT_PYRIMID_TOP));
-        resetLocation.whenPressed(new ResetDeadReckoner());
-	tiltCalibrate.whenPressed(new TiltCalibrate());
-
-	SmartDashboard.putData("Reset Location", resetLocation);
         SmartDashboard.putData("MARCH_RWB", biMarchBling);
         SmartDashboard.putData("METEOR", biMeteorBling);
         SmartDashboard.putData("SHOOT", biShootBling);
         SmartDashboard.putData("FADE_PG", biFadeBling);
-	SmartDashboard.putData("TILT_CLOSE", biCloseTilt);
-        SmartDashboard.putData("TILT_CROSS_COURT", biCrossCourtTilt);
-        SmartDashboard.putData("TILT_MID_COURT", biMidCourtTilt);
-        SmartDashboard.putData("TILT_PYRIMID_TOP", biPyrimidTopTilt);
+
+	// tilt
+	tiltCalibrate.whenPressed(new TiltCalibrate());
+	biTiltPyrFront.whenPressed(new TiltToPreset(Constants.TILT_PYRIMID_FRONT));
+	biTiltPyrMiddle.whenPressed(new TiltToPreset(Constants.TILT_PYRIMID_MIDDLE));
+	biTiltPyrBack.whenPressed(new TiltToPreset(Constants.TILT_PYRIMID_BACK));
+        biTiltMidCourt.whenPressed(new TiltToPreset(Constants.TILT_MID_COURT));
+        biTiltCrossCourt.whenPressed(new TiltToPreset(Constants.TILT_CROSS_COURT));
+        biTiltPyrimidTop.whenPressed(new TiltToPreset(Constants.TILT_PYRIMID_TOP));
         SmartDashboard.putData("Tilt Calilbrate", tiltCalibrate);
+	SmartDashboard.putData("TILT_PYRIMID_FRONT", biTiltPyrFront);
+        SmartDashboard.putData("TILT_PYRIMID_MIDDLE", biTiltPyrMiddle);
+        SmartDashboard.putData("TILT_PYRIMID_BACK", biTiltPyrBack);
+        SmartDashboard.putData("TILT_MID_COURT", biTiltMidCourt);
+        SmartDashboard.putData("TILT_CROSS_COURT", biTiltCrossCourt);
+        SmartDashboard.putData("TILT_PYRIMID_TOP", biTiltPyrimidTop);
         
+
+	// location
+        resetLocation.whenPressed(new ResetDeadReckoner());
+	SmartDashboard.putData("Reset Location", resetLocation);
+
+	
     }
     
     public double leftUpDown () {

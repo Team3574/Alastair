@@ -3,29 +3,29 @@
  * and open the template in the editor.
  */
 package edu.wpi.first.wpilibj.templates.commands.Flinger;
+
 import edu.wpi.first.wpilibj.templates.Constants;
 import edu.wpi.first.wpilibj.templates.commands.CommandBase;
-import edu.wpi.first.wpilibj.templates.subsystems.Flinger;
+import edu.wpi.first.wpilibj.templates.commands.CommandBase;
+import edu.wpi.first.wpilibj.templates.commands.CommandBase;
 import team.util.LogDebugger;
 
 /**
  *
  * @author team3574
  */
-public class FlingerNormal extends CommandBase {
+public class FlingerInfield extends CommandBase {
     
-    public FlingerNormal() {
-        // Use requires() here to declare subsystem dependencies
-        // eg. requires(chassis);
-         requires(theFlinger);
-
+    public FlingerInfield() {
+	// Use requires() here to declare subsystem dependencies
+	requires(theFlinger);
     }
 
     // Called just before this Command runs the first time
     protected void initialize() {
-        theFlinger.setSetpoint(Constants.FLINGER_NORMAL_SPEED);
+        theFlinger.setSetpoint(Constants.FLINGER_INFIELD_SPEED);
         theFlinger.enable();
-	LogDebugger.log("Flinger Normal init!");
+	LogDebugger.log("Flinger Infield init!");    
     }
 
     // Called repeatedly when this Command is scheduled to run
@@ -34,7 +34,7 @@ public class FlingerNormal extends CommandBase {
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-        return true;
+	return true;
     }
 
     // Called once after isFinished returns true

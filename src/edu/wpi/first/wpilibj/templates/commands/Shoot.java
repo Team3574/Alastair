@@ -15,7 +15,7 @@ public class Shoot extends CommandBase {
     public Shoot() {
         // Use requires() here to declare subsystem dependencies
         requires(theShootingRam);
-        this.setTimeout(0.75);
+        this.setTimeout(0.95);
     }
 
     // Called just before this Command runs the first time

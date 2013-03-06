@@ -2,45 +2,39 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package edu.wpi.first.wpilibj.templates.commands;
-
+package edu.wpi.first.wpilibj.templates.commands.Flinger;
+import edu.wpi.first.wpilibj.templates.Constants;
+import edu.wpi.first.wpilibj.templates.commands.CommandBase;
+import edu.wpi.first.wpilibj.templates.subsystems.Flinger;
 import team.util.LogDebugger;
 
 /**
  *
  * @author team3574
  */
-public class TiltToPreset extends CommandBase {
-    public int m_preset;
+public class FlingerMidCourtPlus extends CommandBase {
     
-    public TiltToPreset(int preset) {
-	// Use requires() here to declare subsystem dependencies
-	// eg. requires(chassis);
-	requires(theTilt);
-	
-	m_preset = preset;
-	
+    public FlingerMidCourtPlus() {
+        // Use requires() here to declare subsystem dependencies
+        // eg. requires(chassis);
+         requires(theFlinger);
+
     }
 
     // Called just before this Command runs the first time
     protected void initialize() {
-	theTilt.setSetpoint(m_preset);
-	LogDebugger.log("Tilt To Preset init!");
+        theFlinger.setSetpoint(Constants.FLINGER_MID_COURT_PLUS);
+        theFlinger.enable();
+	LogDebugger.log("Flinger Normal init!");
     }
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-	
     }
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-	double variance = theTilt.getPosition() - m_preset;
-	if (variance > -20 && variance < 20) {
-	    return true;
-	} else {
-	    return false;
-	}
+        return true;
     }
 
     // Called once after isFinished returns true

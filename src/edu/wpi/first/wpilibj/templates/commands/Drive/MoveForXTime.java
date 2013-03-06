@@ -6,29 +6,28 @@ package edu.wpi.first.wpilibj.templates.commands.Drive;
 
 import edu.wpi.first.wpilibj.templates.RobotMap;
 import edu.wpi.first.wpilibj.templates.commands.CommandBase;
-import team.util.LogDebugger;
+import edu.wpi.first.wpilibj.templates.commands.CommandBase;
 
 /**
  *
  * @author team3574
  */
-public class MoveForwardForXAmount extends CommandBase {
-    public int m_xAmount;
-    public double m_leftSpeed;
-    public double m_rightSpeed;	    
-
-    public MoveForwardForXAmount(int xAmount, double leftSpeed, double rightSpeed) {
+public class MoveForXTime extends CommandBase {
+    double m_leftSpeed;
+    double m_rightSpeed;	   
+    
+    public MoveForXTime(double time, double leftSpeed, double rightSpeed) {
 	// Use requires() here to declare subsystem dependencies
 	// eg. requires(chassis);
-	m_xAmount = xAmount;
+	requires(theDrive);
+
 	m_leftSpeed = leftSpeed;
 	m_rightSpeed = rightSpeed;
-	requires(theDrive);
+	this.setTimeout(time);
     }
 
     // Called just before this Command runs the first time
     protected void initialize() {
-	LogDebugger.log("Move Forward For X Amount init!");
     }
 
     // Called repeatedly when this Command is scheduled to run
@@ -38,7 +37,7 @@ public class MoveForwardForXAmount extends CommandBase {
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-	if (RobotMap.rightWheelEncoder.get() >= m_xAmount) {
+	if (this.isTimedOut()) {
 	    theDrive.goVariable(0.0, 0.0);
 	    return true;
 	} else {

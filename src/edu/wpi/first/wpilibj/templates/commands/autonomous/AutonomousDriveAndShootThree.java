@@ -5,8 +5,9 @@
 package edu.wpi.first.wpilibj.templates.commands.autonomous;
 
 import edu.wpi.first.wpilibj.command.CommandGroup;
-import edu.wpi.first.wpilibj.templates.commands.Flinger.FlingerNormal;
-import edu.wpi.first.wpilibj.templates.commands.Drive.MoveForwardForXAmount;
+import edu.wpi.first.wpilibj.templates.Constants;
+import edu.wpi.first.wpilibj.templates.commands.Flinger.FlingerMidCourtPlus;
+import edu.wpi.first.wpilibj.templates.commands.Drive.MoveForXAmount;
 import edu.wpi.first.wpilibj.templates.commands.Shoot;
 import edu.wpi.first.wpilibj.templates.commands.TiltCalibrate;
 import edu.wpi.first.wpilibj.templates.commands.TiltToPreset;
@@ -18,20 +19,17 @@ import team.util.LogDebugger;
  *
  * @author team3574
  */
-public class AutonomousShootAndDrive extends CommandGroup {
+public class AutonomousDriveAndShootThree extends CommandGroup {
     
-    public AutonomousShootAndDrive() {
+    public AutonomousDriveAndShootThree() {
+	addSequential(new ResetDeadReckoner());
 	addParallel(new TiltCalibrate());
-	addParallel(new ResetDeadReckoner());
-	addSequential(new FlingerNormal());
-	addParallel(new MoveForwardForXAmount(300, .5, .5));
+	addParallel(new MoveForXAmount(300, .5, .5));
+	addParallel(new FlingerMidCourtPlus());
 	addSequential(new Wait(3.0));
-	addSequential(new TiltToPreset(-780));
-	addSequential(new Wait(3.0));
+	addSequential(new TiltToPreset(Constants.TILT_PYRIMID_MIDDLE));
 	addSequential(new Shoot());
-	addSequential(new Wait(1.0));
 	addSequential(new Shoot());
-	addSequential(new Wait(1.0));
 	addSequential(new Shoot());
 
 	// Add Commands here:

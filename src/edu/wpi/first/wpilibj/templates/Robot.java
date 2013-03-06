@@ -13,14 +13,19 @@ import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.Relay;
 import edu.wpi.first.wpilibj.buttons.DigitalIOButton;
+import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.CommandGroup;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 import edu.wpi.first.wpilibj.networktables.NetworkTable;
+import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+import edu.wpi.first.wpilibj.templates.commands.CollectorDoNothing;
 import edu.wpi.first.wpilibj.templates.commands.autonomous.AutonomousTimeOutTest;
-import edu.wpi.first.wpilibj.templates.commands.autonomous.AutonomousShootAndDrive;
+import edu.wpi.first.wpilibj.templates.commands.autonomous.AutonomousDriveAndShootThree;
 import edu.wpi.first.wpilibj.templates.commands.CommandBase;
+import edu.wpi.first.wpilibj.templates.commands.ElevatorDoNothing;
+import edu.wpi.first.wpilibj.templates.commands.Flinger.FlingerOff;
 import team.util.LogDebugger;
 import team.util.XboxController;
 
@@ -34,17 +39,26 @@ import team.util.XboxController;
  */
 public class Robot extends IterativeRobot {
 
-    //Command autonomousCommand;
+    public NetworkTable table;
+
+    // used for testing
+    Joystick joy;
+    boolean CustomTest = false;
+    
+    Command autonomousCommand;
+    SendableChooser autoChooser;
 
     /**
      * This function is run when the robot is first started up and should be
      * used for any initialization code.
      */
-    public NetworkTable table;
-    
     public void robotInit() {
-        // instantiate the command used for the autonomous period
-        //autonomousCommand = new ExampleCommand();
+        // instantiate the commands used for the autonomous period
+	autoChooser = new SendableChooser();
+	autoChooser.addDefault("Default forward, shoot 3x", new AutonomousDriveAndShootThree());
+	autoChooser.addObject("test timouts", new AutonomousTimeOutTest());
+	SmartDashboard.putData("Autonomous Mode", autoChooser);
+        
         
         // Initialize all subsystems
         CommandBase.init();
@@ -62,22 +76,8 @@ public class Robot extends IterativeRobot {
     }
 
     public void autonomousInit() {
-        // schedule the autonomous command (example)
-        //autonomousCommand.start();
-//	CommandGroup autonomousCommand = new AutonomousShootAndDrive();
-//	CommandGroup autonomousCommand = new AutonomousTimeOutTest();
-	CommandGroup autonomousCommand;
-	
-	if (DriverStation.getInstance().getDigitalIn(1)) {
-	    autonomousCommand = new AutonomousShootAndDrive();
-	} else if(DriverStation.getInstance().getDigitalIn(2)) {
-	    autonomousCommand = new AutonomousTimeOutTest();
-	}
-	else {
-	    autonomousCommand = new AutonomousTimeOutTest();
-	}
+	autonomousCommand = (Command) autoChooser.getSelected();
 	autonomousCommand.start();
-
     }
 
     /**
@@ -112,19 +112,17 @@ public class Robot extends IterativeRobot {
         SmartDashboard.putBoolean("Air Compressor Full", RobotMap.airCompressor.getPressureSwitchValue());
     }
     
-    Joystick joy;
-    boolean CustomTest = false;
-
     public void testInit() {
 	joy = new Joystick(1);
-	
-		if (!DriverStation.getInstance().getDigitalIn(5)
+
+	// we've created some fun stuff for a special test mode, but we'll actually do things with it later.
+	if (!DriverStation.getInstance().getDigitalIn(5)
 		&& !DriverStation.getInstance().getDigitalIn(6)
 		&& !DriverStation.getInstance().getDigitalIn(7)) {
-		    CustomTest = true;
-		    // use the regular dashboard
-		    LiveWindow.setEnabled(false);
-		}
+	    CustomTest = true;
+	    // use the regular dashboard
+	    LiveWindow.setEnabled(false);
+	}
 
     }
     /**
@@ -172,7 +170,12 @@ public class Robot extends IterativeRobot {
     }
     
     public void disabledInit() {
-	// overridden so it would stop complaining on start up.
+	CommandBase.theDrive.goVariable(0.0, 0.0);
+	CommandBase.theFlinger.setSetpoint(0.0);
+	Scheduler.getInstance().add(new CollectorDoNothing());
+	Scheduler.getInstance().add(new ElevatorDoNothing());
+	CommandBase.theTilt.setSetpoint(CommandBase.theTilt.getPosition());
+	CommandBase.theDrive.resetDeadReckoner();
     }
 
     public void disabledPeriodic() {

@@ -10,9 +10,9 @@ import edu.wpi.first.wpilibj.templates.subsystems.Flinger;
  *
  * @author team3574
  */
-public class FlingerPyrimidSpeed extends CommandBase {
+public class FlingerPyrimidTopSpeed extends CommandBase {
     
-    public FlingerPyrimidSpeed() {
+    public FlingerPyrimidTopSpeed() {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
         requires(theFlinger);
