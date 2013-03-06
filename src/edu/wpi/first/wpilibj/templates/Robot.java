@@ -20,7 +20,7 @@ import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 import edu.wpi.first.wpilibj.networktables.NetworkTable;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
-import edu.wpi.first.wpilibj.templates.commands.AutonomousCool;
+import edu.wpi.first.wpilibj.templates.commands.autonomous.AutonomousCool;
 import edu.wpi.first.wpilibj.templates.commands.CollectorDoNothing;
 import edu.wpi.first.wpilibj.templates.commands.autonomous.AutonomousTimeOutTest;
 import edu.wpi.first.wpilibj.templates.commands.autonomous.AutonomousDriveAndShootThree;

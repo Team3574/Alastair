@@ -2,12 +2,18 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package edu.wpi.first.wpilibj.templates.commands;
+package edu.wpi.first.wpilibj.templates.commands.autonomous;
 
 import edu.wpi.first.wpilibj.command.CommandGroup;
 import edu.wpi.first.wpilibj.templates.Constants;
 import edu.wpi.first.wpilibj.templates.commands.Drive.MoveForXAmount;
 import edu.wpi.first.wpilibj.templates.commands.Flinger.FlingerInfield;
+import edu.wpi.first.wpilibj.templates.commands.PickUpCollector;
+import edu.wpi.first.wpilibj.templates.commands.PickUpElevator;
+import edu.wpi.first.wpilibj.templates.commands.Shoot;
+import edu.wpi.first.wpilibj.templates.commands.TiltCalibrate;
+import edu.wpi.first.wpilibj.templates.commands.TiltToPreset;
+import edu.wpi.first.wpilibj.templates.commands.Wait;
 import edu.wpi.first.wpilibj.templates.commands.testCommands.ResetDeadReckoner;
 
 /**
