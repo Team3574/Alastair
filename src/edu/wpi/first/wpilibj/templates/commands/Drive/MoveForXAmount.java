@@ -38,11 +38,21 @@ public class MoveForXAmount extends CommandBase {
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-	if (RobotMap.rightWheelEncoder.get() >= m_xAmount) {
-	    theDrive.goVariable(0.0, 0.0);
-	    return true;
+	//Assuption: Both wheels are going in the same directinon.
+	if (m_rightSpeed > 0) {
+	    if (RobotMap.rightWheelEncoder.get() >= m_xAmount) {
+		theDrive.goVariable(0.0, 0.0);
+		return true;
+	    } else {
+		return false;
+	    }
 	} else {
-	    return false;
+	    if (RobotMap.rightWheelEncoder.get() <= m_xAmount) {
+		theDrive.goVariable(0.0, 0.0);
+		return true;
+	    } else {
+		return false;
+	    }
 	}
     }
 

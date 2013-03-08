@@ -33,10 +33,13 @@ public class AutonomousCool extends CommandGroup {
 	addSequential(new TiltToPreset(Constants.TILT_PYRIMID_MIDDLE));
 	
 	addSequential(new Shoot());
+	addSequential(new Wait(0.5));
 	
 	addSequential(new Shoot());
+	addSequential(new Wait(0.5));
 	
 	addSequential(new Shoot());
+	addSequential(new Wait(0.5));
 	
 	addSequential(new TiltCalibrate());
 	
@@ -45,17 +48,23 @@ public class AutonomousCool extends CommandGroup {
 	addSequential(new PickUpCollector(), 5.0);
 	
 	addParallel(new PickUpElevator(), 3.0);
-	addSequential(new MoveForXAmount(900, -0.5, -0.5));
+	addSequential(new MoveForXAmount(1200, -0.5, -0.5));
 	
 	addSequential(new TiltToPreset(Constants.TILT_PYRIMID_FRONT));
 	
 	addSequential(new Shoot());
+	addSequential(new Wait(0.5));
 	
 	addSequential(new Shoot());
+	addSequential(new Wait(0.5));
 	
 	addSequential(new Shoot());
+	addSequential(new Wait(0.5));
 	
 	addSequential(new Shoot());
+	addSequential(new Wait(0.5));
+	
+	addSequential(new TiltCalibrate());
 	
 	// Add Commands here:
 	// e.g. addSequential(new Command1());

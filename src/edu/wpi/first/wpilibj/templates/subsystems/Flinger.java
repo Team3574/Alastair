@@ -36,7 +36,7 @@ public class Flinger extends PIDSubsystem {
         super("FlingerMotor", Kp, Ki, Kd, Kf);
         spinnerEncoder.setSmoothWeightFactor(10.0);
 	// this is the max number speed encountered
-	spinnerEncoder.setScaleFactor(24300.0);
+	spinnerEncoder.setScaleFactor(24800.0);
         spinnerEncoder.start();
         
         LogDebugger.log("Flinger Started!");

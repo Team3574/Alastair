@@ -20,6 +20,7 @@ import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 import edu.wpi.first.wpilibj.networktables.NetworkTable;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+import edu.wpi.first.wpilibj.templates.commands.autonomous.AutonomousBackRightShoot;
 import edu.wpi.first.wpilibj.templates.commands.autonomous.AutonomousCool;
 import edu.wpi.first.wpilibj.templates.commands.CollectorDoNothing;
 import edu.wpi.first.wpilibj.templates.commands.autonomous.AutonomousTimeOutTest;
@@ -27,6 +28,7 @@ import edu.wpi.first.wpilibj.templates.commands.autonomous.AutonomousDriveAndSho
 import edu.wpi.first.wpilibj.templates.commands.CommandBase;
 import edu.wpi.first.wpilibj.templates.commands.ElevatorDoNothing;
 import edu.wpi.first.wpilibj.templates.commands.Flinger.FlingerOff;
+import edu.wpi.first.wpilibj.Watchdog;
 import team.util.LogDebugger;
 import team.util.XboxController;
 
@@ -59,8 +61,10 @@ public class Robot extends IterativeRobot {
 	autoChooser.addDefault("Default forward, shoot 3x", new AutonomousDriveAndShootThree());
 	autoChooser.addObject("test timouts", new AutonomousTimeOutTest());
 	autoChooser.addObject("cool autonmous", new AutonomousCool());
+	autoChooser.addObject("back , shoot 3x", new AutonomousBackRightShoot());
+	autoChooser.addObject("shoot 3 from the back", null);
+	
 	SmartDashboard.putData("Autonomous Mode", autoChooser);
-        
         
         // Initialize all subsystems
         CommandBase.init();
