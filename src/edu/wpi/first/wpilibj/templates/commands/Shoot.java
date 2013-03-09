@@ -4,6 +4,7 @@
  */
 package edu.wpi.first.wpilibj.templates.commands;
 
+import edu.wpi.first.wpilibj.DriverStation;
 import team.util.LogDebugger;
 
 /**
@@ -25,11 +26,11 @@ public class Shoot extends CommandBase {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-        if (this.timeSinceInitialized() < 0.25) {
+        if (this.timeSinceInitialized() < DriverStation.getInstance().getAnalogIn(1)) {
             theShootingRam.kickerOut();
         }
-        else {
-            theShootingRam.kickerIn();
+	else{
+	    theShootingRam.kickerIn();
         }
     }
 
