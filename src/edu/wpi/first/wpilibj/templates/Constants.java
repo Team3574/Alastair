@@ -25,7 +25,7 @@ public class Constants {
     
     public static final int TILT_CROSS_COURT = (-519);
     public static final int TILT_MID_COURT = (-821);
-    public static final int TILT_PYRIMID_BACK = (-901);
+    public static final int TILT_PYRIMID_BACK = (-936);
     public static final int TILT_PYRIMID_MIDDLE = (-1000);
     public static final int TILT_PYRIMID_FRONT = (-1238);
     public static final int TILT_PYRIMID_TOP = (-1280);
