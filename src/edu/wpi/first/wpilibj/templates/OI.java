@@ -139,13 +139,13 @@ public class OI {
 	btnRT.whenReleased(new ElevatorDoNothing());
 	
         
-        btnOtherY.whenPressed(new FlingerMidCourtPlus());
-        btnOtherY.whenPressed(new TiltToPreset(Constants.TILT_CROSS_COURT));
+        btnOtherY.whenPressed(new FlingerPowerSavingMode());
+        btnOtherY.whenPressed(new TiltToPreset(Constants.TILT_FRISBEE_LOAD));
         btnOtherX.whenPressed(new FlingerMidCourtPlus());
         btnOtherX.whenPressed(new TiltToPreset(Constants.TILT_MID_COURT));
-        btnOtherB.whenPressed(new FlingerInfield());
+        btnOtherB.whenPressed(new FlingerMidCourtPlus());
         btnOtherB.whenPressed(new TiltToPreset(Constants.TILT_PYRIMID_BACK));
-        btnOtherA.whenPressed(new FlingerInfield());
+        btnOtherA.whenPressed(new FlingerMidCourtPlus());
         btnOtherA.whenPressed(new TiltToPreset(Constants.TILT_PYRIMID_FRONT));
         btnOtherStart.whenPressed(new FlingerPyrimidTopSpeed());
         btnOtherStart.whenPressed(new TiltToPreset(Constants.TILT_PYRIMID_TOP));

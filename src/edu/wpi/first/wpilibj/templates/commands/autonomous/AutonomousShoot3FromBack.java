@@ -29,6 +29,8 @@ public class AutonomousShoot3FromBack extends CommandGroup {
 	
 	addSequential(new TiltToPreset(Constants.TILT_PYRIMID_BACK));
 	
+	addSequential(new Wait(1.0));
+	
 	addSequential(new Shoot());
 	
 	addSequential(new Shoot());
