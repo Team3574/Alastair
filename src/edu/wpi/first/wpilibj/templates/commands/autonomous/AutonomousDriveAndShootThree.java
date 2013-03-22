@@ -23,19 +23,27 @@ import team.util.LogDebugger;
 public class AutonomousDriveAndShootThree extends CommandGroup {
     
     public AutonomousDriveAndShootThree() {
-	addParallel(new ResetDeadReckoner());
-	addSequential(new TiltCalibrate());
+	addParallel(new TiltCalibrate());
+	addSequential(new ResetDeadReckoner());
 	
 	addParallel(new MoveForXAmount(600, .5, .5));
 	addParallel(new FlingerInfield());
 	addSequential(new Wait(3.0));
 	
 	addSequential(new TiltToPreset(Constants.TILT_PYRIMID_MIDDLE));
+	// TODO: Tune this wait for tilting!
+	addSequential(new Wait(0.01));
+	
+	addSequential(new FlingerInfield());
 	
 	addSequential(new Shoot());
 	
+	addSequential(new FlingerInfield());
+
 	addSequential(new Shoot());
 	
+	addSequential(new FlingerInfield());
+
 	addSequential(new Shoot());
 	
 	addSequential(new TiltCalibrate());

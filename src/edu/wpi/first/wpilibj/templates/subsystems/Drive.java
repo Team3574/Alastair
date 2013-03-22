@@ -44,10 +44,10 @@ public class Drive extends Subsystem {
 
 	LiveWindow.addActuator("Drive", "back left " + backLeftMotor.getChannel(), backLeftMotor);
 	LiveWindow.addActuator("Drive", "front left " + frontLeftMotor.getChannel(), frontLeftMotor);
-	LiveWindow.addSensor("Drive", "Left ", leftWheelEncoder);
+	LiveWindow.addSensor("Drive", "Left ENCODER ", leftWheelEncoder);
 	LiveWindow.addActuator("Drive", "back right " + backRightMotor.getChannel(), backRightMotor);
 	LiveWindow.addActuator("Drive", "front right " + frontRightMotor.getChannel(), frontRightMotor);
-	LiveWindow.addSensor("Drive", "Right ", rightWheelEncoder);
+	LiveWindow.addSensor("Drive", "Right ENCODER ", rightWheelEncoder);
     }
 
     public void initDefaultCommand() {
@@ -92,9 +92,9 @@ public class Drive extends Subsystem {
     }
 
     public void updateStatus() {
-	SmartDashboard.putNumber("Location x", myLocation.getLocation().getXLocation());
-	SmartDashboard.putNumber("Location y", myLocation.getLocation().getYLocation());
-	SmartDashboard.putNumber("Location heading", myLocation.getLocation().getHeading());
+	SmartDashboard.putNumber("Loc X", myLocation.getLocation().getXLocation());
+	SmartDashboard.putNumber("Loc Y", myLocation.getLocation().getYLocation());
+	SmartDashboard.putNumber("Loc Heading", myLocation.getLocation().getHeading());
 	SmartDashboard.putNumber("Left Encoder", leftWheelEncoder.get());
 	SmartDashboard.putNumber("Right Encoder", rightWheelEncoder.get());
 

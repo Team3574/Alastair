@@ -27,10 +27,10 @@ public class Elevator extends Subsystem {
     
         //initilize subsystem here
     public Elevator(){
-	LiveWindow.addSensor("Elevator", "sensor port 1", collectSenPort1);
-	LiveWindow.addSensor("Elevator", "sensor port 2", collectSenPort2);
-	LiveWindow.addSensor("Elevator", "sensor port 3", collectSenPort3);
-	LiveWindow.addActuator("Elevator", "Move up " + moverUpperTalon.getChannel(), moverUpperTalon);
+//	LiveWindow.addSensor("Collection", "sensor port 1", collectSenPort1);
+//	LiveWindow.addSensor("Collection", "sensor port 2", collectSenPort2);
+//	LiveWindow.addSensor("Collection", "sensor port 3", collectSenPort3);
+	LiveWindow.addActuator("Collection", "Elevator " + moverUpperTalon.getChannel(), moverUpperTalon);
     }
 
     public void initDefaultCommand() {
@@ -57,8 +57,9 @@ public class Elevator extends Subsystem {
     }
     
     public void updateStatus(){
-        SmartDashboard.putBoolean("Collector Sensor Port 1", isPresentSensor1());
-        SmartDashboard.putBoolean("Collector Sensor Port 2", isPresentSensor2());
-        SmartDashboard.putBoolean("Collector Sensor Port 3", isPresentSensor3());
+	//TODO: add sensors
+//        SmartDashboard.putBoolean("Sensor 1", isPresentSensor1());
+//        SmartDashboard.putBoolean("Sensor 2", isPresentSensor2());
+//        SmartDashboard.putBoolean("Sensor 3", isPresentSensor3());
     }
 }

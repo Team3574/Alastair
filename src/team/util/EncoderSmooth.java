@@ -96,17 +96,21 @@ public class EncoderSmooth extends Encoder{
     public double getRate(){
 	// get these once so they don't change during calculations
 	double currentTimeCount = time.get();
-	double currnetEncoderCount = get();
-
-	// do the calculations
-	double reading = (currnetEncoderCount - this.lastEncoderCount)/(currentTimeCount - lastTimeCount);
-        double speed = ((lastSpeed * weightFactor) + reading)/(weightFactor + 1);
+	double elapsedTime = currentTimeCount - lastTimeCount;
 	
-	// set the values for the next time through
-        this.lastSpeed = speed;
-        this.lastEncoderCount = currnetEncoderCount;
-	this.lastTimeCount = currentTimeCount;
+	if(elapsedTime > .02) {
+	    double currnetEncoderCount = get();
+	    // do the calculations
+	    double reading = (currnetEncoderCount - this.lastEncoderCount)/(elapsedTime);
+	    double speed = ((lastSpeed * weightFactor) + reading)/(weightFactor + 1);
+
+	    // set the values for the next time through
+	    this.lastSpeed = speed;
+	    this.lastEncoderCount = currnetEncoderCount;
+	    this.lastTimeCount = currentTimeCount;
+	}
 	return lastSpeed/scaleFactor;
+	
     }
     
    public void reset(){

@@ -35,11 +35,11 @@ public class Tilt extends PIDSubsystem {
         tiltingEncoder.start();
         LogDebugger.log("pizza box constructor");
 	
-	LiveWindow.addSensor("PizzaBoxTilt", "encoder", tiltingEncoder);
-	LiveWindow.addActuator("PizzaBoxTilt", "tilting", tiltingTalon);
+	LiveWindow.addSensor("PizzaBoxTilt", "Encoder", tiltingEncoder);
+	LiveWindow.addActuator("PizzaBoxTilt", "Tilting", tiltingTalon);
 	LiveWindow.addActuator("PizzaBoxTilt", "PID", getPIDController());
-	LiveWindow.addSensor("PizzaBoxTilt", "zero", shooterZero);
-	LiveWindow.addSensor("PizzaBoxTilt", "70", shooterSeventy);
+	LiveWindow.addSensor("PizzaBoxTilt", "Switch Zero", shooterZero);
+	LiveWindow.addSensor("PizzaBoxTilt", "Switch Seventy ", shooterSeventy);
       
 
 	
@@ -107,8 +107,8 @@ public class Tilt extends PIDSubsystem {
     }
 
     public void updateStatus() {
-	SmartDashboard.putNumber("tilt encoder", tiltingEncoder.get());
-	SmartDashboard.putBoolean("limitZero", shooterZero.get());
-	SmartDashboard.putBoolean("limitSeventy", shooterSeventy.get());
+	SmartDashboard.putNumber("Tilt Encoder", tiltingEncoder.get());
+	SmartDashboard.putBoolean(" Zero Switch", shooterZero.get());
+	SmartDashboard.putBoolean(" Seventy Switch", shooterSeventy.get());
     }
 }

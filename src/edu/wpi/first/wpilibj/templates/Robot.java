@@ -116,7 +116,7 @@ public class Robot extends IterativeRobot {
         statusUpdater();
         RobotMap.airCompressor.start();
 	
-        SmartDashboard.putBoolean("Air Compressor Full", RobotMap.airCompressor.getPressureSwitchValue());
+        SmartDashboard.putBoolean(" Run Compressor Switch", !RobotMap.airCompressor.getPressureSwitchValue());
     }
     
     public void testInit() {

@@ -9,7 +9,6 @@ package team.util;
 
 import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj.buttons.Button;
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import team.util.joystick.Axis;
 import team.util.joystick.AxisSide;
 

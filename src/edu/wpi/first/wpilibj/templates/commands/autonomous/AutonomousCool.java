@@ -41,11 +41,11 @@ public class AutonomousCool extends CommandGroup {
 	addSequential(new TiltCalibrate());
 	
 	addParallel(new PickUpElevator(), 5.0);
-	addParallel(new MoveForXAmount(2000, 0.5, 0.5));
+	addParallel(new MoveForXAmount(3600, 0.5, 0.5));
 	addSequential(new PickUpCollector(), 5.0);
 	
 	addParallel(new PickUpElevator(), 3.0);
-	addSequential(new MoveForXAmount(1200, -0.5, -0.5));
+	addSequential(new MoveForXAmount(2000, -0.5, -0.5));
 	
 	addSequential(new TiltToPreset(Constants.TILT_PYRIMID_FRONT));
 	

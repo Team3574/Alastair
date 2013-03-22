@@ -20,6 +20,9 @@ import edu.wpi.first.wpilibj.templates.commands.Drive.SoftwareShift;
 import edu.wpi.first.wpilibj.templates.commands.Drive.Shift;
 import edu.wpi.first.wpilibj.templates.commands.ElevatorDoNothing;
 import edu.wpi.first.wpilibj.templates.commands.Flinger.FlingerInfield;
+import edu.wpi.first.wpilibj.templates.commands.Flinger.FlingerNotChanging;
+import edu.wpi.first.wpilibj.templates.commands.Flinger.FlingerSpeedDown;
+import edu.wpi.first.wpilibj.templates.commands.Flinger.FlingerSpeedUp;
 import edu.wpi.first.wpilibj.templates.commands.PickUpElevator;
 import edu.wpi.first.wpilibj.templates.commands.PickUpCollector;
 import edu.wpi.first.wpilibj.templates.commands.ShiftGear1;
@@ -81,6 +84,8 @@ public class OI {
     Button btnOtherRB = new JoystickButton(otherStick, XboxController.RB);
     Button btnOtherLT = new JoystickTrigger(otherStick, Axis.triggers, AxisSide.left);
     Button btnOtherRT = new JoystickTrigger(otherStick, Axis.triggers, AxisSide.right);
+    Button btnOtherDPLeft = new JoystickTrigger(otherStick, Axis.dPadHorizontal, AxisSide.left);
+    Button btnOtherDPRight = new JoystickTrigger(otherStick, Axis.dPadHorizontal, AxisSide.right);
     
     
     InternalButton biMarchBling = new InternalButton();
@@ -151,21 +156,26 @@ public class OI {
         btnOtherStart.whenPressed(new TiltToPreset(Constants.TILT_PYRIMID_TOP));
         btnOtherSelect.whenPressed(new FlingerOff());
 	btnOtherRT.whenPressed(new Shoot());
+	btnOtherLT.whenPressed(new FlingerMidCourtPlus());
         btnOtherLB.whenPressed(new TiltDown());
         btnOtherLB.whenReleased(new TiltNormal());
         btnOtherRB.whenPressed(new TiltUp());
         btnOtherRB.whenReleased(new TiltNormal());
+	btnOtherDPLeft.whenPressed(new FlingerSpeedUp());
+        btnOtherDPLeft.whenReleased(new FlingerNotChanging());
+        btnOtherDPRight.whenPressed(new FlingerSpeedDown());
+        btnOtherDPRight.whenReleased(new FlingerNotChanging());
+	
         
-
 	// bling
         biMarchBling.whenPressed(new LEDBlingControl(Constants.BLING_MARCH_RWB));
         biMeteorBling.whenPressed(new LEDBlingControl(Constants.BLING_METEOR));
         biShootBling.whenPressed(new LEDBlingControl(Constants.BLING_SHOOT));
         biFadeBling.whenPressed(new LEDBlingControl(Constants.BLING_FADE_PG));
-        SmartDashboard.putData("MARCH_RWB", biMarchBling);
-        SmartDashboard.putData("METEOR", biMeteorBling);
-        SmartDashboard.putData("SHOOT", biShootBling);
-        SmartDashboard.putData("FADE_PG", biFadeBling);
+//        SmartDashboard.putData("Bling March", biMarchBling);
+//        SmartDashboard.putData("Bling Meteor", biMeteorBling);
+//        SmartDashboard.putData("Bling Shoot", biShootBling);
+//        SmartDashboard.putData("Bling Fade", biFadeBling);
 
 	// tilt
 	tiltCalibrate.whenPressed(new TiltCalibrate());
@@ -175,13 +185,14 @@ public class OI {
         biTiltMidCourt.whenPressed(new TiltToPreset(Constants.TILT_MID_COURT));
         biTiltCrossCourt.whenPressed(new TiltToPreset(Constants.TILT_CROSS_COURT));
         biTiltPyrimidTop.whenPressed(new TiltToPreset(Constants.TILT_PYRIMID_TOP));
-        SmartDashboard.putData("Tilt Calilbrate", tiltCalibrate);
-	SmartDashboard.putData("TILT_PYRIMID_FRONT", biTiltPyrFront);
-        SmartDashboard.putData("TILT_PYRIMID_MIDDLE", biTiltPyrMiddle);
-        SmartDashboard.putData("TILT_PYRIMID_BACK", biTiltPyrBack);
-        SmartDashboard.putData("TILT_MID_COURT", biTiltMidCourt);
-        SmartDashboard.putData("TILT_CROSS_COURT", biTiltCrossCourt);
-        SmartDashboard.putData("TILT_PYRIMID_TOP", biTiltPyrimidTop);
+        
+	SmartDashboard.putData("Tilt C.A.L.I.B.R.A.T.E", tiltCalibrate);
+	SmartDashboard.putData("+ PYR Front", biTiltPyrFront);
+        SmartDashboard.putData("+ PYR Middle", biTiltPyrMiddle);
+        SmartDashboard.putData("+ PYR Back", biTiltPyrBack);
+        SmartDashboard.putData("+ Mid-court", biTiltMidCourt);
+        SmartDashboard.putData("+ Cross Court", biTiltCrossCourt);
+        SmartDashboard.putData("+ Final Shot Up", biTiltPyrimidTop);
         
 
 	// location

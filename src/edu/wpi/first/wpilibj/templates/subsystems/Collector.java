@@ -21,7 +21,7 @@ public class Collector extends Subsystem {
 
     public Collector() {
 
-	LiveWindow.addActuator("Collector", "Collector Flapper" + collectorTalon.getChannel(), collectorTalon);
+	LiveWindow.addActuator("Collection", "Collector Flapper" + collectorTalon.getChannel(), collectorTalon);
     }
 
     public void initDefaultCommand() {

@@ -4,37 +4,32 @@
  */
 package edu.wpi.first.wpilibj.templates.commands.Flinger;
 
-import edu.wpi.first.wpilibj.templates.Constants;
 import edu.wpi.first.wpilibj.templates.commands.CommandBase;
-import edu.wpi.first.wpilibj.templates.commands.CommandBase;
-import edu.wpi.first.wpilibj.templates.commands.CommandBase;
-import team.util.LogDebugger;
 
 /**
  *
  * @author team3574
  */
-public class FlingerInfield extends CommandBase {
+public class FlingerSpeedDown extends CommandBase {
     
-    public FlingerInfield() {
+    public FlingerSpeedDown() {
 	// Use requires() here to declare subsystem dependencies
+	// eg. requires(chassis);
 	requires(theFlinger);
     }
 
     // Called just before this Command runs the first time
     protected void initialize() {
-        theFlinger.setSetpoint(Constants.FLINGER_INFIELD_SPEED);
-        theFlinger.enable();
-	LogDebugger.log("Flinger Infield init!");    
     }
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
+	theFlinger.setSetpoint(theFlinger.getSetpoint() - 0.0015);
     }
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-	return theFlinger.isRightSpeed();
+	return false;
     }
 
     // Called once after isFinished returns true

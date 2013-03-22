@@ -10,10 +10,12 @@ import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.Jaguar;
+import edu.wpi.first.wpilibj.Talon;
 import edu.wpi.first.wpilibj.command.PIDSubsystem;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj.templates.RobotMap;
+import edu.wpi.first.wpilibj.templates.commands.Flinger.FlingerNotChanging;
 import team.util.EncoderSmooth;
 import team.util.LogDebugger;
 import team.util.PIDCalculate;
@@ -58,6 +60,7 @@ public class Flinger extends PIDSubsystem {
     public void initDefaultCommand() {
         // Set the default command for a subsystem here.
         //setDefaultCommand(new MySpecialCommand());
+	setDefaultCommand(new FlingerNotChanging());
     }
     
     protected double returnPIDInput() {
@@ -66,21 +69,29 @@ public class Flinger extends PIDSubsystem {
         // yourPot.getAverageVoltage() / kYourMaxVoltage;
         spinnerEncoder.update(); 
 	double spinnerEncoderValue = spinnerEncoder.getRate();
-	SmartDashboard.putNumber("Flinger Encoder Value",spinnerEncoderValue);
+	SmartDashboard.putNumber("Flinger Speed",spinnerEncoderValue);
 	return spinnerEncoderValue;
     }
     
     protected void usePIDOutput(double output) {
         // Use output to drive your system, like a motor
         // e.g. yourMotor.set(output);
-        SmartDashboard.putNumber("Flinger setpoint", this.getSetpoint());
+        SmartDashboard.putNumber("Flinger Setpoint", this.getSetpoint());
 
         spinnerMotor.set(output);
     }
     
     public void setSetpoint (double setPoint) {
-	super.getPIDController().reset();
+//	super.getPIDController().reset();
         super.setSetpoint(setPoint);
-	this.enable();
+//	this.enable();
+    }
+    
+    public boolean isRightSpeed () {
+	if (spinnerEncoder.getRate() >= getSetpoint() - 0.02 && spinnerEncoder.getRate() <= getSetpoint() + 0.02) {
+	    return true;
+	} else {
+	    return false;
+	}
     }
 }

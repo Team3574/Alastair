@@ -1,6 +1,5 @@
 package edu.wpi.first.wpilibj.templates;
 
-import edu.wpi.first.wpilibj.ADXL345_I2C;
 import edu.wpi.first.wpilibj.Compressor;
 import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.Encoder;
@@ -8,7 +7,6 @@ import edu.wpi.first.wpilibj.Jaguar;
 import edu.wpi.first.wpilibj.Relay;
 import edu.wpi.first.wpilibj.Solenoid;
 import edu.wpi.first.wpilibj.Talon;
-import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 import team.util.EncoderSmooth;
 
 /**
@@ -23,7 +21,8 @@ public class RobotMap {
     public static Jaguar backRightMotor = new Jaguar (2);
     public static Jaguar frontLeftMotor = new Jaguar (3);
     public static Jaguar backLeftMotor = new Jaguar (4);
-    public static Jaguar spinnerMotor = new Jaguar (5);
+    public static Jaguar spinnerMotor = new Jaguar (5); 
+//    public static Talon spinnerMotor = new Talon (5);
     public static Talon tiltingTalon = new Talon (6);
     public static Talon moverUpperTalon = new Talon (7);
     public static Talon collectorTalon = new Talon (8);
