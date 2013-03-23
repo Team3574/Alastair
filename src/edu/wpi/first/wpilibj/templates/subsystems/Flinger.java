@@ -62,7 +62,7 @@ public class Flinger extends PIDSubsystem {
         //setDefaultCommand(new MySpecialCommand());
 	setDefaultCommand(new FlingerNotChanging());
     }
-    
+    // TODO: change getRate below to CounterClass.getPeriod
     protected double returnPIDInput() {
         // Return your input value for the PID loop
         // e.g. a sensor, like a potentiometer:

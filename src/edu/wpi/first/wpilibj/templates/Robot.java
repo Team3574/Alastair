@@ -29,6 +29,7 @@ import edu.wpi.first.wpilibj.templates.commands.CommandBase;
 import edu.wpi.first.wpilibj.templates.commands.ElevatorDoNothing;
 import edu.wpi.first.wpilibj.templates.commands.Flinger.FlingerOff;
 import edu.wpi.first.wpilibj.Watchdog;
+import edu.wpi.first.wpilibj.templates.commands.autonomous.AutonomousPrint;
 import edu.wpi.first.wpilibj.templates.commands.autonomous.AutonomousShoot3FromBack;
 import team.util.LogDebugger;
 import team.util.XboxController;
@@ -61,9 +62,10 @@ public class Robot extends IterativeRobot {
 	autoChooser = new SendableChooser();
 	autoChooser.addDefault("Default forward, shoot 3x", new AutonomousDriveAndShootThree());
 	autoChooser.addObject("test timouts", new AutonomousTimeOutTest());
-	autoChooser.addObject("cool autonmous", new AutonomousCool());
+	autoChooser.addObject("cool autonomous", new AutonomousCool());
 	autoChooser.addObject("back , shoot 3x", new AutonomousBackRightShoot());
 	autoChooser.addObject("shoot 3 from the back", new AutonomousShoot3FromBack());
+	autoChooser.addObject("print autonomous", new AutonomousPrint());
 	
 	SmartDashboard.putData("Autonomous Mode", autoChooser);
         

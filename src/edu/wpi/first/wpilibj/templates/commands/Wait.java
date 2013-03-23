@@ -12,6 +12,7 @@ import team.util.LogDebugger;
  */
 public class Wait extends CommandBase {
     public double m_timeSeconds;
+    private String m_message = "Default";
     
     public Wait(double timeSeconds) {
 	// Use requires() here to declare subsystem dependencies
@@ -20,10 +21,18 @@ public class Wait extends CommandBase {
 	this.setTimeout(m_timeSeconds);
 //	LogDebugger.log("Wait instanced");
     }
+    
+    public Wait(double timeSeconds, String message) {
+	// Use requires() here to declare subsystem dependencies
+	// eg. requires(chassis);
+	this(timeSeconds);
+	m_message = message;
+//	LogDebugger.log("Wait instanced");
+    }
 
     // Called just before this Command runs the first time
     protected void initialize() {
-	LogDebugger.log("Wait initialized");
+	LogDebugger.log("Wait initialized " + m_message);
     }
 
     // Called repeatedly when this Command is scheduled to run
@@ -33,7 +42,12 @@ public class Wait extends CommandBase {
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
 //	LogDebugger.log("Wait done? " + isTimedOut());
-	return this.isTimedOut();
+	if (this.isTimedOut()) {
+	    LogDebugger.log("Finished " + m_message);
+	    return true;
+	} else {
+	    return false;
+	}
     }
 
     // Called once after isFinished returns true
