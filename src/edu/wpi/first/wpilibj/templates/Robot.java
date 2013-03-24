@@ -68,6 +68,8 @@ public class Robot extends IterativeRobot {
 	autoChooser.addObject("print autonomous", new AutonomousPrint());
 	
 	SmartDashboard.putData("Autonomous Mode", autoChooser);
+	
+	SmartDashboard.putData(Scheduler.getInstance());
         
         // Initialize all subsystems
         CommandBase.init();

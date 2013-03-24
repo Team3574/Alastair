@@ -4,50 +4,35 @@
  */
 package edu.wpi.first.wpilibj.templates.commands;
 
-import team.util.LogDebugger;
-
 /**
  *
  * @author team3574
  */
-public class Wait extends CommandBase {
-    public double m_timeSeconds;
-    private String m_message = "Default";
+public class SetFanSpeed extends CommandBase {
     
-    public Wait(double timeSeconds) {
+    public double m_speed;
+    
+    public SetFanSpeed(double speed) {
 	// Use requires() here to declare subsystem dependencies
 	// eg. requires(chassis);
-	m_timeSeconds = timeSeconds;
-	this.setTimeout(m_timeSeconds);
-//	LogDebugger.log("Wait instanced");
-    }
-    
-    public Wait(double timeSeconds, String message) {
-	// Use requires() here to declare subsystem dependencies
-	// eg. requires(chassis);
-	this(timeSeconds);
-	m_message = message;
-//	LogDebugger.log("Wait instanced");
+	requires(theFan);
+	
+	m_speed = speed;
+	
     }
 
     // Called just before this Command runs the first time
     protected void initialize() {
-	LogDebugger.log("Wait initialized " + m_message);
     }
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
+	theFan.setFanSpeed(m_speed);
     }
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-//	LogDebugger.log("Wait done? " + isTimedOut());
-	if (this.isTimedOut()) {
-	    LogDebugger.log("Finished " + m_message + " Length: " + m_timeSeconds);
-	    return true;
-	} else {
-	    return false;
-	}
+	return false;
     }
 
     // Called once after isFinished returns true

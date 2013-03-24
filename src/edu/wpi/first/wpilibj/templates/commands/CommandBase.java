@@ -11,6 +11,7 @@ import edu.wpi.first.wpilibj.templates.subsystems.ShootingRam;
 import edu.wpi.first.wpilibj.templates.subsystems.Lifter;
 import edu.wpi.first.wpilibj.templates.subsystems.Tilt;
 import edu.wpi.first.wpilibj.templates.subsystems.Elevator;
+import edu.wpi.first.wpilibj.templates.subsystems.FanForFun;
 import edu.wpi.first.wpilibj.templates.subsystems.Shifter;
 import team.util.messaging.VideoMessageReceiver;
 import team.util.LogDebugger;
@@ -37,6 +38,7 @@ public abstract class CommandBase extends Command {
     public static Tilt theTilt = new Tilt();
     public static Collector theCollector = new Collector();
     public static VideoMessageReceiver theVideoMessageReceiver = new VideoMessageReceiver();
+    public static FanForFun theFan = new FanForFun();
 
     public static void init() {
         // This MUST be here. If the OI creates Commands (which it very likely
@@ -55,6 +57,7 @@ public abstract class CommandBase extends Command {
         SmartDashboard.putData(theShifter);
         SmartDashboard.putData(theTilt);
 	SmartDashboard.putData(theCollector);
+	SmartDashboard.putData(theFan);
         
 
         // Show what command your subsystem is running on the SmartDashboard

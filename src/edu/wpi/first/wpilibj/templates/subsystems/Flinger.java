@@ -26,7 +26,7 @@ import team.util.PIDCalculate;
  */
 public class Flinger extends PIDSubsystem {
     EncoderSmooth spinnerEncoder = RobotMap.spinnerEncoder;
-    Jaguar spinnerMotor = RobotMap.spinnerMotor;
+    Talon spinnerMotor = RobotMap.spinnerTalon;
 
     private static final double Kp = 0.1;
     private static final double Ki = 0.0;

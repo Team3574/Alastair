@@ -15,20 +15,17 @@ import edu.wpi.first.wpilibj.templates.commands.testCommands.LogCommand;
 public class AutonomousPrint extends CommandGroup {
     
     public AutonomousPrint() {
-	addParallel(new Wait(3.0,"Wait One!"));
-	addSequential(new Wait(1.5,"Wait Two!"));
-	
-	addParallel(new Wait(3.5,"Wait Three!"));
+	addParallel(new Wait(10.0,"Wait One!"));
+	addParallel(new Wait(11.0,"Wait Two!"));
+	addParallel(new Wait(12.0,"Wait Three!"));
 	addSequential(new Wait(5.0,"Wait Four!"));
 	
-	addSequential(new Wait(7.0,"Wait Five!"));
-	addParallel(new Wait(5.5,"Wait Six!"));
+	addParallel(new Wait(5.0,"Wait Five!"));
+	addSequential(new Wait(10.0,"Wait Six!"));
 	
-	addSequential(new Wait(1.5,"Wait Seven!"));
-	addParallel(new Wait(3.0,"Wait Eight!"));
+	addParallel(new Wait(1.5,"Wait Seven!"));
+	addSequential(new Wait(3.0,"Wait Eight!"));
 	
-//	addSequential(new Wait(1.5,"Wait Intermission!"));
-//	
 //	addParallel(new Wait(1.5,"Wait Nine!"));
 //	addSequential(new Wait(3.0,"Wait Ten!"));
 //	
@@ -40,6 +37,7 @@ public class AutonomousPrint extends CommandGroup {
 //	
 //	addSequential(new Wait(3.0,"Wait Fifteen!"));
 //	addParallel(new Wait(1.5,"Wait Sixteen!"));
+	
 	// Add Commands here:
 	// e.g. addSequential(new Command1());
 	//      addSw Command2());

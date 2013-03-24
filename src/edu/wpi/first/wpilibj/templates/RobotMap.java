@@ -21,11 +21,12 @@ public class RobotMap {
     public static Jaguar backRightMotor = new Jaguar (2);
     public static Jaguar frontLeftMotor = new Jaguar (3);
     public static Jaguar backLeftMotor = new Jaguar (4);
-    public static Jaguar spinnerMotor = new Jaguar (5); 
+    public static Talon spinnerTalon = new Talon (5); 
 //    public static Talon spinnerMotor = new Talon (5);
     public static Talon tiltingTalon = new Talon (6);
     public static Talon moverUpperTalon = new Talon (7);
     public static Talon collectorTalon = new Talon (8);
+    public static Talon fanTalon = new Talon (10);
     
     //Digital IO
     public static Encoder leftWheelEncoder = new Encoder (9, 10);

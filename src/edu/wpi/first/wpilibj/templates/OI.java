@@ -25,6 +25,7 @@ import edu.wpi.first.wpilibj.templates.commands.Flinger.FlingerSpeedDown;
 import edu.wpi.first.wpilibj.templates.commands.Flinger.FlingerSpeedUp;
 import edu.wpi.first.wpilibj.templates.commands.PickUpElevator;
 import edu.wpi.first.wpilibj.templates.commands.PickUpCollector;
+import edu.wpi.first.wpilibj.templates.commands.SetFanSpeed;
 import edu.wpi.first.wpilibj.templates.commands.ShiftGear1;
 import edu.wpi.first.wpilibj.templates.commands.ShiftGear2;
 import edu.wpi.first.wpilibj.templates.commands.Shoot;
@@ -135,7 +136,10 @@ public class OI {
    
 	
 	btnY.whenPressed(new UnLift());
+//	btnX.whenPressed(new SetFanSpeed(-1.0));
 	btnA.whenPressed(new Lift());
+//	btnA.whenPressed(new SetFanSpeed(1.0));
+//	btnB.whenPressed(new SetFanSpeed(0.0));
 	btnLB.whenPressed(new ShiftGear2());
 	btnRB.whenReleased(new ShiftGear1());
 	btnRT.whenPressed(new PickUpCollector());
