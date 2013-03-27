@@ -40,17 +40,29 @@ public class MoveForXAmount extends CommandBase {
     protected boolean isFinished() {
 	//Assuption: Both wheels are going in the same directinon.
 	if (m_rightSpeed > 0) {
-	    if (RobotMap.rightWheelEncoder.get() >= m_xAmount) {
+	    if (RobotMap.rightWheelEncoder.get() >= m_xAmount && 
+		    RobotMap.leftWheelEncoder.get() >= m_xAmount) {
 		theDrive.goVariable(0.0, 0.0);
 		return true;
 	    } else {
+		if (RobotMap.rightWheelEncoder.get() > RobotMap.leftWheelEncoder.get()) {
+		    theDrive.goVariable(m_leftSpeed + 0.1, m_rightSpeed);
+		} else {
+		    theDrive.goVariable(m_leftSpeed, m_rightSpeed + 0.1);
+		}
 		return false;
 	    }
 	} else {
-	    if (RobotMap.rightWheelEncoder.get() <= m_xAmount) {
+	    if (RobotMap.rightWheelEncoder.get() <= m_xAmount&& 
+		    RobotMap.leftWheelEncoder.get() <= m_xAmount) {
 		theDrive.goVariable(0.0, 0.0);
 		return true;
 	    } else {
+		if (RobotMap.rightWheelEncoder.get() < RobotMap.leftWheelEncoder.get()) {
+		    theDrive.goVariable(m_leftSpeed - 0.1, m_rightSpeed);
+		} else {
+		    theDrive.goVariable(m_leftSpeed, m_rightSpeed - 0.1);
+		}
 		return false;
 	    }
 	}
