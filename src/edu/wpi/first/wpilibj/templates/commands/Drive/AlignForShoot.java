@@ -7,6 +7,7 @@ package edu.wpi.first.wpilibj.templates.commands.Drive;
 import edu.wpi.first.wpilibj.networktables.NetworkTable;
 import edu.wpi.first.wpilibj.networktables2.client.NetworkTableClient;
 import edu.wpi.first.wpilibj.templates.commands.CommandBase;
+import team.util.LogDebugger;
 
 /**
  *
@@ -15,7 +16,6 @@ import edu.wpi.first.wpilibj.templates.commands.CommandBase;
 public class AlignForShoot extends CommandBase {
     private static final double NOTHING_FOUND = -10000.0;
     
-    double targetOffsetX;
     
     public AlignForShoot() {
         // Use requires() here to declare subsystem dependencies
@@ -29,16 +29,32 @@ public class AlignForShoot extends CommandBase {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-	targetOffsetX = theVideoMessageReceiver.getTopX();
-        if (theVideoMessageReceiver.getTopExists()
-		&& targetOffsetX > NOTHING_FOUND) {
-            theDrive.goVariable(targetOffsetX, 0.0);
-        }
+	if (theVideoMessageReceiver.getTopExists()) {
+	    if (theVideoMessageReceiver.getTopX() > NOTHING_FOUND) {
+		moveToShoot(theVideoMessageReceiver.getTopX());
+	    }
+	} else if (theVideoMessageReceiver.getUnkownExists()) {
+	    if (theVideoMessageReceiver.getUnkownX() > NOTHING_FOUND) {
+		moveToShoot(theVideoMessageReceiver.getUnkownX());
+	    }
+	}
+    }
+    
+    public void moveToShoot(double offSet)
+    {
+	theDrive.goVariable(offSet, 0.0);
     }
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-        return false;
+        if(this.timeSinceInitialized() > 10.0){
+	    LogDebugger.log("it done with alignForShoot");
+	    return true;
+	}
+	else{
+	    LogDebugger.log("not done");
+	    return false;
+	}
     }
 
     // Called once after isFinished returns true

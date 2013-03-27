@@ -6,6 +6,7 @@ package edu.wpi.first.wpilibj.templates.commands;
 
 import edu.wpi.first.wpilibj.networktables.NetworkTable;
 import edu.wpi.first.wpilibj.templates.Constants;
+import team.util.LogDebugger;
 
 /**
  *
@@ -14,7 +15,6 @@ import edu.wpi.first.wpilibj.templates.Constants;
 public class AlignTiltForShoot extends CommandBase {
     private static final double NOTHING_FOUND = -10000.0;
     
-    double targetOffsetY;
     
     
     public AlignTiltForShoot() {
@@ -29,17 +29,32 @@ public class AlignTiltForShoot extends CommandBase {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-	targetOffsetY = theVideoMessageReceiver.getTopY();
-	if (theVideoMessageReceiver.getTopExists()
-		&& targetOffsetY > NOTHING_FOUND) {
-
-	    theTilt.setSetpoint(theTilt.getTiltEncoder() + Constants.TILT_SCALE / 2.0 * targetOffsetY);
+	if (theVideoMessageReceiver.getTopExists()) {
+	    if (theVideoMessageReceiver.getTopY() > NOTHING_FOUND){
+		changeSetpoint(theVideoMessageReceiver.getTopY());
+	    }
 	}
+	else if(theVideoMessageReceiver.getUnkownExists()) {
+		if(theVideoMessageReceiver.getUnkownY() > NOTHING_FOUND) {   
+		    changeSetpoint(theVideoMessageReceiver.getUnkownY());
+		}
+	}
+    }
+    
+    public void changeSetpoint(double offSet) {
+	 theTilt.setSetpoint(theTilt.getTiltEncoder() + Constants.TILT_SCALE / 2.0 * offSet);
     }
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-	return false;
+	if(this.timeSinceInitialized() > 10.0){
+	    LogDebugger.log("it done with alignTiltForShoot");
+	    return true;
+	}
+	else{
+	    LogDebugger.log("not done");
+	    return false;
+	}
     }
 
     // Called once after isFinished returns true

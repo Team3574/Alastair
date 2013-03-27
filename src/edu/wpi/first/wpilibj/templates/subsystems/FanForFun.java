@@ -7,6 +7,7 @@ package edu.wpi.first.wpilibj.templates.subsystems;
 import edu.wpi.first.wpilibj.Talon;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.templates.RobotMap;
+import edu.wpi.first.wpilibj.templates.commands.SetFanSpeed;
 
 /**
  *
@@ -20,6 +21,7 @@ public class FanForFun extends Subsystem {
     public void initDefaultCommand() {
 	// Set the default command for a subsystem here.
 	//setDefaultCommand(new MySpecialCommand());
+	setDefaultCommand(new SetFanSpeed(0.7));
     }
     
     public void setFanSpeed(double speed) {

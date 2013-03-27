@@ -26,7 +26,7 @@ public class AutonomousCool extends CommandGroup {
 	addParallel(new ResetDeadReckoner());
 	addSequential(new TiltCalibrate());
 	
-	addParallel(new MoveForXAmount(600, .5, .5));
+	addParallel(new MoveForXAmount(400, .5, .5));
 	addParallel(new FlingerInfield());
 	addSequential(new Wait(3.0));
 	

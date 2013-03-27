@@ -18,7 +18,7 @@ import edu.wpi.first.wpilibj.templates.RobotMap;
 public class ShootingRam extends Subsystem {
     // Put methods for controlling this subsystem
     // here. Call these from Commands.
-
+    Solenoid frisbeeHopper = RobotMap.frisbeeHopper;
     Solenoid shooterArm = RobotMap.shooterArm;
 //    Talon elevationTalon = RobotMap.tiltingTalon;
 //    Encoder elevationEncoder = RobotMap.tiltingEncoder;
@@ -38,6 +38,14 @@ public class ShootingRam extends Subsystem {
     
     public void kickerIn(){
         shooterArm.set(false);
+    }
+    
+    public void frisbeeHopperOut(){
+	frisbeeHopper.set(true);
+    }
+    
+    public void frisbeeHopperIn(){
+	frisbeeHopper.set(false);
     }
     
 //    public void angleUp(){

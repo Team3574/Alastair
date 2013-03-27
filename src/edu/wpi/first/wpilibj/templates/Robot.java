@@ -197,5 +197,6 @@ public class Robot extends IterativeRobot {
         CommandBase.theElevator.updateStatus();
 	CommandBase.theDrive.updateStatus();
 	CommandBase.theTilt.updateStatus(); 
+	CommandBase.theVideoMessageReceiver.updateStatus();
     }
 }

@@ -59,6 +59,7 @@ public class RobotMap {
     public static Solenoid liftTheRobotLeft = new Solenoid (4);
     public static Solenoid liftTheRobotRight = new Solenoid (5);
     public static Solenoid shifterPort = new Solenoid (7);
+    public static Solenoid frisbeeHopper = new Solenoid (8);
     
 
     public RobotMap () {

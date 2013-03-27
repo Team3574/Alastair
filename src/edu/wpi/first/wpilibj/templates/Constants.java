@@ -11,7 +11,7 @@ package edu.wpi.first.wpilibj.templates;
 public class Constants {
     public static final double FLINGER_POWER_SAVING_MODE = 0.4;
     public static final double FLINGER_PYRIMID_SPEED = 0.55;
-    public static final double FLINGER_INFIELD_SPEED = 1.0;
+    public static final double FLINGER_INFIELD_SPEED = 0.8;
     public static final double FLINGER_MID_COURT_PLUS = 1.0;
     public static final double FLINGER_OFF = 0.0;
     

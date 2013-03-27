@@ -8,7 +8,9 @@ import edu.wpi.first.wpilibj.buttons.DigitalIOButton;
 import edu.wpi.first.wpilibj.buttons.InternalButton;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+import edu.wpi.first.wpilibj.templates.commands.AlignTiltForShoot;
 import edu.wpi.first.wpilibj.templates.commands.CollectorDoNothing;
+import edu.wpi.first.wpilibj.templates.commands.Drive.AlignForShoot;
 import edu.wpi.first.wpilibj.templates.commands.Flinger.FlingerPyrimidTopSpeed;
 import edu.wpi.first.wpilibj.templates.commands.Flinger.FlingerMidCourtPlus;
 import edu.wpi.first.wpilibj.templates.commands.Flinger.FlingerOff;
@@ -103,8 +105,9 @@ public class OI {
     InternalButton biTiltPyrimidTop = new InternalButton();
 
     InternalButton resetLocation = new InternalButton();
-
-   
+    
+    InternalButton alignWithDrive = new InternalButton();
+    InternalButton alignWithTilt = new InternalButton();
    
     // Another type of button you can create is a DigitalIOButton, which is
     // a button or switch hooked up to the cypress module. These are useful if
@@ -135,11 +138,12 @@ public class OI {
          LogDebugger.log("OI constructor");
    
 	
-	btnY.whenPressed(new UnLift());
-//	btnX.whenPressed(new SetFanSpeed(-1.0));
-	btnA.whenPressed(new Lift());
-//	btnA.whenPressed(new SetFanSpeed(1.0));
-//	btnB.whenPressed(new SetFanSpeed(0.0));
+//	btnY.whenPressed(new UnLift());
+	btnY.whenPressed(new SetFanSpeed(0.0));
+	btnX.whenPressed(new SetFanSpeed(1.0));
+	btnA.whenPressed(new SetFanSpeed(0.7));
+//	btnA.whenPressed(new Lift());
+	btnB.whenPressed(new SetFanSpeed(-1.0));
 	btnLB.whenPressed(new ShiftGear2());
 	btnRB.whenReleased(new ShiftGear1());
 	btnRT.whenPressed(new PickUpCollector());
@@ -189,6 +193,8 @@ public class OI {
         biTiltMidCourt.whenPressed(new TiltToPreset(Constants.TILT_MID_COURT));
         biTiltCrossCourt.whenPressed(new TiltToPreset(Constants.TILT_CROSS_COURT));
         biTiltPyrimidTop.whenPressed(new TiltToPreset(Constants.TILT_PYRIMID_TOP));
+	alignWithTilt.whenPressed(new AlignTiltForShoot());
+	alignWithDrive.whenPressed(new AlignForShoot());
         
 	SmartDashboard.putData("Tilt C.A.L.I.B.R.A.T.E", tiltCalibrate);
 	SmartDashboard.putData("+ PYR Front", biTiltPyrFront);
@@ -197,7 +203,8 @@ public class OI {
         SmartDashboard.putData("+ Mid-court", biTiltMidCourt);
         SmartDashboard.putData("+ Cross Court", biTiltCrossCourt);
         SmartDashboard.putData("+ Final Shot Up", biTiltPyrimidTop);
-        
+        SmartDashboard.putData("Align Tilt For Shoot", alignWithTilt);
+	SmartDashboard.putData("Align Drive For Shoot", alignWithDrive);
 
 	// location
         resetLocation.whenPressed(new ResetDeadReckoner());
