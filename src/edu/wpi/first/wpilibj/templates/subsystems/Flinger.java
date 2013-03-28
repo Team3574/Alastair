@@ -88,7 +88,8 @@ public class Flinger extends PIDSubsystem {
     }
     
     public boolean isRightSpeed () {
-	if (spinnerEncoder.getRate() >= getSetpoint() - 0.07 && spinnerEncoder.getRate() <= getSetpoint() + 0.07) {
+//	if (spinnerEncoder.getRate() >= getSetpoint() - 0.07 && spinnerEncoder.getRate() <= getSetpoint() + 0.07) {
+	if (spinnerEncoder.getRate() >= getSetpoint() - 0.07) {
 	    return true;
 	} else {
 	    return false;

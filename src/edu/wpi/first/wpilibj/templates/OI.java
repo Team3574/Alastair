@@ -21,6 +21,7 @@ import edu.wpi.first.wpilibj.templates.commands.PickUp;
 import edu.wpi.first.wpilibj.templates.commands.Drive.SoftwareShift;
 import edu.wpi.first.wpilibj.templates.commands.Drive.Shift;
 import edu.wpi.first.wpilibj.templates.commands.ElevatorDoNothing;
+import edu.wpi.first.wpilibj.templates.commands.Flinger.Flinger3Quarter;
 import edu.wpi.first.wpilibj.templates.commands.Flinger.FlingerInfield;
 import edu.wpi.first.wpilibj.templates.commands.Flinger.FlingerNotChanging;
 import edu.wpi.first.wpilibj.templates.commands.Flinger.FlingerSpeedDown;
@@ -143,7 +144,7 @@ public class OI {
 	btnX.whenPressed(new SetFanSpeed(1.0));
 	btnA.whenPressed(new SetFanSpeed(0.7));
 //	btnA.whenPressed(new Lift());
-	btnB.whenPressed(new SetFanSpeed(-1.0));
+//	btnB.whenPressed(new SetFanSpeed(-1.0));
 	btnLB.whenPressed(new ShiftGear2());
 	btnRB.whenReleased(new ShiftGear1());
 	btnRT.whenPressed(new PickUpCollector());
@@ -154,12 +155,12 @@ public class OI {
         
         btnOtherY.whenPressed(new FlingerPowerSavingMode());
         btnOtherY.whenPressed(new TiltToPreset(Constants.TILT_FRISBEE_LOAD));
-        btnOtherX.whenPressed(new FlingerMidCourtPlus());
+        btnOtherX.whenPressed(new FlingerInfield());
         btnOtherX.whenPressed(new TiltToPreset(Constants.TILT_MID_COURT));
-        btnOtherB.whenPressed(new FlingerMidCourtPlus());
+        btnOtherB.whenPressed(new FlingerInfield());
         btnOtherB.whenPressed(new TiltToPreset(Constants.TILT_PYRIMID_BACK));
-        btnOtherA.whenPressed(new FlingerMidCourtPlus());
-        btnOtherA.whenPressed(new TiltToPreset(Constants.TILT_PYRIMID_FRONT));
+        btnOtherA.whenPressed(new Flinger3Quarter());
+        btnOtherA.whenPressed(new TiltToPreset(Constants.TILT_3QUARTS_COURT));
         btnOtherStart.whenPressed(new FlingerPyrimidTopSpeed());
         btnOtherStart.whenPressed(new TiltToPreset(Constants.TILT_PYRIMID_TOP));
         btnOtherSelect.whenPressed(new FlingerOff());
@@ -191,7 +192,7 @@ public class OI {
 	biTiltPyrMiddle.whenPressed(new TiltToPreset(Constants.TILT_PYRIMID_MIDDLE));
 	biTiltPyrBack.whenPressed(new TiltToPreset(Constants.TILT_PYRIMID_BACK));
         biTiltMidCourt.whenPressed(new TiltToPreset(Constants.TILT_MID_COURT));
-        biTiltCrossCourt.whenPressed(new TiltToPreset(Constants.TILT_CROSS_COURT));
+        biTiltCrossCourt.whenPressed(new TiltToPreset(Constants.TILT_3QUARTS_COURT));
         biTiltPyrimidTop.whenPressed(new TiltToPreset(Constants.TILT_PYRIMID_TOP));
 	alignWithTilt.whenPressed(new AlignTiltForShoot());
 	alignWithDrive.whenPressed(new AlignForShoot());
@@ -201,7 +202,7 @@ public class OI {
         SmartDashboard.putData("+ PYR Middle", biTiltPyrMiddle);
         SmartDashboard.putData("+ PYR Back", biTiltPyrBack);
         SmartDashboard.putData("+ Mid-court", biTiltMidCourt);
-        SmartDashboard.putData("+ Cross Court", biTiltCrossCourt);
+        SmartDashboard.putData("+ 3/4 Court", biTiltCrossCourt);
         SmartDashboard.putData("+ Final Shot Up", biTiltPyrimidTop);
         SmartDashboard.putData("Align Tilt For Shoot", alignWithTilt);
 	SmartDashboard.putData("Align Drive For Shoot", alignWithDrive);

@@ -12,11 +12,19 @@ import edu.wpi.first.wpilibj.templates.subsystems.Elevator;
  * @author team3574
  */
 public class PickUp extends CommandBase {
-    
+    private boolean overrideAngleConstraint = false;
     
     public PickUp() {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
+        requires (theElevator);
+	requires(theCollector);
+    }
+    
+    public PickUp(boolean override) {
+        // Use requires() here to declare subsystem dependencies
+        // eg. requires(chassis);
+	this.overrideAngleConstraint = override;
         requires (theElevator);
 	requires(theCollector);
     }
@@ -37,7 +45,7 @@ public class PickUp extends CommandBase {
     }
     
     public boolean shouldCollectNow() {
-	if (theTilt.getTiltEncoder() <= Constants.TILT_DONT_COLLECT){
+	if (theTilt.getTiltEncoder() <= Constants.TILT_DONT_COLLECT && ! this.overrideAngleConstraint){
 	    return false;
 	} else {
 	    return true;

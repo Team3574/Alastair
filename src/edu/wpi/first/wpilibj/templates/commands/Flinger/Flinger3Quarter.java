@@ -2,53 +2,39 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package edu.wpi.first.wpilibj.templates.commands;
+package edu.wpi.first.wpilibj.templates.commands.Flinger;
 
 import edu.wpi.first.wpilibj.templates.Constants;
+import edu.wpi.first.wpilibj.templates.commands.CommandBase;
+import edu.wpi.first.wpilibj.templates.commands.CommandBase;
+import edu.wpi.first.wpilibj.templates.commands.CommandBase;
+import team.util.LogDebugger;
 
 /**
  *
  * @author team3574
  */
-public class PickUpCollector extends CommandBase {
-    private boolean overrideAngleConstraint = false;
+public class Flinger3Quarter extends CommandBase {
     
-    public PickUpCollector() {
+    public Flinger3Quarter() {
 	// Use requires() here to declare subsystem dependencies
-	// eg. requires(chassis);
-	requires(theCollector);
-    }
-     public PickUpCollector(boolean override) {
-	// Use requires() here to declare subsystem dependencies
-	// eg. requires(chassis);
-	this.overrideAngleConstraint = override;
-	requires(theElevator);
+	requires(theFlinger);
     }
 
     // Called just before this Command runs the first time
     protected void initialize() {
+        theFlinger.setSetpoint(Constants.FLINGER_3QUARTS_SPEED);
+        theFlinger.enable();
+	LogDebugger.log("Flinger 3/4 init!");    
     }
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-	if (this.shouldCollectNow()){
-	    theCollector.setCollector(1.0);
-	} else {
-	    theCollector.setCollector(0.0);
-	}
-    }
-    
-    public boolean shouldCollectNow() {
-	if (theTilt.getTiltEncoder() <= Constants.TILT_DONT_COLLECT && !this.overrideAngleConstraint){
-	    return false;
-	} else {
-	    return true;
-	}
     }
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-	return false;
+	return theFlinger.isRightSpeed();
     }
 
     // Called once after isFinished returns true

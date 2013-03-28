@@ -31,6 +31,7 @@ import edu.wpi.first.wpilibj.templates.commands.Flinger.FlingerOff;
 import edu.wpi.first.wpilibj.Watchdog;
 import edu.wpi.first.wpilibj.templates.commands.autonomous.AutonomousPrint;
 import edu.wpi.first.wpilibj.templates.commands.autonomous.AutonomousShoot3FromBack;
+import edu.wpi.first.wpilibj.templates.commands.autonomous.FiveFribeeAutonomous;
 import team.util.LogDebugger;
 import team.util.XboxController;
 
@@ -66,6 +67,7 @@ public class Robot extends IterativeRobot {
 	autoChooser.addObject("back , shoot 3x", new AutonomousBackRightShoot());
 	autoChooser.addObject("shoot 3 from the back", new AutonomousShoot3FromBack());
 	autoChooser.addObject("print autonomous", new AutonomousPrint());
+	autoChooser.addObject("Five fribee test", new FiveFribeeAutonomous());
 	
 	SmartDashboard.putData("Autonomous Mode", autoChooser);
 	

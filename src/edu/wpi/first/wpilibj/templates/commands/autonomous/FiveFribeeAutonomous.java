@@ -6,27 +6,28 @@ package edu.wpi.first.wpilibj.templates.commands.autonomous;
 
 import edu.wpi.first.wpilibj.command.CommandGroup;
 import edu.wpi.first.wpilibj.templates.Constants;
-import edu.wpi.first.wpilibj.templates.commands.Flinger.FlingerMidCourtPlus;
 import edu.wpi.first.wpilibj.templates.commands.Drive.MoveForXAmount;
 import edu.wpi.first.wpilibj.templates.commands.Flinger.FlingerInfield;
+import edu.wpi.first.wpilibj.templates.commands.PickUp;
 import edu.wpi.first.wpilibj.templates.commands.Shoot;
 import edu.wpi.first.wpilibj.templates.commands.TiltCalibrate;
 import edu.wpi.first.wpilibj.templates.commands.TiltToPreset;
 import edu.wpi.first.wpilibj.templates.commands.Wait;
 import edu.wpi.first.wpilibj.templates.commands.testCommands.ResetDeadReckoner;
-import team.util.LogDebugger;
 
 /**
  *
  * @author team3574
  */
-public class AutonomousDriveAndShootThree extends CommandGroup {
+public class FiveFribeeAutonomous extends CommandGroup {
     
-    public AutonomousDriveAndShootThree() {
+    public FiveFribeeAutonomous() {
+	/*=============================================================
+	 * Start shoot three
+	 *===========================================================*/
 	addParallel(new TiltCalibrate());
 	addSequential(new ResetDeadReckoner());
 	
-	addParallel(new Shoot());
 	addParallel(new MoveForXAmount(400, .5, .5));
 	addParallel(new FlingerInfield());
 	addSequential(new Wait(3.0));
@@ -47,8 +48,33 @@ public class AutonomousDriveAndShootThree extends CommandGroup {
 
 	addSequential(new Shoot());
 	
-	addSequential(new TiltCalibrate());
+	addParallel(new TiltCalibrate());
 
+	/*=============================================================
+	 * End of shoot first three end in middle of phyamid behind
+	 * discs.
+	 *===========================================================*/
+	
+	/*=============================================================
+	 * Grab two shoot from front of phyramid
+	 *===========================================================*/
+	addParallel(new PickUp());
+	addSequential(new MoveForXAmount(2300, .5, .5));
+	
+	addSequential(new TiltToPreset(Constants.TILT_PYRIMID_FRONT));
+	
+	addSequential(new Wait(0.01));
+	
+	addSequential(new FlingerInfield());
+	
+	addSequential(new Shoot());
+	
+	addSequential(new FlingerInfield());
+	
+	addSequential(new Shoot());
+	
+	addSequential(new TiltCalibrate());
+	//-1017
 	// Add Commands here:
 	// e.g. addSequential(new Command1());
 	//      addSequential(new Command2());
