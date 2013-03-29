@@ -8,8 +8,8 @@ import edu.wpi.first.wpilibj.command.CommandGroup;
 import edu.wpi.first.wpilibj.templates.Constants;
 import edu.wpi.first.wpilibj.templates.commands.Drive.MoveForXAmount;
 import edu.wpi.first.wpilibj.templates.commands.Flinger.FlingerInfield;
-import edu.wpi.first.wpilibj.templates.commands.Shoot;
-import edu.wpi.first.wpilibj.templates.commands.Shoot;
+import edu.wpi.first.wpilibj.templates.commands.ShootAndLoad;
+import edu.wpi.first.wpilibj.templates.commands.ShootAndLoad;
 import edu.wpi.first.wpilibj.templates.commands.TiltCalibrate;
 import edu.wpi.first.wpilibj.templates.commands.TiltCalibrate;
 import edu.wpi.first.wpilibj.templates.commands.TiltToPreset;
@@ -36,11 +36,11 @@ public class AutonomousBackRightShoot extends CommandGroup {
 	
 	addSequential(new TiltToPreset(Constants.TILT_PYRIMID_MIDDLE));
 	
-	addSequential(new Shoot());
+	addSequential(new ShootAndLoad());
 	
-	addSequential(new Shoot());
+	addSequential(new ShootAndLoad());
 	
-	addSequential(new Shoot());
+	addSequential(new ShootAndLoad());
 	
 	addSequential(new TiltCalibrate());
 

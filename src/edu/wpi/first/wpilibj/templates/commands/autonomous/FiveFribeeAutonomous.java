@@ -9,7 +9,7 @@ import edu.wpi.first.wpilibj.templates.Constants;
 import edu.wpi.first.wpilibj.templates.commands.Drive.MoveForXAmount;
 import edu.wpi.first.wpilibj.templates.commands.Flinger.FlingerInfield;
 import edu.wpi.first.wpilibj.templates.commands.PickUp;
-import edu.wpi.first.wpilibj.templates.commands.Shoot;
+import edu.wpi.first.wpilibj.templates.commands.ShootAndLoad;
 import edu.wpi.first.wpilibj.templates.commands.TiltCalibrate;
 import edu.wpi.first.wpilibj.templates.commands.TiltToPreset;
 import edu.wpi.first.wpilibj.templates.commands.Wait;
@@ -38,15 +38,15 @@ public class FiveFribeeAutonomous extends CommandGroup {
 	    
 	addSequential(new FlingerInfield());
 	
-	addSequential(new Shoot());
+	addSequential(new ShootAndLoad());
 	
 	addSequential(new FlingerInfield());
 
-	addSequential(new Shoot());
+	addSequential(new ShootAndLoad());
 	
 	addSequential(new FlingerInfield());
 
-	addSequential(new Shoot());
+	addSequential(new ShootAndLoad());
 	
 	addParallel(new TiltCalibrate());
 
@@ -67,11 +67,11 @@ public class FiveFribeeAutonomous extends CommandGroup {
 	
 	addSequential(new FlingerInfield());
 	
-	addSequential(new Shoot());
+	addSequential(new ShootAndLoad());
 	
 	addSequential(new FlingerInfield());
 	
-	addSequential(new Shoot());
+	addSequential(new ShootAndLoad());
 	
 	addSequential(new TiltCalibrate());
 	//-1017

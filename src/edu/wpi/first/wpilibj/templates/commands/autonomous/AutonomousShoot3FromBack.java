@@ -8,7 +8,7 @@ import edu.wpi.first.wpilibj.command.CommandGroup;
 import edu.wpi.first.wpilibj.templates.Constants;
 import edu.wpi.first.wpilibj.templates.commands.Drive.MoveForXAmount;
 import edu.wpi.first.wpilibj.templates.commands.Flinger.FlingerInfield;
-import edu.wpi.first.wpilibj.templates.commands.Shoot;
+import edu.wpi.first.wpilibj.templates.commands.ShootAndLoad;
 import edu.wpi.first.wpilibj.templates.commands.TiltCalibrate;
 import edu.wpi.first.wpilibj.templates.commands.TiltToPreset;
 import edu.wpi.first.wpilibj.templates.commands.Wait;
@@ -31,11 +31,11 @@ public class AutonomousShoot3FromBack extends CommandGroup {
 	
 	addSequential(new Wait(1.0));
 	
-	addSequential(new Shoot());
+	addSequential(new ShootAndLoad());
 	
-	addSequential(new Shoot());
+	addSequential(new ShootAndLoad());
 	
-	addSequential(new Shoot());
+	addSequential(new ShootAndLoad());
 	
 	addSequential(new TiltCalibrate());
 

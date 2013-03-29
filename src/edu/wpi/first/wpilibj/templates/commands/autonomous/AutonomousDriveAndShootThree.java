@@ -9,7 +9,7 @@ import edu.wpi.first.wpilibj.templates.Constants;
 import edu.wpi.first.wpilibj.templates.commands.Flinger.FlingerMidCourtPlus;
 import edu.wpi.first.wpilibj.templates.commands.Drive.MoveForXAmount;
 import edu.wpi.first.wpilibj.templates.commands.Flinger.FlingerInfield;
-import edu.wpi.first.wpilibj.templates.commands.Shoot;
+import edu.wpi.first.wpilibj.templates.commands.ShootAndLoad;
 import edu.wpi.first.wpilibj.templates.commands.TiltCalibrate;
 import edu.wpi.first.wpilibj.templates.commands.TiltToPreset;
 import edu.wpi.first.wpilibj.templates.commands.Wait;
@@ -26,7 +26,7 @@ public class AutonomousDriveAndShootThree extends CommandGroup {
 	addParallel(new TiltCalibrate());
 	addSequential(new ResetDeadReckoner());
 	
-	addParallel(new Shoot());
+	addParallel(new ShootAndLoad());
 	addParallel(new MoveForXAmount(400, .5, .5));
 	addParallel(new FlingerInfield());
 	addSequential(new Wait(3.0));
@@ -37,15 +37,15 @@ public class AutonomousDriveAndShootThree extends CommandGroup {
 	    
 	addSequential(new FlingerInfield());
 	
-	addSequential(new Shoot());
+	addSequential(new ShootAndLoad());
 	
 	addSequential(new FlingerInfield());
 
-	addSequential(new Shoot());
+	addSequential(new ShootAndLoad());
 	
 	addSequential(new FlingerInfield());
 
-	addSequential(new Shoot());
+	addSequential(new ShootAndLoad());
 	
 	addSequential(new TiltCalibrate());
 

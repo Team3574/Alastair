@@ -11,7 +11,7 @@ import edu.wpi.first.wpilibj.templates.commands.Flinger.FlingerInfield;
 import edu.wpi.first.wpilibj.templates.commands.PickUp;
 import edu.wpi.first.wpilibj.templates.commands.PickUpCollector;
 import edu.wpi.first.wpilibj.templates.commands.PickUpElevator;
-import edu.wpi.first.wpilibj.templates.commands.Shoot;
+import edu.wpi.first.wpilibj.templates.commands.ShootAndLoad;
 import edu.wpi.first.wpilibj.templates.commands.TiltCalibrate;
 import edu.wpi.first.wpilibj.templates.commands.TiltToPreset;
 import edu.wpi.first.wpilibj.templates.commands.Wait;
@@ -35,15 +35,15 @@ public class AutonomousCool extends CommandGroup {
 	// TODO: Tune this wait for tilting!
 	addSequential(new Wait(0.01));
 	
-	addSequential(new Shoot());
+	addSequential(new ShootAndLoad());
 	
 	addSequential(new FlingerInfield());
 
-	addSequential(new Shoot());
+	addSequential(new ShootAndLoad());
 	
 	addSequential(new FlingerInfield());
 
-	addSequential(new Shoot());
+	addSequential(new ShootAndLoad());
 	
 	addParallel(new TiltCalibrate());
 	
@@ -57,13 +57,13 @@ public class AutonomousCool extends CommandGroup {
 //	addParallel(new PickUpElevator(), 3.0);
 	addSequential(new TiltToPreset(Constants.TILT_PYRIMID_FRONT));
 	
-	addSequential(new Shoot());
+	addSequential(new ShootAndLoad());
 	
-	addSequential(new Shoot());
+	addSequential(new ShootAndLoad());
 	
-	addSequential(new Shoot());
+	addSequential(new ShootAndLoad());
 	
-	addSequential(new Shoot());
+	addSequential(new ShootAndLoad());
 	
 	addSequential(new TiltCalibrate());
 	

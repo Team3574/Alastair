@@ -1,4 +1,4 @@
-// AND WE DANCED!!!!!
+    // AND WE DANCED!!!!!
 package edu.wpi.first.wpilibj.templates;
 
 import edu.wpi.first.wpilibj.DriverStation;
@@ -26,12 +26,14 @@ import edu.wpi.first.wpilibj.templates.commands.Flinger.FlingerInfield;
 import edu.wpi.first.wpilibj.templates.commands.Flinger.FlingerNotChanging;
 import edu.wpi.first.wpilibj.templates.commands.Flinger.FlingerSpeedDown;
 import edu.wpi.first.wpilibj.templates.commands.Flinger.FlingerSpeedUp;
+import edu.wpi.first.wpilibj.templates.commands.HopActuat;
 import edu.wpi.first.wpilibj.templates.commands.PickUpElevator;
 import edu.wpi.first.wpilibj.templates.commands.PickUpCollector;
 import edu.wpi.first.wpilibj.templates.commands.SetFanSpeed;
 import edu.wpi.first.wpilibj.templates.commands.ShiftGear1;
 import edu.wpi.first.wpilibj.templates.commands.ShiftGear2;
 import edu.wpi.first.wpilibj.templates.commands.Shoot;
+import edu.wpi.first.wpilibj.templates.commands.ShootAndLoad;
 import edu.wpi.first.wpilibj.templates.commands.SpitOut;
 import edu.wpi.first.wpilibj.templates.commands.TiltCalibrate;
 import edu.wpi.first.wpilibj.templates.commands.TiltNormal;
@@ -109,6 +111,10 @@ public class OI {
     
     InternalButton alignWithDrive = new InternalButton();
     InternalButton alignWithTilt = new InternalButton();
+    
+    InternalButton shoot = new InternalButton();
+    InternalButton hop = new InternalButton();
+    
    
     // Another type of button you can create is a DigitalIOButton, which is
     // a button or switch hooked up to the cypress module. These are useful if
@@ -164,7 +170,7 @@ public class OI {
         btnOtherStart.whenPressed(new FlingerPyrimidTopSpeed());
         btnOtherStart.whenPressed(new TiltToPreset(Constants.TILT_PYRIMID_TOP));
         btnOtherSelect.whenPressed(new FlingerOff());
-	btnOtherRT.whenPressed(new Shoot());
+	btnOtherRT.whenPressed(new ShootAndLoad());
 	btnOtherLT.whenPressed(new FlingerMidCourtPlus());
         btnOtherLB.whenPressed(new TiltDown());
         btnOtherLB.whenReleased(new TiltNormal());
@@ -175,7 +181,6 @@ public class OI {
         btnOtherDPRight.whenPressed(new FlingerSpeedDown());
         btnOtherDPRight.whenReleased(new FlingerNotChanging());
 	
-        
 	// bling
         biMarchBling.whenPressed(new LEDBlingControl(Constants.BLING_MARCH_RWB));
         biMeteorBling.whenPressed(new LEDBlingControl(Constants.BLING_METEOR));
@@ -197,6 +202,10 @@ public class OI {
 	alignWithTilt.whenPressed(new AlignTiltForShoot());
 	alignWithDrive.whenPressed(new AlignForShoot());
         
+	//shooter
+	hop.whenPressed(new HopActuat());
+	shoot.whenPressed(new Shoot());
+	
 	SmartDashboard.putData("Tilt C.A.L.I.B.R.A.T.E", tiltCalibrate);
 	SmartDashboard.putData("+ PYR Front", biTiltPyrFront);
         SmartDashboard.putData("+ PYR Middle", biTiltPyrMiddle);
@@ -206,12 +215,15 @@ public class OI {
         SmartDashboard.putData("+ Final Shot Up", biTiltPyrimidTop);
         SmartDashboard.putData("Align Tilt For Shoot", alignWithTilt);
 	SmartDashboard.putData("Align Drive For Shoot", alignWithDrive);
+	
+	//shooter
+	SmartDashboard.putData("shoot", shoot);
+	SmartDashboard.putData("hopActuat", hop);
 
 	// location
         resetLocation.whenPressed(new ResetDeadReckoner());
 	SmartDashboard.putData("Reset Location", resetLocation);
 
-	
     }
     
     public double leftUpDown () {

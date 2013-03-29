@@ -53,15 +53,14 @@ public class RobotMap {
     public static Relay testCompRelay = new Relay (5);
 
     //Solenoid (use Pneumatics)
-    public static Solenoid shooterArm = new Solenoid (1);
+    public static Solenoid shooterArm = new Solenoid(1);
     public static Solenoid positionArmLeft = new Solenoid (2);
     public static Solenoid positionArmRight = new Solenoid (3);
     public static Solenoid liftTheRobotLeft = new Solenoid (4);
     public static Solenoid liftTheRobotRight = new Solenoid (5);
-    public static Solenoid shifterPort = new Solenoid (7);
-    public static Solenoid frisbeeHopper = new Solenoid (8);
+    public static Solenoid shifterPort = new Solenoid(7);
+    public static Solenoid frisbeeHopper = new Solenoid(8);
     
-
     public RobotMap () {
 	
     }

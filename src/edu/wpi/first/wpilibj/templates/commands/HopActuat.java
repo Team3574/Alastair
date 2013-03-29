@@ -8,11 +8,10 @@ package edu.wpi.first.wpilibj.templates.commands;
  *
  * @author team3574
  */
-public class Shoot extends CommandBase {
+public class HopActuat extends CommandBase {
     
-    public Shoot() {
+    public HopActuat() {
 	// Use requires() here to declare subsystem dependencies
-	// eg. requires(chassis);
 	requires(theShootingRam);
 	this.setTimeout(0.6);
     }
@@ -24,10 +23,11 @@ public class Shoot extends CommandBase {
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
 	if (this.timeSinceInitialized() < 0.5) {
-	    theShootingRam.kickerOut();
-//	    LogDebugger.log("less than 0.5!");
-	} else{ //if (this.timeSinceInitialized() < 1.0) {
-	    theShootingRam.kickerIn();
+	    theShootingRam.frisbeeHopperOut();
+//	    LogDebugger.log("less than 1.0!");
+	} else {
+	    theShootingRam.frisbeeHopperIn();
+//	    LogDebugger.log("more than 1.0!");
 	}
     }
 

@@ -21,7 +21,7 @@ public class FanForFun extends Subsystem {
     public void initDefaultCommand() {
 	// Set the default command for a subsystem here.
 	//setDefaultCommand(new MySpecialCommand());
-	setDefaultCommand(new SetFanSpeed(0.7));
+	setDefaultCommand(new SetFanSpeed(0.0));
     }
     
     public void setFanSpeed(double speed) {
