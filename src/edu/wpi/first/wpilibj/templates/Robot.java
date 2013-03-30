@@ -29,7 +29,9 @@ import edu.wpi.first.wpilibj.templates.commands.CommandBase;
 import edu.wpi.first.wpilibj.templates.commands.ElevatorDoNothing;
 import edu.wpi.first.wpilibj.templates.commands.Flinger.FlingerOff;
 import edu.wpi.first.wpilibj.Watchdog;
+import edu.wpi.first.wpilibj.templates.commands.autonomous.AutonomousDriveAndShoot2Load1;
 import edu.wpi.first.wpilibj.templates.commands.autonomous.AutonomousPrint;
+import edu.wpi.first.wpilibj.templates.commands.autonomous.AutonomousShoot2FromBackAndLoad1;
 import edu.wpi.first.wpilibj.templates.commands.autonomous.AutonomousShoot3FromBack;
 import edu.wpi.first.wpilibj.templates.commands.autonomous.FiveFribeeAutonomous;
 import team.util.LogDebugger;
@@ -68,6 +70,8 @@ public class Robot extends IterativeRobot {
 	autoChooser.addObject("shoot 3 from the back", new AutonomousShoot3FromBack());
 	autoChooser.addObject("print autonomous", new AutonomousPrint());
 	autoChooser.addObject("Five fribee test", new FiveFribeeAutonomous());
+	autoChooser.addObject("shoot 2 from the back and load", new AutonomousShoot2FromBackAndLoad1());
+	autoChooser.addObject("Drive and shoot 2 load 1", new AutonomousDriveAndShoot2Load1());
 	
 	SmartDashboard.putData("Autonomous Mode", autoChooser);
 	

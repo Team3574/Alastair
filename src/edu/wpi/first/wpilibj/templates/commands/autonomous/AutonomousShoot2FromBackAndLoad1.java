@@ -9,6 +9,7 @@ import edu.wpi.first.wpilibj.templates.Constants;
 import edu.wpi.first.wpilibj.templates.commands.Drive.MoveForXAmount;
 import edu.wpi.first.wpilibj.templates.commands.Flinger.FlingerInfield;
 import edu.wpi.first.wpilibj.templates.commands.HopActuat;
+import edu.wpi.first.wpilibj.templates.commands.Shoot;
 import edu.wpi.first.wpilibj.templates.commands.ShootAndLoad;
 import edu.wpi.first.wpilibj.templates.commands.TiltCalibrate;
 import edu.wpi.first.wpilibj.templates.commands.TiltToPreset;
@@ -19,9 +20,9 @@ import edu.wpi.first.wpilibj.templates.commands.testCommands.ResetDeadReckoner;
  *
  * @author team3574
  */
-public class AutonomousShoot3FromBack extends CommandGroup {
+public class AutonomousShoot2FromBackAndLoad1 extends CommandGroup {
     
-    public AutonomousShoot3FromBack() {
+    public AutonomousShoot2FromBackAndLoad1() {
 	addParallel(new ResetDeadReckoner());
 	addSequential(new TiltCalibrate());
 	
@@ -35,9 +36,7 @@ public class AutonomousShoot3FromBack extends CommandGroup {
 	
 	addSequential(new ShootAndLoad());
 	
-	addSequential(new ShootAndLoad());
-	
-	addSequential(new ShootAndLoad());
+	addSequential(new Shoot());
 	
 	addSequential(new TiltCalibrate());
 

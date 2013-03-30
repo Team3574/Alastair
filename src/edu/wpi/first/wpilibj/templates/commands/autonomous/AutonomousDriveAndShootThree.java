@@ -9,6 +9,7 @@ import edu.wpi.first.wpilibj.templates.Constants;
 import edu.wpi.first.wpilibj.templates.commands.Flinger.FlingerMidCourtPlus;
 import edu.wpi.first.wpilibj.templates.commands.Drive.MoveForXAmount;
 import edu.wpi.first.wpilibj.templates.commands.Flinger.FlingerInfield;
+import edu.wpi.first.wpilibj.templates.commands.HopActuat;
 import edu.wpi.first.wpilibj.templates.commands.ShootAndLoad;
 import edu.wpi.first.wpilibj.templates.commands.TiltCalibrate;
 import edu.wpi.first.wpilibj.templates.commands.TiltToPreset;
@@ -26,7 +27,7 @@ public class AutonomousDriveAndShootThree extends CommandGroup {
 	addParallel(new TiltCalibrate());
 	addSequential(new ResetDeadReckoner());
 	
-	addParallel(new ShootAndLoad());
+	addParallel(new HopActuat());
 	addParallel(new MoveForXAmount(400, .5, .5));
 	addParallel(new FlingerInfield());
 	addSequential(new Wait(3.0));

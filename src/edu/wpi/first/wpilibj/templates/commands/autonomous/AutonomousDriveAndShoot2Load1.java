@@ -6,38 +6,48 @@ package edu.wpi.first.wpilibj.templates.commands.autonomous;
 
 import edu.wpi.first.wpilibj.command.CommandGroup;
 import edu.wpi.first.wpilibj.templates.Constants;
+import edu.wpi.first.wpilibj.templates.commands.Flinger.FlingerMidCourtPlus;
 import edu.wpi.first.wpilibj.templates.commands.Drive.MoveForXAmount;
 import edu.wpi.first.wpilibj.templates.commands.Flinger.FlingerInfield;
 import edu.wpi.first.wpilibj.templates.commands.HopActuat;
+import edu.wpi.first.wpilibj.templates.commands.Shoot;
 import edu.wpi.first.wpilibj.templates.commands.ShootAndLoad;
 import edu.wpi.first.wpilibj.templates.commands.TiltCalibrate;
 import edu.wpi.first.wpilibj.templates.commands.TiltToPreset;
 import edu.wpi.first.wpilibj.templates.commands.Wait;
 import edu.wpi.first.wpilibj.templates.commands.testCommands.ResetDeadReckoner;
+import team.util.LogDebugger;
 
 /**
  *
  * @author team3574
  */
-public class AutonomousShoot3FromBack extends CommandGroup {
+public class AutonomousDriveAndShoot2Load1 extends CommandGroup {
     
-    public AutonomousShoot3FromBack() {
-	addParallel(new ResetDeadReckoner());
-	addSequential(new TiltCalibrate());
+    public AutonomousDriveAndShoot2Load1() {
+	addParallel(new TiltCalibrate());
+	addSequential(new ResetDeadReckoner());
 	
 	addParallel(new HopActuat());
+	addParallel(new MoveForXAmount(400, .5, .5));
 	addParallel(new FlingerInfield());
 	addSequential(new Wait(3.0));
 	
-	addSequential(new TiltToPreset(Constants.TILT_PYRIMID_BACK));
-	
-	addSequential(new Wait(1.0));
-	
-	addSequential(new ShootAndLoad());
-	
-	addSequential(new ShootAndLoad());
+	addSequential(new TiltToPreset(Constants.TILT_PYRIMID_MIDDLE));
+	// TODO: Tune this wait for tilting!
+	addSequential(new Wait(0.01));
+	    
+	addSequential(new FlingerInfield());
 	
 	addSequential(new ShootAndLoad());
+	
+	addSequential(new FlingerInfield());
+
+	addSequential(new Shoot());
+	
+//	addSequential(new FlingerInfield());
+//
+//	addSequential(new ShootAndLoad());
 	
 	addSequential(new TiltCalibrate());
 

@@ -167,11 +167,12 @@ public class OI {
         btnOtherB.whenPressed(new TiltToPreset(Constants.TILT_PYRIMID_BACK));
         btnOtherA.whenPressed(new Flinger3Quarter());
         btnOtherA.whenPressed(new TiltToPreset(Constants.TILT_3QUARTS_COURT));
-        btnOtherStart.whenPressed(new FlingerPyrimidTopSpeed());
-        btnOtherStart.whenPressed(new TiltToPreset(Constants.TILT_PYRIMID_TOP));
+//        btnOtherStart.whenPressed(new TiltToPreset(Constants.TILT_PYRIMID_TOP));
         btnOtherSelect.whenPressed(new FlingerOff());
+	btnOtherLT.whenPressed(new HopActuat());
+	btnOtherStart.whenPressed(new Shoot());
 	btnOtherRT.whenPressed(new ShootAndLoad());
-	btnOtherLT.whenPressed(new FlingerMidCourtPlus());
+//	btnOtherLT.whenPressed(new FlingerMidCourtPlus());
         btnOtherLB.whenPressed(new TiltDown());
         btnOtherLB.whenReleased(new TiltNormal());
         btnOtherRB.whenPressed(new TiltUp());

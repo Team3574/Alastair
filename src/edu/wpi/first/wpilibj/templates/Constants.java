@@ -31,7 +31,7 @@ public class Constants {
  
     public static final int TILT_PYRIMID_FRONT = (-1017); // 35 deg -1057 back of robot 12 feet from wall
     public static final int TILT_PYRIMID_TOP = (-1280);
-    public static final int TILT_FRISBEE_LOAD = (-171);
+    public static final int TILT_FRISBEE_LOAD = (0);
     
     public static final int TILT_DONT_COLLECT = (-500);
    
