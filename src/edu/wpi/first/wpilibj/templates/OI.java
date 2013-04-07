@@ -11,6 +11,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj.templates.commands.AlignTiltForShoot;
 import edu.wpi.first.wpilibj.templates.commands.CollectorDoNothing;
 import edu.wpi.first.wpilibj.templates.commands.Drive.AlignForShoot;
+import edu.wpi.first.wpilibj.templates.commands.Drive.MoveForXAmount;
 import edu.wpi.first.wpilibj.templates.commands.Flinger.FlingerPyrimidTopSpeed;
 import edu.wpi.first.wpilibj.templates.commands.Flinger.FlingerMidCourtPlus;
 import edu.wpi.first.wpilibj.templates.commands.Flinger.FlingerOff;
@@ -20,6 +21,7 @@ import edu.wpi.first.wpilibj.templates.commands.Lift;
 import edu.wpi.first.wpilibj.templates.commands.PickUp;
 import edu.wpi.first.wpilibj.templates.commands.Drive.SoftwareShift;
 import edu.wpi.first.wpilibj.templates.commands.Drive.Shift;
+import edu.wpi.first.wpilibj.templates.commands.DriveTest;
 import edu.wpi.first.wpilibj.templates.commands.ElevatorDoNothing;
 import edu.wpi.first.wpilibj.templates.commands.Flinger.Flinger3Quarter;
 import edu.wpi.first.wpilibj.templates.commands.Flinger.FlingerInfield;
@@ -115,6 +117,8 @@ public class OI {
     InternalButton shoot = new InternalButton();
     InternalButton hop = new InternalButton();
     
+    InternalButton driveForward = new InternalButton();
+   
    
     // Another type of button you can create is a DigitalIOButton, which is
     // a button or switch hooked up to the cypress module. These are useful if
@@ -206,6 +210,9 @@ public class OI {
 	//shooter
 	hop.whenPressed(new HopActuat());
 	shoot.whenPressed(new Shoot());
+	
+	driveForward.whenPressed(new DriveTest());
+	SmartDashboard.putData("driv3", driveForward);
 	
 	SmartDashboard.putData("Tilt C.A.L.I.B.R.A.T.E", tiltCalibrate);
 	SmartDashboard.putData("+ PYR Front", biTiltPyrFront);

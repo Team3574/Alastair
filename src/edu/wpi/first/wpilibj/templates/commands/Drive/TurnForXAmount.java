@@ -13,9 +13,9 @@ import team.util.LogDebugger;
  *
  * @author team3574
  */
-public class MoveForXAmount extends CommandBase {
-
+public class TurnForXAmount extends CommandBase {
     private static final double CORECTION_AMOUNT = 0.005;
+    
     int m_xAmount;
     double m_leftSpeed;
     double m_rightSpeed;
@@ -25,58 +25,48 @@ public class MoveForXAmount extends CommandBase {
     int startLeftCount = 0;
     int startRightCount = 0;
 
-    public MoveForXAmount(int xAmount, double leftSpeed, double rightSpeed) {
+    public TurnForXAmount(int xAmount, double leftSpeed, double rightSpeed) {
 	// Use requires() here to declare subsystem dependencies
 	// eg. requires(chassis);
 	m_xAmount = xAmount;
 	m_leftSpeed = leftSpeed;
 	m_rightSpeed = rightSpeed;
-	sign = leftSpeed > 0 ? 1 : -1;
+	sign = leftSpeed > 0? 1 :-1;
 	scaledLeft = leftSpeed;
 	scaledRight = rightSpeed;
-	startLeftCount = Math.abs(RobotMap.leftWheelEncoder.get());
-	startRightCount = Math.abs(RobotMap.rightWheelEncoder.get());
-
+	startLeftCount = RobotMap.leftWheelEncoder.get();
+	startRightCount = RobotMap.rightWheelEncoder.get();
+	
 	requires(theDrive);
     }
 
     // Called just before this Command runs the first time
     protected void initialize() {
-	LogDebugger.log("Move Forward For X Amount init!");
+	LogDebugger.log("Turn For X Amount init!");
     }
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-
-	int leftEncoder = RobotMap.leftWheelEncoder.get();
-	int rightEncoder = RobotMap.rightWheelEncoder.get();
+	
+	int leftEncoder = Math.abs(RobotMap.leftWheelEncoder.get());
+	int rightEncoder = Math.abs(RobotMap.rightWheelEncoder.get());
 	double leftSpeed = m_leftSpeed;
 	double rightSpeed = m_rightSpeed;
 	int detla = Math.abs(leftEncoder - rightEncoder);
-
+	
 	if (leftEncoder > rightEncoder) {
-	    if (sign == 1) {
-		leftSpeed -= CORECTION_AMOUNT * detla;
-	    }
-	    if (sign == -1) {
-		rightSpeed += CORECTION_AMOUNT * detla;
-	    }
+	    leftSpeed -= CORECTION_AMOUNT*detla;
 	    theDrive.goVariable(leftSpeed, rightSpeed);
 	} else if (rightEncoder > leftEncoder) {
-	    if (sign == 1) {
-		rightSpeed -= CORECTION_AMOUNT * detla;
-	    }
-	    if (sign == -1) {
-		leftSpeed += CORECTION_AMOUNT * detla;
-	    }
+	    rightSpeed -= CORECTION_AMOUNT*detla;
 	    theDrive.goVariable(leftSpeed, rightSpeed);
 	} else {
 	    theDrive.goVariable(m_leftSpeed, m_rightSpeed);
 	}
-
-	System.out.println("Encoders: " + leftEncoder + "," + rightEncoder + " ~ "
-		+ "Speeds: " + leftSpeed + "," + rightSpeed);
-
+	
+	System.out.println("Encoders: " + leftEncoder + "," + rightEncoder + " ~ " +
+		"Speeds: " + leftSpeed + "," + rightSpeed);
+	
 //	scaledLeft = m_leftSpeed;
 //	scaledRight = m_rightSpeed;
 //	
@@ -107,19 +97,17 @@ public class MoveForXAmount extends CommandBase {
     protected boolean isFinished() {
 	int leftEncoder = Math.abs(RobotMap.leftWheelEncoder.get());
 	int rightEncoder = Math.abs(RobotMap.rightWheelEncoder.get());
-	int amount = Math.abs(m_xAmount);
 	
-	LogDebugger.log("le, re, amount : " + leftEncoder + rightEncoder + amount);
-
-	if (leftEncoder >= amount) {
+	if(leftEncoder >= m_xAmount){
 	    m_leftSpeed = 0;
 	}
-	if (rightEncoder >= amount) {
+	if(rightEncoder >= m_xAmount){
 	    m_rightSpeed = 0;
 	}
-	if (rightEncoder >= amount && leftEncoder >= amount) {
+	if(rightEncoder >= m_xAmount && leftEncoder >= m_xAmount)
+	{
 	    theDrive.goVariable(0, 0);
-	    return true;
+	    return  true;
 	}
 	return false;
 //	if(leftEncoder < m_xAmount &&

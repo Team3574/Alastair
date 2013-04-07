@@ -12,16 +12,26 @@ import team.util.LogDebugger;
  * @author team3574
  */
 public class LogCommand extends CommandBase {
+    
+    String personalized;
 
     public LogCommand() {
         LogDebugger.log("log command instanced");
+	this.personalized = "";
+        // Use requires() here to declare subsystem dependencies
+        // eg. requires(chassis);
+    }
+
+    public LogCommand(String personalized) {
+	this.personalized = personalized;
+        LogDebugger.log("log command instanced - " + personalized);
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
     }
 
     // Called just before this Command runs the first time
     protected void initialize() {
-        LogDebugger.log("log command init");
+        LogDebugger.log("log command init - " + personalized);
 
     }
 
@@ -31,7 +41,7 @@ public class LogCommand extends CommandBase {
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-        LogDebugger.log("log command finished");
+        LogDebugger.log("log command finished - " + personalized);
 
         return true;
     }

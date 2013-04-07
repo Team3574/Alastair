@@ -4,9 +4,13 @@
  */
 package edu.wpi.first.wpilibj.templates.commands.autonomous;
 
+import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.CommandGroup;
+import edu.wpi.first.wpilibj.templates.commands.CommandGroupFinished;
+import edu.wpi.first.wpilibj.templates.commands.CommandTwoFinished;
 import edu.wpi.first.wpilibj.templates.commands.Wait;
 import edu.wpi.first.wpilibj.templates.commands.testCommands.LogCommand;
+import team.util.LogDebugger;
 
 /**
  *
@@ -15,16 +19,20 @@ import edu.wpi.first.wpilibj.templates.commands.testCommands.LogCommand;
 public class AutonomousPrint extends CommandGroup {
     
     public AutonomousPrint() {
-	addParallel(new Wait(10.0,"Wait One!"));
-	addParallel(new Wait(11.0,"Wait Two!"));
+	CommandGroupFinished sequencer = new CommandGroupFinished();
+	
+	addParallel(sequencer.addCommand(new Wait(10.0,"Wait One!")));
+	addParallel(sequencer.addCommand(new Wait(11.0,"Wait Two!")));
 	addParallel(new Wait(12.0,"Wait Three!"));
 	addSequential(new Wait(5.0,"Wait Four!"));
-	
+	addSequential(sequencer);	
+
 	addParallel(new Wait(5.0,"Wait Five!"));
 	addSequential(new Wait(10.0,"Wait Six!"));
 	
 	addParallel(new Wait(1.5,"Wait Seven!"));
 	addSequential(new Wait(3.0,"Wait Eight!"));
+	
 	
 //	addParallel(new Wait(1.5,"Wait Nine!"));
 //	addSequential(new Wait(3.0,"Wait Ten!"));

@@ -15,6 +15,7 @@ import edu.wpi.first.wpilibj.templates.commands.ShootAndLoad;
 import edu.wpi.first.wpilibj.templates.commands.TiltCalibrate;
 import edu.wpi.first.wpilibj.templates.commands.TiltToPreset;
 import edu.wpi.first.wpilibj.templates.commands.Wait;
+import edu.wpi.first.wpilibj.templates.commands.testCommands.LogCommand;
 import edu.wpi.first.wpilibj.templates.commands.testCommands.ResetDeadReckoner;
 
 /**
@@ -27,9 +28,9 @@ public class AutonomousCool extends CommandGroup {
 	addParallel(new ResetDeadReckoner());
 	addSequential(new TiltCalibrate());
 	
-	addParallel(new PickUp());
+	addParallel(new PickUp(true));
 	addParallel(new FlingerInfield());
-	addSequential(new MoveForXAmount(410, .75, .75));
+	addSequential(new MoveForXAmount(500, 1, 1));
 	
 	addSequential(new TiltToPreset(Constants.TILT_PYRIMID_MIDDLE));
 	// TODO: Tune this wait for tilting!
@@ -45,16 +46,26 @@ public class AutonomousCool extends CommandGroup {
 
 	addSequential(new ShootAndLoad());
 	
-	addParallel(new TiltCalibrate());
-	
+	addSequential(new TiltCalibrate());
 
+	addSequential(new LogCommand("post cal"));	
+	
 	addSequential(new Wait(0.2));
 	
+	addSequential(new ResetDeadReckoner());
 	
-	addSequential(new MoveForXAmount(3600, .75, .75));
+	addSequential(new LogCommand("post dr"));	
 	
+	addSequential(new MoveForXAmount(2900, 1, 1));
+	
+	addSequential(new ResetDeadReckoner());
 
+	addSequential(new LogCommand("post 2nd dr"));	
+	
+	addSequential(new MoveForXAmount(-900, -1, -1));
 //	addParallel(new PickUpElevator(), 3.0);
+	addParallel(new PickUp());
+	
 	addSequential(new TiltToPreset(Constants.TILT_PYRIMID_FRONT));
 	
 	addSequential(new ShootAndLoad());

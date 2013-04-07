@@ -34,6 +34,7 @@ import edu.wpi.first.wpilibj.templates.commands.autonomous.AutonomousPrint;
 import edu.wpi.first.wpilibj.templates.commands.autonomous.AutonomousShoot2FromBackAndLoad1;
 import edu.wpi.first.wpilibj.templates.commands.autonomous.AutonomousShoot3FromBack;
 import edu.wpi.first.wpilibj.templates.commands.autonomous.FiveFribeeAutonomous;
+import edu.wpi.first.wpilibj.templates.commands.CommandGroup2Base;
 import team.util.LogDebugger;
 import team.util.XboxController;
 
@@ -72,6 +73,7 @@ public class Robot extends IterativeRobot {
 	autoChooser.addObject("Five fribee test", new FiveFribeeAutonomous());
 	autoChooser.addObject("shoot 2 from the back and load", new AutonomousShoot2FromBackAndLoad1());
 	autoChooser.addObject("Drive and shoot 2 load 1", new AutonomousDriveAndShoot2Load1());
+	//autoChooser.addObject("CustomOne", new CommandGroup2Base());
 	
 	SmartDashboard.putData("Autonomous Mode", autoChooser);
 	
@@ -193,6 +195,9 @@ public class Robot extends IterativeRobot {
 	Scheduler.getInstance().add(new ElevatorDoNothing());
 	CommandBase.theTilt.setSetpoint(CommandBase.theTilt.getPosition());
 	CommandBase.theDrive.resetDeadReckoner();
+	if(autonomousCommand != null) {
+	    autonomousCommand.cancel();
+	}
     }
 
     public void disabledPeriodic() {

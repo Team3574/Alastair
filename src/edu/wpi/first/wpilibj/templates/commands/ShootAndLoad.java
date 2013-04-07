@@ -43,6 +43,9 @@ public class ShootAndLoad extends CommandBase {
 
 // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
+	if (this.isTimedOut()) {
+	    LogDebugger.log("shoot done");
+	}
         return this.isTimedOut();
     }
 
