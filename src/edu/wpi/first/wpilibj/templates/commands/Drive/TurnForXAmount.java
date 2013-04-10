@@ -24,6 +24,7 @@ public class TurnForXAmount extends CommandBase {
     double scaledRight = 0.0;
     int startLeftCount = 0;
     int startRightCount = 0;
+    double leftRightRatio = 0.0;
 
     public TurnForXAmount(int xAmount, double leftSpeed, double rightSpeed) {
 	// Use requires() here to declare subsystem dependencies
@@ -36,6 +37,7 @@ public class TurnForXAmount extends CommandBase {
 	scaledRight = rightSpeed;
 	startLeftCount = RobotMap.leftWheelEncoder.get();
 	startRightCount = RobotMap.rightWheelEncoder.get();
+	leftRightRatio = leftSpeed/rightSpeed;
 	
 	requires(theDrive);
     }
@@ -54,18 +56,10 @@ public class TurnForXAmount extends CommandBase {
 	double rightSpeed = m_rightSpeed;
 	int detla = Math.abs(leftEncoder - rightEncoder);
 	
-	if (leftEncoder > rightEncoder) {
-	    leftSpeed -= CORECTION_AMOUNT*detla;
-	    theDrive.goVariable(leftSpeed, rightSpeed);
-	} else if (rightEncoder > leftEncoder) {
-	    rightSpeed -= CORECTION_AMOUNT*detla;
-	    theDrive.goVariable(leftSpeed, rightSpeed);
-	} else {
-	    theDrive.goVariable(m_leftSpeed, m_rightSpeed);
-	}
+	theDrive.goVariable(m_leftSpeed, m_rightSpeed);
 	
-	System.out.println("Encoders: " + leftEncoder + "," + rightEncoder + " ~ " +
-		"Speeds: " + leftSpeed + "," + rightSpeed);
+	System.out.println("Encoders: " + leftEncoder + "," + rightEncoder + " ~ "
+		+ "Speeds: " + leftSpeed + "," + rightSpeed);
 	
 //	scaledLeft = m_leftSpeed;
 //	scaledRight = m_rightSpeed;
@@ -97,19 +91,17 @@ public class TurnForXAmount extends CommandBase {
     protected boolean isFinished() {
 	int leftEncoder = Math.abs(RobotMap.leftWheelEncoder.get());
 	int rightEncoder = Math.abs(RobotMap.rightWheelEncoder.get());
-	
-	if(leftEncoder >= m_xAmount){
-	    m_leftSpeed = 0;
-	}
-	if(rightEncoder >= m_xAmount){
-	    m_rightSpeed = 0;
-	}
-	if(rightEncoder >= m_xAmount && leftEncoder >= m_xAmount)
-	{
+
+	if (Math.abs(m_leftSpeed) > Math.abs(m_rightSpeed) && leftEncoder >= Math.abs(m_xAmount)) {
 	    theDrive.goVariable(0, 0);
-	    return  true;
+	    return true;
+	}
+	if (Math.abs(m_leftSpeed) < Math.abs(m_rightSpeed) && rightEncoder >= Math.abs(m_xAmount)) {
+	    theDrive.goVariable(0, 0);
+	    return true;
 	}
 	return false;
+
 //	if(leftEncoder < m_xAmount &&
 //		rightEncoder < m_xAmount) {
 //	    System.out.println(leftEncoder + ", " + rightEncoder);

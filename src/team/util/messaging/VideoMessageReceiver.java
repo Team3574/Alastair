@@ -12,6 +12,17 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
  * @author team3574
  */
 public class VideoMessageReceiver {
+    double logger = 0.0;
+    int timesBad = 0;
+    boolean isConnected = false;
+    
+    boolean tallExists = false;
+    double tallX = 0.0;
+    double tallY = 0.0;
+    
+    boolean tallTargetExists = false;
+    double tallTargetX = 0.0;
+    double tallTargetY = 0.0;
 
     boolean bottomExists = false;
     double bottomX = 0.0;
@@ -40,29 +51,81 @@ public class VideoMessageReceiver {
     NetworkTable visionNetTab = NetworkTable.getTable("vision");
 
     public void updateVisionInformation() {
-	bottomExists = visionNetTab.getBoolean("bottom_exists");
-	bottomX = visionNetTab.getNumber("bottom_x");
-	bottomY = visionNetTab.getNumber("bottom_y");
+	double logger = visionNetTab.getNumber("logger");
+	
+	if (logger != this.logger) {
+	    this.isConnected = true;
+	    this.timesBad = 0;
+	    
+	    this.tallExists = visionNetTab.getBoolean("tallTargetExists");
+	    
+	    if (this.tallExists) {
+		this.tallX = visionNetTab.getNumber("tallTargetX");
+		this.tallY = visionNetTab.getNumber("tallTargetY");
+	    }
+	} else {
+	    this.timesBad++;
+	}
+	
+	if (this.timesBad > 6) {
+	    this.isConnected = false;
+	}
+	
+//	bottomExists = visionNetTab.getBoolean("bottom_exists");
+//	bottomX = visionNetTab.getNumber("bottom_x");
+//	bottomY = visionNetTab.getNumber("bottom_y");
+//
+//	midLeftExists = visionNetTab.getBoolean("mid_left_exists");
+//	midLeftX = visionNetTab.getNumber("mid_left_x");
+//	midLeftY = visionNetTab.getNumber("mid_left_y");
+//
+//	midRightExists = visionNetTab.getBoolean("mid_right_exists");
+//	midRightX = visionNetTab.getNumber("mid_right_x");
+//	midRightY = visionNetTab.getNumber("mid_right_y");
+//
+//	topExists = visionNetTab.getBoolean("top_exists");
+//	topX = visionNetTab.getNumber("top_x");
+//	topY = visionNetTab.getNumber("top_y");
+//
+//	unkownExists = visionNetTab.getBoolean("unknown_exists");
+//	unkownX = visionNetTab.getNumber("unknown_x");
+//	unkownY = visionNetTab.getNumber("unknown_y");
+//
+//	discExists = visionNetTab.getBoolean("disc_exists");
+//	discX = visionNetTab.getNumber("disc_x");
+//	discY = visionNetTab.getNumber("disc_y");
+    }
+    
+    public double getLogger() {
+	return visionNetTab.getNumber("logger", 0.0);
+    }
+    
+    public boolean getTallTargetExists() {
+	return visionNetTab.getBoolean("tallTargetExists", false);
+    }
+    
+    public double getTallTargetX() {
+	return visionNetTab.getNumber("tallTargetX", 0.0);
+    }
 
-	midLeftExists = visionNetTab.getBoolean("mid_left_exists");
-	midLeftX = visionNetTab.getNumber("mid_left_x");
-	midLeftY = visionNetTab.getNumber("mid_left_y");
-
-	midRightExists = visionNetTab.getBoolean("mid_right_exists");
-	midRightX = visionNetTab.getNumber("mid_right_x");
-	midRightY = visionNetTab.getNumber("mid_right_y");
-
-	topExists = visionNetTab.getBoolean("top_exists");
-	topX = visionNetTab.getNumber("top_x");
-	topY = visionNetTab.getNumber("top_y");
-
-	unkownExists = visionNetTab.getBoolean("unknown_exists");
-	unkownX = visionNetTab.getNumber("unknown_x");
-	unkownY = visionNetTab.getNumber("unknown_y");
-
-	discExists = visionNetTab.getBoolean("disc_exists");
-	discX = visionNetTab.getNumber("disc_x");
-	discY = visionNetTab.getNumber("disc_y");
+    public double getTallTargetY() {
+	return visionNetTab.getNumber("tallTargetY", 0.0);
+    }
+    
+    public boolean isConnected() {
+	return this.isConnected;
+    }
+    
+    public boolean tallExists() {
+	return this.tallExists;
+    }
+    
+    public double getTallX() {
+	return this.tallX;
+    }
+    
+    public double getTallY() {
+	return this.tallY;
     }
 
     public boolean getBottomExists() {
@@ -138,8 +201,14 @@ public class VideoMessageReceiver {
     }
     
     public void updateStatus() {
-	SmartDashboard.putBoolean("unknown_exists", this.getUnkownExists());
-	SmartDashboard.putNumber("unknown_x", this.getUnkownX());
-	SmartDashboard.putNumber("unknown_y", this.getUnkownY());
-    }
+//	SmartDashboard.putBoolean("unknown_exists", this.getUnkownExists());
+//	SmartDashboard.putNumber("unknown_x", this.getUnkownX());
+//	SmartDashboard.putNumber("unknown_y", this.getUnkownY());
+	
+	SmartDashboard.putNumber("logger", this.getLogger());
+	SmartDashboard.putBoolean("tallTargetExists", this.getTallTargetExists());
+	SmartDashboard.putNumber("tallTargetX", this.getTallTargetX());
+	SmartDashboard.putNumber("tallTargetY", this.getTallTargetY());
+    
+    }	
 }

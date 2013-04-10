@@ -29,12 +29,16 @@ import edu.wpi.first.wpilibj.templates.commands.CommandBase;
 import edu.wpi.first.wpilibj.templates.commands.ElevatorDoNothing;
 import edu.wpi.first.wpilibj.templates.commands.Flinger.FlingerOff;
 import edu.wpi.first.wpilibj.Watchdog;
+import edu.wpi.first.wpilibj.templates.commands.AlternateNomousCool;
+import edu.wpi.first.wpilibj.templates.commands.BoomerangPDrive;
 import edu.wpi.first.wpilibj.templates.commands.autonomous.AutonomousDriveAndShoot2Load1;
 import edu.wpi.first.wpilibj.templates.commands.autonomous.AutonomousPrint;
 import edu.wpi.first.wpilibj.templates.commands.autonomous.AutonomousShoot2FromBackAndLoad1;
 import edu.wpi.first.wpilibj.templates.commands.autonomous.AutonomousShoot3FromBack;
 import edu.wpi.first.wpilibj.templates.commands.autonomous.FiveFribeeAutonomous;
 import edu.wpi.first.wpilibj.templates.commands.CommandGroup2Base;
+import edu.wpi.first.wpilibj.templates.commands.CustomGroupOneTest;
+import edu.wpi.first.wpilibj.templates.commands.autonomous.AutonomousShoot3BackUpToCenterLine;
 import team.util.LogDebugger;
 import team.util.XboxController;
 
@@ -73,7 +77,9 @@ public class Robot extends IterativeRobot {
 	autoChooser.addObject("Five fribee test", new FiveFribeeAutonomous());
 	autoChooser.addObject("shoot 2 from the back and load", new AutonomousShoot2FromBackAndLoad1());
 	autoChooser.addObject("Drive and shoot 2 load 1", new AutonomousDriveAndShoot2Load1());
-	//autoChooser.addObject("CustomOne", new CommandGroup2Base());
+	autoChooser.addObject("AlternateNomous Cool", new AlternateNomousCool());
+	autoChooser.addObject("Boomerang P Drive", new BoomerangPDrive());
+	autoChooser.addObject("AutonomousShoot3BackUpToCenterLine", new AutonomousShoot3BackUpToCenterLine());
 	
 	SmartDashboard.putData("Autonomous Mode", autoChooser);
 	

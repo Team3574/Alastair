@@ -29,15 +29,31 @@ public class AlignTiltForShoot extends CommandBase {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-	if (theVideoMessageReceiver.getTopExists()) {
-	    if (theVideoMessageReceiver.getTopY() > NOTHING_FOUND){
-		changeSetpoint(theVideoMessageReceiver.getTopY());
+//	if (theVideoMessageReceiver.getTopExists()) {
+//	    if (theVideoMessageReceiver.getTopY() > NOTHING_FOUND){
+//		changeSetpoint(theVideoMessageReceiver.getTopY());
+//	    }
+//	}
+//	else if(theVideoMessageReceiver.getUnkownExists()) {
+//		if(theVideoMessageReceiver.getUnkownY() > NOTHING_FOUND) {   
+//		    changeSetpoint(theVideoMessageReceiver.getUnkownY());
+//		}
+//	}
+	
+//	if (theVideoMessageReceiver.isConnected()) {
+//	    if (theVideoMessageReceiver.tallExists()) {
+//		// Do stuff
+//		System.out.println("X: " + theVideoMessageReceiver.getTallX() +
+//			" | Y: " + theVideoMessageReceiver.getTallY());
+//	    }
+//	}
+    
+    if (theVideoMessageReceiver.isConnected()) {
+	    if (theVideoMessageReceiver.getTallTargetExists()) {
+		// Do stuff
+		System.out.println("X: " + theVideoMessageReceiver.getTallTargetX() +
+			" | Y: " + theVideoMessageReceiver.getTallTargetY());
 	    }
-	}
-	else if(theVideoMessageReceiver.getUnkownExists()) {
-		if(theVideoMessageReceiver.getUnkownY() > NOTHING_FOUND) {   
-		    changeSetpoint(theVideoMessageReceiver.getUnkownY());
-		}
 	}
     }
     

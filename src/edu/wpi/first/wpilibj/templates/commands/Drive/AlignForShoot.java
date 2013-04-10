@@ -29,9 +29,19 @@ public class AlignForShoot extends CommandBase {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-	if (theVideoMessageReceiver.getTopExists()) {
-	    if (theVideoMessageReceiver.getTopX() > NOTHING_FOUND) {
-		moveToShoot(theVideoMessageReceiver.getTopX());
+//	if (theVideoMessageReceiver.getTopExists()) {
+//	    if (theVideoMessageReceiver.getTopX() > NOTHING_FOUND) {
+//		moveToShoot(theVideoMessageReceiver.getTopX());
+//	    }
+//	} else if (theVideoMessageReceiver.getUnkownExists()) {
+//	    if (theVideoMessageReceiver.getUnkownX() > NOTHING_FOUND) {
+//		moveToShoot(theVideoMessageReceiver.getUnkownX());
+//	    }
+//	}
+	
+	if (theVideoMessageReceiver.getTallTargetExists()) {
+	    if (theVideoMessageReceiver.getTallTargetX() > NOTHING_FOUND) {
+		moveToShoot(theVideoMessageReceiver.getTallTargetX());
 	    }
 	} else if (theVideoMessageReceiver.getUnkownExists()) {
 	    if (theVideoMessageReceiver.getUnkownX() > NOTHING_FOUND) {
