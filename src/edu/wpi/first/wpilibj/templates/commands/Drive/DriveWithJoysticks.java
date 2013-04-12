@@ -4,6 +4,7 @@
  */
 package edu.wpi.first.wpilibj.templates.commands.Drive;
 
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj.templates.commands.CommandBase;
 import team.util.Location;
 import team.util.MotorScaler;
@@ -16,6 +17,8 @@ public class DriveWithJoysticks extends CommandBase {
     public static MotorScaler motorScalerLeft = new MotorScaler();
     public static MotorScaler motorScalerRight = new MotorScaler();
     public Location location = new Location(0.0, 0.0, 0.0);
+    private static final double DEADBAND_LOW = 200;
+    private static final double DEADBAND_HIGH = 400;
     
     public DriveWithJoysticks() {
         // Use requires() here to declare subsystem dependencies
@@ -32,7 +35,30 @@ public class DriveWithJoysticks extends CommandBase {
         double rightSpeed = motorScalerRight.scale(-oi.rightUpDown());
         theDrive.goVariable(leftSpeed, rightSpeed); 
         
-         
+         if (theVideoMessageReceiver.isConnected()) {
+	    if (theVideoMessageReceiver.getTallTargetExists()) {
+		double x = theVideoMessageReceiver.getTallTargetX();
+		if (x < DEADBAND_LOW) {
+		    // Need to move right
+		    SmartDashboard.putBoolean("Right", true);
+		    SmartDashboard.putBoolean("Left", false);
+		} else if (x > DEADBAND_HIGH) {
+		    // Need to move left
+		    SmartDashboard.putBoolean("Right", false);
+		    SmartDashboard.putBoolean("Left", true);
+		} else {
+		    // Good
+		    SmartDashboard.putBoolean("Right", true);
+		    SmartDashboard.putBoolean("Left", true);
+		}
+	    } else {
+		SmartDashboard.putBoolean("Right", false);
+		SmartDashboard.putBoolean("Left", false);
+	    }
+	}else {
+		SmartDashboard.putBoolean("Right", false);
+		SmartDashboard.putBoolean("Left", false);
+	}
     }
 
     // Make this return true when this Command no longer needs to run execute()

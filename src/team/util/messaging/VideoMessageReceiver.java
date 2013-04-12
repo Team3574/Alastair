@@ -15,39 +15,16 @@ public class VideoMessageReceiver {
     double logger = 0.0;
     int timesBad = 0;
     boolean isConnected = false;
-    
-    boolean tallExists = false;
-    double tallX = 0.0;
-    double tallY = 0.0;
+
     
     boolean tallTargetExists = false;
     double tallTargetX = 0.0;
     double tallTargetY = 0.0;
-
-    boolean bottomExists = false;
-    double bottomX = 0.0;
-    double bottomY = 0.0;
-
-    boolean midLeftExists = false;
-    double midLeftX = 0.0;
-    double midLeftY = 0.0;
-	
-    boolean midRightExists = false;
-    double midRightX = 0.0;
-    double midRightY = 0.0;
-	
-    boolean topExists = false;
-    double topX = 0.0;
-    double topY = 0.0;
-	
-    boolean unkownExists = false;
-    double unkownX = 0.0;
-    double unkownY = 0.0;
-	
-    boolean discExists = false;
-    double discX = 0.0;
-    double discY = 0.0;
-	
+    
+    boolean tallTargetRight = false;
+    boolean tallTargetLeft = false;
+    boolean tallTargetCenter = false;
+    
     NetworkTable visionNetTab = NetworkTable.getTable("vision");
 
     public void updateVisionInformation() {
@@ -57,12 +34,11 @@ public class VideoMessageReceiver {
 	    this.isConnected = true;
 	    this.timesBad = 0;
 	    
-	    this.tallExists = visionNetTab.getBoolean("tallTargetExists");
 	    
-	    if (this.tallExists) {
-		this.tallX = visionNetTab.getNumber("tallTargetX");
-		this.tallY = visionNetTab.getNumber("tallTargetY");
-	    }
+//	    if (this.tallExists) {
+//		this.tallX = visionNetTab.getNumber("tallTargetX");
+//		this.tallY = visionNetTab.getNumber("tallTargetY");
+//	    }
 	} else {
 	    this.timesBad++;
 	}
@@ -117,52 +93,52 @@ public class VideoMessageReceiver {
     }
     
     public boolean tallExists() {
-	return this.tallExists;
+	return visionNetTab.getBoolean("tallTargetExists");
     }
     
     public double getTallX() {
-	return this.tallX;
+	return visionNetTab.getNumber("tallTargetX");
     }
     
     public double getTallY() {
-	return this.tallY;
+	return visionNetTab.getNumber("tallTargetY");
     }
 
-    public boolean getBottomExists() {
-	return visionNetTab.getBoolean("bottom_exists", false);
-    }
-
-    public double getBottomX() {
-	return visionNetTab.getNumber("bottom_x", 0.0);
-    }
-
-    public double getBottomY() {
-	return visionNetTab.getNumber("bottom_y", 0.0);
-    }
-
-    public boolean getMidLeftExists() {
-	return visionNetTab.getBoolean("mid_left_exists", false);
-    }
-
-    public double getMidLeftX() {
-	return visionNetTab.getNumber("mid_left_x", 0.0);
-    }
-
-    public double getMidLeftY() {
-	return visionNetTab.getNumber("mid_left_y", 0.0);
-    }
-
-    public boolean getMidRightExists() {
-	return visionNetTab.getBoolean("mid_right_exists", false);
-    }
-
-    public double getMidRightX() {
-	return visionNetTab.getNumber("mid_right_x", 0.0);
-    }
-
-    public double getMidRightY() {
-	return visionNetTab.getNumber("mid_right_y", 0.0);
-    }
+//    public boolean getBottomExists() {
+//	return visionNetTab.getBoolean("bottom_exists", false);
+//    }
+//
+//    public double getBottomX() {
+//	return visionNetTab.getNumber("bottom_x", 0.0);
+//    }
+//
+//    public double getBottomY() {
+//	return visionNetTab.getNumber("bottom_y", 0.0);
+//    }
+//
+//    public boolean getMidLeftExists() {
+//	return visionNetTab.getBoolean("mid_left_exists", false);
+//    }
+//
+//    public double getMidLeftX() {
+//	return visionNetTab.getNumber("mid_left_x", 0.0);
+//    }
+//
+//    public double getMidLeftY() {
+//	return visionNetTab.getNumber("mid_left_y", 0.0);
+//    }
+//
+//    public boolean getMidRightExists() {
+//	return visionNetTab.getBoolean("mid_right_exists", false);
+//    }
+//
+//    public double getMidRightX() {
+//	return visionNetTab.getNumber("mid_right_x", 0.0);
+//    }
+//
+//    public double getMidRightY() {
+//	return visionNetTab.getNumber("mid_right_y", 0.0);
+//    }
 
     public boolean getTopExists() {
 	return visionNetTab.getBoolean("top_exists", false);
@@ -175,30 +151,30 @@ public class VideoMessageReceiver {
     public double getTopY() {
 	return visionNetTab.getNumber("top_y", 0.0);
     }
-
-    public boolean getUnkownExists() {
-	return visionNetTab.getBoolean("unknown_exists", false);
-    }
-
-    public double getUnkownX() {
-	return visionNetTab.getNumber("unknown_x", 0.0);
-    }
-
-    public double getUnkownY() {
-	return visionNetTab.getNumber("unknown_y", 0.0);
-    }
-
-    public boolean getDiscExists() {
-	return visionNetTab.getBoolean("disc_exists", false);
-    }
-
-    public double getDiscX() {
-	return visionNetTab.getNumber("disc_x", 0.0);
-    }
-
-    public double getDiscY() {
-	return visionNetTab.getNumber("disc_y", 0.0);
-    }
+//
+//    public boolean getUnkownExists() {
+//	return visionNetTab.getBoolean("unknown_exists", false);
+//    }
+//
+//    public double getUnkownX() {
+//	return visionNetTab.getNumber("unknown_x", 0.0);
+//    }
+//
+//    public double getUnkownY() {
+//	return visionNetTab.getNumber("unknown_y", 0.0);
+//    }
+//
+//    public boolean getDiscExists() {
+//	return visionNetTab.getBoolean("disc_exists", false);
+//    }
+//
+//    public double getDiscX() {
+//	return visionNetTab.getNumber("disc_x", 0.0);
+//    }
+//
+//    public double getDiscY() {
+//	return visionNetTab.getNumber("disc_y", 0.0);
+//    }
     
     public void updateStatus() {
 //	SmartDashboard.putBoolean("unknown_exists", this.getUnkownExists());
