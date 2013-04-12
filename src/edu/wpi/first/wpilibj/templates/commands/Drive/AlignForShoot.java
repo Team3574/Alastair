@@ -43,11 +43,11 @@ public class AlignForShoot extends CommandBase {
 	    if (theVideoMessageReceiver.getTallTargetX() > NOTHING_FOUND) {
 		moveToShoot(theVideoMessageReceiver.getTallTargetX());
 	    }
-	} else if (theVideoMessageReceiver.getUnkownExists()) {
-	    if (theVideoMessageReceiver.getUnkownX() > NOTHING_FOUND) {
-		moveToShoot(theVideoMessageReceiver.getUnkownX());
-	    }
-	}
+	} //else if (theVideoMessageReceiver.getUnkownExists()) {
+//	    if (theVideoMessageReceiver.getUnkownX() > NOTHING_FOUND) {
+//		moveToShoot(theVideoMessageReceiver.getUnkownX());
+//	    }
+//	}
     }
     
     public void moveToShoot(double offSet)
