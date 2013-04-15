@@ -8,9 +8,9 @@ package edu.wpi.first.wpilibj.templates.commands;
  *
  * @author team3574
  */
-public class HopActuat extends CommandBase {
+public class HopActuate extends CommandBase {
     
-    public HopActuat() {
+    public HopActuate() {
 	// Use requires() here to declare subsystem dependencies
 	requires(theShootingRam);
 	this.setTimeout(0.6);
@@ -23,10 +23,10 @@ public class HopActuat extends CommandBase {
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
 	if (this.timeSinceInitialized() < 0.5) {
-	    theShootingRam.frisbeeHopperOut();
+	    theShootingRam.frisbeeHopperOpen();
 //	    LogDebugger.log("less than 1.0!");
 	} else {
-	    theShootingRam.frisbeeHopperIn();
+	    theShootingRam.frisbeeHopperClose();
 //	    LogDebugger.log("more than 1.0!");
 	}
     }

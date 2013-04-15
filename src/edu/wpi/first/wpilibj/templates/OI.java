@@ -28,7 +28,7 @@ import edu.wpi.first.wpilibj.templates.commands.Flinger.FlingerInfield;
 import edu.wpi.first.wpilibj.templates.commands.Flinger.FlingerNotChanging;
 import edu.wpi.first.wpilibj.templates.commands.Flinger.FlingerSpeedDown;
 import edu.wpi.first.wpilibj.templates.commands.Flinger.FlingerSpeedUp;
-import edu.wpi.first.wpilibj.templates.commands.HopActuat;
+import edu.wpi.first.wpilibj.templates.commands.HopActuate;
 import edu.wpi.first.wpilibj.templates.commands.PickUpElevator;
 import edu.wpi.first.wpilibj.templates.commands.PickUpCollector;
 import edu.wpi.first.wpilibj.templates.commands.SetFanSpeed;
@@ -168,12 +168,13 @@ public class OI {
         btnOtherX.whenPressed(new FlingerInfield());
         btnOtherX.whenPressed(new TiltToPreset(Constants.TILT_MID_COURT));
         btnOtherB.whenPressed(new FlingerInfield());
-        btnOtherB.whenPressed(new TiltToPreset(Constants.TILT_PYRIMID_BACK));
+//        btnOtherB.whenPressed(new TiltToPreset(Constants.TILT_PYRIMID_BACK));
+	btnOtherB.whenPressed(new TiltToPreset(Constants.TILT_PYRIMID_SIDE_PRACTICE));
         btnOtherA.whenPressed(new Flinger3Quarter());
         btnOtherA.whenPressed(new TiltToPreset(Constants.TILT_3QUARTS_COURT));
 //        btnOtherStart.whenPressed(new TiltToPreset(Constants.TILT_PYRIMID_TOP));
         btnOtherSelect.whenPressed(new FlingerOff());
-	btnOtherLT.whenPressed(new HopActuat());
+	btnOtherLT.whenPressed(new HopActuate());
 	btnOtherStart.whenPressed(new Shoot());
 	btnOtherRT.whenPressed(new ShootAndLoad());
 //	btnOtherLT.whenPressed(new FlingerMidCourtPlus());
@@ -208,7 +209,7 @@ public class OI {
 	alignWithDrive.whenPressed(new AlignForShoot());
         
 	//shooter
-	hop.whenPressed(new HopActuat());
+	hop.whenPressed(new HopActuate());
 	shoot.whenPressed(new Shoot());
 	
 	driveForward.whenPressed(new DriveTest());

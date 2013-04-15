@@ -4,6 +4,8 @@
  */
 package edu.wpi.first.wpilibj.templates.commands;
 
+import edu.wpi.first.wpilibj.templates.Constants;
+
 /**
  *
  * @author team3574
@@ -19,14 +21,15 @@ public class Shoot extends CommandBase {
 
     // Called just before this Command runs the first time
     protected void initialize() {
+	theBling.setBlingPattern(Constants.BLING_SHOOT);
     }
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-	if (this.timeSinceInitialized() < 0.5) {
+	if (this.timeSinceInitialized() < 0.3) {
 	    theShootingRam.kickerOut();
-//	    LogDebugger.log("less than 0.5!");
-	} else{ //if (this.timeSinceInitialized() < 1.0) {
+//	    LogDebugger.log("less than 0.3!");
+	} else { //if (this.timeSinceInitialized() < 1.0) {
 	    theShootingRam.kickerIn();
 	}
     }

@@ -24,14 +24,17 @@ public class Constants {
     public static final int TILT_SCALE = -1350;
     // private static final int TILT_DEGREE_SCALE = TILT_SCALE/70;
     
-    public static final int TILT_3QUARTS_COURT = (-472);// 17-1/2 deg -472 at 85%
-    public static final int TILT_MID_COURT = (-495);// 21 deg -589
-    public static final int TILT_PYRIMID_BACK = (-585);// 25 deg -678
-    public static final int TILT_PYRIMID_MIDDLE = (-636);//30 deg
+    public static final int TILT_3QUARTS_COURT = -614; // Prod(-472); | // 17-1/2 deg -472 at 85%
+    public static final int TILT_MID_COURT = -675;// Prod(-495); | // 21 deg -589
+    public static final int TILT_PYRIMID_BACK = -678;// Prod(-585); | // 25 deg -678
+    public static final int TILT_PYRIMID_MIDDLE = -800;// Prod(-636); | //30 deg
+    public static final int TILT_PYRIMID_SIDE_PRACTICE = -678;// Prod(?)
+    public static final int TILT_FULL_COURT_PRACTICE = -586;// Prod(?)
  
-    public static final int TILT_PYRIMID_FRONT = (-1017); // 35 deg -1057 back of robot 12 feet from wall
-    public static final int TILT_PYRIMID_TOP = (-1280);
-    public static final int TILT_FRISBEE_LOAD = (0);
+    public static final int TILT_PYRIMID_FRONT = -1238;// Prod(-1017); | // 35 deg -1057 back of robot 12 feet from wall
+    public static final int TILT_PYRIMID_TOP = -1202;// Prod(-1280);
+    public static final int TILT_FRISBEE_LOAD = (-20);
+    public static final int TILT_DRIVE_SAFELY = (-163);
     
     public static final int TILT_DONT_COLLECT = (-500);
    

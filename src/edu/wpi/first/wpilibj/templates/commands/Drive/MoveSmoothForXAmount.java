@@ -73,10 +73,10 @@ public class MoveForXAmount extends CommandBase {
 	} else {
 	    theDrive.goVariable(m_leftSpeed, m_rightSpeed);
 	}
-	
+
 	System.out.println("Encoders: " + leftEncoder + "," + rightEncoder + " ~ "
 		+ "Speeds: " + leftSpeed + "," + rightSpeed);
-	
+
 //	scaledLeft = m_leftSpeed;
 //	scaledRight = m_rightSpeed;
 //	
