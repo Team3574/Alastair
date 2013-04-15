@@ -40,11 +40,11 @@ public class ShootingRam extends Subsystem {
         shooterArm.set(false);
     }
     
-    public void frisbeeHopperOut(){
+    public void frisbeeHopperOpen(){
 	frisbeeHopper.set(true);
     }
     
-    public void frisbeeHopperIn(){
+    public void frisbeeHopperClose(){
 	frisbeeHopper.set(false);
     }
     

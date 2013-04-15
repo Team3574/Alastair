@@ -8,13 +8,15 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj.templates.RobotMap;
 import edu.wpi.first.wpilibj.templates.commands.CommandBase;
 import team.util.LogDebugger;
+import team.util.MotorScaler;
 
 /**
  *
  * @author team3574
  */
-public class MoveForXAmount extends CommandBase {
-
+public class MoveSmoothForXAmount extends CommandBase {
+    public static MotorScaler motorScalerLeft = new MotorScaler();
+    public static MotorScaler motorScalerRight = new MotorScaler();
     private static final double CORECTION_AMOUNT = 0.005;
     int m_xAmount;
     double m_leftSpeed;
@@ -25,7 +27,7 @@ public class MoveForXAmount extends CommandBase {
     int startLeftCount = 0;
     int startRightCount = 0;
 
-    public MoveForXAmount(int xAmount, double leftSpeed, double rightSpeed) {
+    public MoveSmoothForXAmount(int xAmount, double leftSpeed, double rightSpeed) {
 	// Use requires() here to declare subsystem dependencies
 	// eg. requires(chassis);
 	m_xAmount = xAmount;
@@ -47,11 +49,11 @@ public class MoveForXAmount extends CommandBase {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-
+	
 	int leftEncoder = RobotMap.leftWheelEncoder.get();
 	int rightEncoder = RobotMap.rightWheelEncoder.get();
-	double leftSpeed = m_leftSpeed;
-	double rightSpeed = m_rightSpeed;
+	double leftSpeed = motorScalerLeft.scale(m_leftSpeed);
+	double rightSpeed = motorScalerRight.scale(m_rightSpeed);
 	int detla = Math.abs(leftEncoder - rightEncoder);
 
 	if (leftEncoder > rightEncoder) {

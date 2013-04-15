@@ -6,6 +6,7 @@ package edu.wpi.first.wpilibj.templates.commands.autonomous;
 
 import edu.wpi.first.wpilibj.command.CommandGroup;
 import edu.wpi.first.wpilibj.templates.Constants;
+import edu.wpi.first.wpilibj.templates.commands.CommandGroup2Base;
 import edu.wpi.first.wpilibj.templates.commands.Drive.MoveForXAmount;
 import edu.wpi.first.wpilibj.templates.commands.Flinger.FlingerInfield;
 import edu.wpi.first.wpilibj.templates.commands.PickUp;
@@ -22,62 +23,62 @@ import edu.wpi.first.wpilibj.templates.commands.testCommands.ResetDeadReckoner;
  *
  * @author team3574
  */
-public class AutonomousCool extends CommandGroup {
-    
-    public AutonomousCool() {
+public class AutonomousFive extends CommandGroup2Base {
+
+    public void initialize() {
 	addParallel(new ResetDeadReckoner());
 	addSequential(new TiltCalibrate());
-	
+
 	addParallel(new PickUp(true));
 	addParallel(new FlingerInfield());
 	addSequential(new MoveForXAmount(500, 1, 1));
-	
+
 	addSequential(new TiltToPreset(Constants.TILT_PYRIMID_MIDDLE));
 	// TODO: Tune this wait for tilting!
 	addSequential(new Wait(0.01));
-	
+
 	addSequential(new ShootAndLoad());
-	
+
 	addSequential(new FlingerInfield());
 
 	addSequential(new ShootAndLoad());
-	
+
 	addSequential(new FlingerInfield());
 
 	addSequential(new ShootAndLoad());
-	
+
 	addSequential(new TiltCalibrate());
 
-	addSequential(new LogCommand("post cal"));	
-	
+	addSequential(new LogCommand("post cal"));
+
 	addSequential(new Wait(0.2));
-	
-	addSequential(new ResetDeadReckoner());
-	
-	addSequential(new LogCommand("post dr"));	
-	
-	addSequential(new MoveForXAmount(2900, 1, 1));
-	
+
 	addSequential(new ResetDeadReckoner());
 
-	addSequential(new LogCommand("post 2nd dr"));	
-	
+	addSequential(new LogCommand("post dr"));
+
+	addSequential(new MoveForXAmount(1900, 1, 1));
+
+	addSequential(new ResetDeadReckoner());
+
+	addSequential(new LogCommand("post 2nd dr"));
+
 	addSequential(new MoveForXAmount(-900, -1, -1));
 //	addParallel(new PickUpElevator(), 3.0);
 	addParallel(new PickUp());
-	
+
 	addSequential(new TiltToPreset(Constants.TILT_PYRIMID_FRONT));
-	
+
 	addSequential(new ShootAndLoad());
-	
+
 	addSequential(new ShootAndLoad());
-	
+
 	addSequential(new ShootAndLoad());
-	
+
 	addSequential(new ShootAndLoad());
-	
+
 	addSequential(new TiltCalibrate());
-	
+
 	// Add Commands here:
 	// e.g. addSequential(new Command1());
 	//      addSequential(new Command2());

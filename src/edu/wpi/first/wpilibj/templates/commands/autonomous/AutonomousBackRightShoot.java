@@ -6,6 +6,7 @@ package edu.wpi.first.wpilibj.templates.commands.autonomous;
 
 import edu.wpi.first.wpilibj.command.CommandGroup;
 import edu.wpi.first.wpilibj.templates.Constants;
+import edu.wpi.first.wpilibj.templates.commands.CommandGroup2Base;
 import edu.wpi.first.wpilibj.templates.commands.Drive.MoveForXAmount;
 import edu.wpi.first.wpilibj.templates.commands.Flinger.FlingerInfield;
 import edu.wpi.first.wpilibj.templates.commands.ShootAndLoad;
@@ -22,9 +23,9 @@ import edu.wpi.first.wpilibj.templates.commands.testCommands.ResetDeadReckoner;
  *
  * @author team3574
  */
-public class AutonomousBackRightShoot extends CommandGroup {
+public class AutonomousBackRightShoot extends CommandGroup2Base {
     
-    public AutonomousBackRightShoot() {
+    public void initialize() {
 	addParallel(new ResetDeadReckoner());
 	addSequential(new TiltCalibrate());
 	

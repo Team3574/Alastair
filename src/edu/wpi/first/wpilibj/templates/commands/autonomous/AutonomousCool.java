@@ -6,8 +6,10 @@ package edu.wpi.first.wpilibj.templates.commands.autonomous;
 
 import edu.wpi.first.wpilibj.command.CommandGroup;
 import edu.wpi.first.wpilibj.templates.Constants;
+import edu.wpi.first.wpilibj.templates.commands.CommandGroup2Base;
 import edu.wpi.first.wpilibj.templates.commands.Drive.MoveForXAmount;
 import edu.wpi.first.wpilibj.templates.commands.Flinger.FlingerInfield;
+import edu.wpi.first.wpilibj.templates.commands.HopActuate;
 import edu.wpi.first.wpilibj.templates.commands.PickUp;
 import edu.wpi.first.wpilibj.templates.commands.PickUpCollector;
 import edu.wpi.first.wpilibj.templates.commands.PickUpElevator;
@@ -22,9 +24,13 @@ import edu.wpi.first.wpilibj.templates.commands.testCommands.ResetDeadReckoner;
  *
  * @author team3574
  */
-public class AutonomousCool extends CommandGroup {
+public class AutonomousCool extends CommandGroup2Base {
     
-    public AutonomousCool() {
+    public void initialize() {
+	/*=============================================================
+	 * Start shoot three
+	 *===========================================================*/
+	addParallel(new HopActuate());
 	addParallel(new ResetDeadReckoner());
 	addSequential(new TiltCalibrate());
 	
@@ -38,45 +44,56 @@ public class AutonomousCool extends CommandGroup {
 	
 	addSequential(new ShootAndLoad());
 	
-	addSequential(new FlingerInfield());
+//	addSequential(new FlingerInfield());
 
 	addSequential(new ShootAndLoad());
 	
-	addSequential(new FlingerInfield());
+//	addSequential(new FlingerInfield());
 
 	addSequential(new ShootAndLoad());
 	
-	addSequential(new TiltCalibrate());
-
-	addSequential(new LogCommand("post cal"));	
+	/*=============================================================
+	 * End of shoot first three end in middle of phyamid behind
+	 * discs.
+	 *===========================================================*/
 	
-	addSequential(new Wait(0.2));
+	/*=============================================================
+	 * Grab two shoot from front of phyramid
+	 *===========================================================*/
+	
+	addSequential(new TiltToPreset(Constants.TILT_DRIVE_SAFELY));	
 	
 	addSequential(new ResetDeadReckoner());
 	
-	addSequential(new LogCommand("post dr"));	
+	addSequential(new LogCommand("post dr"));
 	
+	addParallel(new TiltCalibrate());
 	addSequential(new MoveForXAmount(2900, 1, 1));
 	
-	addSequential(new ResetDeadReckoner());
-
-	addSequential(new LogCommand("post 2nd dr"));	
+	addSequential(new LogCommand("post cal"));
 	
-	addSequential(new MoveForXAmount(-900, -1, -1));
+//	addSequential(new ResetDeadReckoner());
+//
+//	addSequential(new LogCommand("post 2nd dr"));	
+	//addSequential(new MoveForXAmount(-900, -1, -1));
 //	addParallel(new PickUpElevator(), 3.0);
 	addParallel(new PickUp());
 	
+	addSequential(new Wait(1.6));
+
 	addSequential(new TiltToPreset(Constants.TILT_PYRIMID_FRONT));
 	
-	addSequential(new ShootAndLoad());
-	
-	addSequential(new ShootAndLoad());
+	addSequential(new HopActuate());
 	
 	addSequential(new ShootAndLoad());
 	
 	addSequential(new ShootAndLoad());
 	
 	addSequential(new TiltCalibrate());
+	
+	/*=============================================================
+	 * End of two shoot from front of phyramid.
+	 *===========================================================*/
 	
 	// Add Commands here:
 	// e.g. addSequential(new Command1());

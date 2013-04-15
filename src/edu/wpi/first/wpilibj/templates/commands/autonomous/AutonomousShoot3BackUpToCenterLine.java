@@ -9,7 +9,7 @@ import edu.wpi.first.wpilibj.templates.commands.CommandGroup2Base;
 import edu.wpi.first.wpilibj.templates.commands.Drive.MoveForXAmount;
 import edu.wpi.first.wpilibj.templates.commands.Drive.TurnForXAmount;
 import edu.wpi.first.wpilibj.templates.commands.Flinger.FlingerInfield;
-import edu.wpi.first.wpilibj.templates.commands.HopActuat;
+import edu.wpi.first.wpilibj.templates.commands.HopActuate;
 import edu.wpi.first.wpilibj.templates.commands.ShootAndLoad;
 import edu.wpi.first.wpilibj.templates.commands.TiltCalibrate;
 import edu.wpi.first.wpilibj.templates.commands.TiltToPreset;
@@ -27,7 +27,7 @@ public class AutonomousShoot3BackUpToCenterLine extends CommandGroup2Base{
 	addParallel(new ResetDeadReckoner());
 	addSequential(new TiltCalibrate());
 	
-	addParallel(new HopActuat());
+	addParallel(new HopActuate());
 	addParallel(new FlingerInfield());
 	addSequential(new Wait(3.0));
 	

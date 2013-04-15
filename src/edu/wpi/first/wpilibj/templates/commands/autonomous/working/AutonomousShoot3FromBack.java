@@ -2,13 +2,14 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package edu.wpi.first.wpilibj.templates.commands.autonomous;
+package edu.wpi.first.wpilibj.templates.commands.autonomous.working;
 
 import edu.wpi.first.wpilibj.command.CommandGroup;
 import edu.wpi.first.wpilibj.templates.Constants;
+import edu.wpi.first.wpilibj.templates.commands.CommandGroup2Base;
 import edu.wpi.first.wpilibj.templates.commands.Drive.MoveForXAmount;
 import edu.wpi.first.wpilibj.templates.commands.Flinger.FlingerInfield;
-import edu.wpi.first.wpilibj.templates.commands.HopActuat;
+import edu.wpi.first.wpilibj.templates.commands.HopActuate;
 import edu.wpi.first.wpilibj.templates.commands.ShootAndLoad;
 import edu.wpi.first.wpilibj.templates.commands.TiltCalibrate;
 import edu.wpi.first.wpilibj.templates.commands.TiltToPreset;
@@ -20,12 +21,12 @@ import edu.wpi.first.wpilibj.templates.commands.testCommands.ResetDeadReckoner;
  * @author team3574
  */
 public class AutonomousShoot3FromBack extends CommandGroup {
-    
+
     public AutonomousShoot3FromBack() {
 	addParallel(new ResetDeadReckoner());
 	addSequential(new TiltCalibrate());
-	
-	addParallel(new HopActuat());
+
+	addParallel(new HopActuate());
 	addParallel(new FlingerInfield());
 	addSequential(new Wait(3.0));
 	

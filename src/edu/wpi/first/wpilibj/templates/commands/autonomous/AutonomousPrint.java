@@ -6,6 +6,7 @@ package edu.wpi.first.wpilibj.templates.commands.autonomous;
 
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.CommandGroup;
+import edu.wpi.first.wpilibj.templates.commands.CommandGroup2Base;
 import edu.wpi.first.wpilibj.templates.commands.CommandGroupFinished;
 import edu.wpi.first.wpilibj.templates.commands.CommandTwoFinished;
 import edu.wpi.first.wpilibj.templates.commands.Wait;
@@ -16,9 +17,9 @@ import team.util.LogDebugger;
  *
  * @author team3574
  */
-public class AutonomousPrint extends CommandGroup {
+public class AutonomousPrint extends CommandGroup2Base {
     
-    public AutonomousPrint() {
+    public void initialize() {
 	CommandGroupFinished sequencer = new CommandGroupFinished();
 	
 	addParallel(sequencer.addCommand(new Wait(10.0,"Wait One!")));

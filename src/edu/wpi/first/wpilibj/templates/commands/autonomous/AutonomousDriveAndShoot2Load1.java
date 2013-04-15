@@ -6,10 +6,11 @@ package edu.wpi.first.wpilibj.templates.commands.autonomous;
 
 import edu.wpi.first.wpilibj.command.CommandGroup;
 import edu.wpi.first.wpilibj.templates.Constants;
+import edu.wpi.first.wpilibj.templates.commands.CommandGroup2Base;
 import edu.wpi.first.wpilibj.templates.commands.Flinger.FlingerMidCourtPlus;
 import edu.wpi.first.wpilibj.templates.commands.Drive.MoveForXAmount;
 import edu.wpi.first.wpilibj.templates.commands.Flinger.FlingerInfield;
-import edu.wpi.first.wpilibj.templates.commands.HopActuat;
+import edu.wpi.first.wpilibj.templates.commands.HopActuate;
 import edu.wpi.first.wpilibj.templates.commands.Shoot;
 import edu.wpi.first.wpilibj.templates.commands.ShootAndLoad;
 import edu.wpi.first.wpilibj.templates.commands.TiltCalibrate;
@@ -22,13 +23,13 @@ import team.util.LogDebugger;
  *
  * @author team3574
  */
-public class AutonomousDriveAndShoot2Load1 extends CommandGroup {
+public class AutonomousDriveAndShoot2Load1 extends CommandGroup2Base {
     
-    public AutonomousDriveAndShoot2Load1() {
+    public void initialize() {
 	addParallel(new TiltCalibrate());
 	addSequential(new ResetDeadReckoner());
 	
-	addParallel(new HopActuat());
+	addParallel(new HopActuate());
 	addParallel(new MoveForXAmount(400, .5, .5));
 	addParallel(new FlingerInfield());
 	addSequential(new Wait(3.0));

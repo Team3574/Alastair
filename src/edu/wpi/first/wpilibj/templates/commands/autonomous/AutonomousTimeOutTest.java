@@ -5,6 +5,7 @@
 package edu.wpi.first.wpilibj.templates.commands.autonomous;
 
 import edu.wpi.first.wpilibj.command.CommandGroup;
+import edu.wpi.first.wpilibj.templates.commands.CommandGroup2Base;
 import edu.wpi.first.wpilibj.templates.commands.Drive.MoveForXAmount;
 import edu.wpi.first.wpilibj.templates.commands.ShiftGear1;
 import edu.wpi.first.wpilibj.templates.commands.ShiftGear2;
@@ -14,9 +15,9 @@ import edu.wpi.first.wpilibj.templates.commands.Wait;
  *
  * @author team3574
  */
-public class AutonomousTimeOutTest extends CommandGroup {
-    
-    public AutonomousTimeOutTest() {
+public class AutonomousTimeOutTest extends CommandGroup2Base {
+
+    public void initialize() {
 	addSequential(new ShiftGear1());
 	addSequential(new MoveForXAmount(300, .5, .5));
 	addSequential(new ShiftGear2());
