@@ -67,7 +67,7 @@ public abstract class CommandBase extends Command {
     public CommandBase(String name) {
         super(name);
     }
-
+    
     public CommandBase() {
         super();
     }

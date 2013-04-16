@@ -6,12 +6,16 @@ package team.util.messaging;
 
 import edu.wpi.first.wpilibj.networktables.NetworkTable;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+import team.util.LogDebugger;
 
 /**
  *
  * @author team3574
  */
 public class VideoMessageReceiver {
+    private static final double DEADBAND_LOW = 240;
+    private static final double DEADBAND_HIGH = 400;
+    
     double logger = 0.0;
     int timesBad = 0;
     boolean isConnected = false;
@@ -31,6 +35,7 @@ public class VideoMessageReceiver {
 	double logger = visionNetTab.getNumber("logger");
 	
 	if (logger != this.logger) {
+	    LogDebugger.log("connected@@@@@@@2 !");
 	    this.isConnected = true;
 	    this.timesBad = 0;
 	    
@@ -43,7 +48,7 @@ public class VideoMessageReceiver {
 	    this.timesBad++;
 	}
 	
-	if (this.timesBad > 6) {
+	if (this.timesBad > 60) {
 	    this.isConnected = false;
 	}
 	
@@ -182,9 +187,51 @@ public class VideoMessageReceiver {
 //	SmartDashboard.putNumber("unknown_y", this.getUnkownY());
 	
 	SmartDashboard.putNumber("logger", this.getLogger());
+	SmartDashboard.getBoolean("isConnected", isConnected());
 	SmartDashboard.putBoolean("tallTargetExists", this.getTallTargetExists());
 	SmartDashboard.putNumber("tallTargetX", this.getTallTargetX());
 	SmartDashboard.putNumber("tallTargetY", this.getTallTargetY());
-    
+	
+	boolean rightSideTarget = false;
+	boolean leftSideTarget = false;
+	
+	if (isConnected()) {
+	    LogDebugger.log("connected !");
+	    if (getTallTargetExists()) {
+		double x = getTallTargetX();
+		LogDebugger.log("exists! " + x);
+		if (x < DEADBAND_LOW) {
+		    // Need to move right
+		    rightSideTarget = true;
+		    leftSideTarget = false;
+//		    SmartDashboard.putBoolean("Right", true);
+//		    SmartDashboard.putBoolean("Left", false);
+		} else if (x > DEADBAND_HIGH) {
+		    // Need to move left
+		    rightSideTarget = false;
+		    leftSideTarget = true;
+//		    SmartDashboard.putBoolean("Right", false);
+//		    SmartDashboard.putBoolean("Left", true);
+		} else {
+		    // Good
+		    rightSideTarget = true;
+		    leftSideTarget = true;
+//		    SmartDashboard.putBoolean("Right", true);
+//		    SmartDashboard.putBoolean("Left", true);
+		}
+	    } else {
+		rightSideTarget = false;
+		leftSideTarget = false;
+//		SmartDashboard.putBoolean("Right", false);
+//		SmartDashboard.putBoolean("Left", false);
+	    }
+	} else {
+	    rightSideTarget = false;
+	    leftSideTarget = false;
+//	    SmartDashboard.putBoolean("Right", false);
+//	    SmartDashboard.putBoolean("Left", false);
+	}
+	SmartDashboard.putBoolean("Right", rightSideTarget);
+	SmartDashboard.putBoolean("Left", leftSideTarget);
     }	
 }
