@@ -4,21 +4,22 @@
  */
 package edu.wpi.first.wpilibj.templates.commands;
 
+import team.util.messaging.VideoMessageReceiver;
+
 /**
  *
  * @author team3574
  */
-public class UnLift extends CommandBase {
+public class SetDeadband extends CommandBase {
     
-    public UnLift() {
+    public SetDeadband(int deadLow, int deadHigh) {
 	// Use requires() here to declare subsystem dependencies
 	// eg. requires(chassis);
-	requires(theLifter);
+	VideoMessageReceiver.setDeadband(deadLow, deadHigh);
     }
 
     // Called just before this Command runs the first time
     protected void initialize() {
-	theLifter.unLiftArms();
     }
 
     // Called repeatedly when this Command is scheduled to run

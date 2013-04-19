@@ -13,13 +13,13 @@ import team.util.LogDebugger;
  * @author team3574
  */
 public class VideoMessageReceiver {
-    private static final double DEADBAND_LOW = 240;
-    private static final double DEADBAND_HIGH = 400;
-    
+
     double logger = 0.0;
     int timesBad = 0;
     boolean isConnected = false;
 
+    private static int deadbandLow = 0;
+    private static int deadbandHigh = 0;
     
     boolean tallTargetExists = false;
     double tallTargetX = 0.0;
@@ -45,8 +45,11 @@ public class VideoMessageReceiver {
 //		this.tallY = visionNetTab.getNumber("tallTargetY");
 //	    }
 	} else {
+	    LogDebugger.log("Is not Conected???");
 	    this.timesBad++;
 	}
+	
+	this.logger = logger;
 	
 	if (this.timesBad > 60) {
 	    this.isConnected = false;
@@ -182,6 +185,8 @@ public class VideoMessageReceiver {
 //    }
     
     public void updateStatus() {
+	
+	//updateVisionInformation();
 //	SmartDashboard.putBoolean("unknown_exists", this.getUnkownExists());
 //	SmartDashboard.putNumber("unknown_x", this.getUnkownX());
 //	SmartDashboard.putNumber("unknown_y", this.getUnkownY());
@@ -192,46 +197,26 @@ public class VideoMessageReceiver {
 	SmartDashboard.putNumber("tallTargetX", this.getTallTargetX());
 	SmartDashboard.putNumber("tallTargetY", this.getTallTargetY());
 	
-	boolean rightSideTarget = false;
-	boolean leftSideTarget = false;
+	boolean rightSideTarget = true;
+	boolean leftSideTarget = true;
 	
-	if (isConnected()) {
-	    LogDebugger.log("connected !");
-	    if (getTallTargetExists()) {
-		double x = getTallTargetX();
-		LogDebugger.log("exists! " + x);
-		if (x < DEADBAND_LOW) {
-		    // Need to move right
-		    rightSideTarget = true;
-		    leftSideTarget = false;
-//		    SmartDashboard.putBoolean("Right", true);
-//		    SmartDashboard.putBoolean("Left", false);
-		} else if (x > DEADBAND_HIGH) {
-		    // Need to move left
-		    rightSideTarget = false;
-		    leftSideTarget = true;
-//		    SmartDashboard.putBoolean("Right", false);
-//		    SmartDashboard.putBoolean("Left", true);
-		} else {
-		    // Good
-		    rightSideTarget = true;
-		    leftSideTarget = true;
-//		    SmartDashboard.putBoolean("Right", true);
-//		    SmartDashboard.putBoolean("Left", true);
-		}
-	    } else {
-		rightSideTarget = false;
+	if (this.getTallTargetExists()) {
+	    if(this.getTallTargetX() > deadbandHigh) {
 		leftSideTarget = false;
-//		SmartDashboard.putBoolean("Right", false);
-//		SmartDashboard.putBoolean("Left", false);
+	    } else if (this.getTallTargetX() < deadbandLow) {
+		rightSideTarget = false;
 	    }
 	} else {
 	    rightSideTarget = false;
 	    leftSideTarget = false;
-//	    SmartDashboard.putBoolean("Right", false);
-//	    SmartDashboard.putBoolean("Left", false);
 	}
+	
 	SmartDashboard.putBoolean("Right", rightSideTarget);
 	SmartDashboard.putBoolean("Left", leftSideTarget);
-    }	
+    }
+    
+    public static void setDeadband(int deadBandLow, int deadBandHigh) {
+	VideoMessageReceiver.deadbandLow = deadBandLow;
+	VideoMessageReceiver.deadbandHigh = deadBandHigh;
+    }
 }

@@ -17,7 +17,6 @@ import edu.wpi.first.wpilibj.templates.commands.Flinger.FlingerMidCourtPlus;
 import edu.wpi.first.wpilibj.templates.commands.Flinger.FlingerOff;
 import edu.wpi.first.wpilibj.templates.commands.Flinger.FlingerPowerSavingMode;
 import edu.wpi.first.wpilibj.templates.commands.LEDBlingControl;
-import edu.wpi.first.wpilibj.templates.commands.Lift;
 import edu.wpi.first.wpilibj.templates.commands.PickUp;
 import edu.wpi.first.wpilibj.templates.commands.Drive.SoftwareShift;
 import edu.wpi.first.wpilibj.templates.commands.Drive.Shift;
@@ -31,6 +30,8 @@ import edu.wpi.first.wpilibj.templates.commands.Flinger.FlingerSpeedUp;
 import edu.wpi.first.wpilibj.templates.commands.HopActuate;
 import edu.wpi.first.wpilibj.templates.commands.PickUpElevator;
 import edu.wpi.first.wpilibj.templates.commands.PickUpCollector;
+import edu.wpi.first.wpilibj.templates.commands.SetDeadband;
+import edu.wpi.first.wpilibj.templates.commands.SetFanSoleniod;
 import edu.wpi.first.wpilibj.templates.commands.SetFanSpeed;
 import edu.wpi.first.wpilibj.templates.commands.ShiftGear1;
 import edu.wpi.first.wpilibj.templates.commands.ShiftGear2;
@@ -42,16 +43,17 @@ import edu.wpi.first.wpilibj.templates.commands.TiltNormal;
 import edu.wpi.first.wpilibj.templates.commands.TiltDown;
 import edu.wpi.first.wpilibj.templates.commands.TiltToPreset;
 import edu.wpi.first.wpilibj.templates.commands.TiltUp;
-import edu.wpi.first.wpilibj.templates.commands.UnLift;
 import edu.wpi.first.wpilibj.templates.commands.testCommands.LogCommand;
 import edu.wpi.first.wpilibj.templates.commands.testCommands.ResetDeadReckoner;
 import edu.wpi.first.wpilibj.templates.subsystems.Bling;
+import edu.wpi.first.wpilibj.templates.subsystems.FanForFun;
 import edu.wpi.first.wpilibj.templates.subsystems.Flinger;
 import team.util.JoystickTrigger;
 import team.util.LogDebugger;
 import team.util.XboxController;
 import team.util.joystick.Axis;
 import team.util.joystick.AxisSide;
+import team.util.messaging.VideoMessageReceiver;
 
 /**
  * This class is the glue that binds the controls on the physical operator
@@ -147,14 +149,13 @@ public class OI {
     
     public OI(){
          LogDebugger.log("OI constructor");
-   
 	
 //	btnY.whenPressed(new UnLift());
 	btnY.whenPressed(new SetFanSpeed(0.0));
 	btnX.whenPressed(new SetFanSpeed(1.0));
 	btnA.whenPressed(new SetFanSpeed(0.7));
 //	btnA.whenPressed(new Lift());
-//	btnB.whenPressed(new SetFanSpeed(-1.0));
+	btnB.whenPressed(new SetFanSoleniod());
 	btnLB.whenPressed(new ShiftGear2());
 	btnRB.whenReleased(new ShiftGear1());
 	btnRT.whenPressed(new PickUpCollector());
@@ -167,11 +168,14 @@ public class OI {
         btnOtherY.whenPressed(new TiltToPreset(Constants.TILT_FRISBEE_LOAD));
         btnOtherX.whenPressed(new FlingerInfield());
         btnOtherX.whenPressed(new TiltToPreset(Constants.TILT_MID_COURT));
+	btnOtherX.whenPressed(new SetDeadband(Constants.DEADBAND_LOW_HALF, Constants.DEADBAND_HIGH_HALF));
         btnOtherB.whenPressed(new FlingerInfield());
+	btnOtherB.whenPressed(new SetDeadband(Constants.DEADBAND_LOW_CLOSE, Constants.DEADBAND_HIGH_CLOSE));
 //        btnOtherB.whenPressed(new TiltToPreset(Constants.TILT_PYRIMID_BACK));
 	btnOtherB.whenPressed(new TiltToPreset(Constants.TILT_PYRIMID_SIDE_PRACTICE));
         btnOtherA.whenPressed(new Flinger3Quarter());
         btnOtherA.whenPressed(new TiltToPreset(Constants.TILT_3QUARTS_COURT));
+	btnOtherA.whenPressed(new SetDeadband(Constants.DEADBAND_LOW_3QUARTS, Constants.DEADBAND_HIGH_3QUARTS));
 //        btnOtherStart.whenPressed(new TiltToPreset(Constants.TILT_PYRIMID_TOP));
         btnOtherSelect.whenPressed(new FlingerOff());
 	btnOtherLT.whenPressed(new HopActuate());

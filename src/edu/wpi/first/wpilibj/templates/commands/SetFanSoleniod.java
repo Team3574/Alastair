@@ -4,36 +4,30 @@
  */
 package edu.wpi.first.wpilibj.templates.commands;
 
-import team.util.LogDebugger;
-
 /**
  *
  * @author team3574
  */
-public class Lift extends CommandBase {
+public class SetFanSoleniod extends CommandBase {
     
-    public Lift() {
-        // Use requires() here to declare subsystem dependencies
-        requires(theLifter);
+    public SetFanSoleniod() {
+	// Use requires() here to declare subsystem dependencies
+	// eg. requires(chassis);
+	requires(theFan);
     }
 
     // Called just before this Command runs the first time
     protected void initialize() {
-//        if (theLifter.getPlaced()) {
-            theLifter.liftArmLeft();
-            theLifter.liftArmRight();
-//        } else {
-//            LogDebugger.log("You cant lift, you havent placed!");
-//        }
-    } 
+    }
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
+	theFan.setFanSoleniod();
     }
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-        return true;
+	return true;
     }
 
     // Called once after isFinished returns true

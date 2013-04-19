@@ -37,7 +37,13 @@ public class Constants {
     public static final int TILT_DRIVE_SAFELY = -163;
     
     public static final int TILT_DONT_COLLECT = (-500);
-   
+    
+    public static final int DEADBAND_LOW_CLOSE = 293; // Make sure the camera is 1/8 inch outside of the frame (what ever that means)
+    public static final int DEADBAND_HIGH_CLOSE = 340;
+    public static final int DEADBAND_LOW_3QUARTS = 336;
+    public static final int DEADBAND_HIGH_3QUARTS = 376; 
+    public static final int DEADBAND_LOW_HALF = 316;
+    public static final int DEADBAND_HIGH_HALF = 334;
      // Put methods for controlling this subsystem
     // here. Call these from Commands.
     

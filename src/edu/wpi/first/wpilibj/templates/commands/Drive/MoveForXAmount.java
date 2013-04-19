@@ -15,7 +15,7 @@ import team.util.LogDebugger;
  */
 public class MoveForXAmount extends CommandBase {
 
-    private static final double CORECTION_AMOUNT = 0.005;
+    private static final double CORECTION_AMOUNT = 0.005;   //0.005
     int m_xAmount;
     double m_leftSpeed;
     double m_rightSpeed;

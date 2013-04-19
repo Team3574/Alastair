@@ -175,22 +175,6 @@ public class Robot extends IterativeRobot {
 	    } else {
 		RobotMap.shooterArm.set(false);
 	    }
-
-	    if (joy.getRawButton(XboxController.X)) {
-		RobotMap.liftTheRobotLeft.set(true);
-		RobotMap.liftTheRobotRight.set(true);
-	    } else {
-		RobotMap.liftTheRobotLeft.set(false);
-		RobotMap.liftTheRobotRight.set(false);
-	    }
-
-	    if (joy.getRawButton(XboxController.Y)) {
-		RobotMap.positionArmLeft.set(true);
-		RobotMap.positionArmRight.set(true);
-	    } else {
-		RobotMap.positionArmLeft.set(false);
-		RobotMap.positionArmRight.set(false);
-	    }
 	}
     }
     

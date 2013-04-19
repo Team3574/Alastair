@@ -8,7 +8,6 @@ import edu.wpi.first.wpilibj.templates.subsystems.Flinger;
 import edu.wpi.first.wpilibj.templates.subsystems.Bling;
 import edu.wpi.first.wpilibj.templates.subsystems.Collector;
 import edu.wpi.first.wpilibj.templates.subsystems.ShootingRam;
-import edu.wpi.first.wpilibj.templates.subsystems.Lifter;
 import edu.wpi.first.wpilibj.templates.subsystems.Tilt;
 import edu.wpi.first.wpilibj.templates.subsystems.Elevator;
 import edu.wpi.first.wpilibj.templates.subsystems.FanForFun;
@@ -31,7 +30,6 @@ public abstract class CommandBase extends Command {
     public static Drive theDrive = new Drive ();
     public static Flinger theFlinger = new Flinger ();
     public static ShootingRam theShootingRam = new ShootingRam ();
-    public static Lifter theLifter = new Lifter ();
     public static Elevator theElevator = new Elevator ();
     public static Shifter theShifter = new Shifter ();
     public static Bling theBling = new Bling();
@@ -51,7 +49,6 @@ public abstract class CommandBase extends Command {
         SmartDashboard.putData(theDrive);
         SmartDashboard.putData(theBling);
         SmartDashboard.putData(theFlinger);
-        SmartDashboard.putData(theLifter);
         SmartDashboard.putData(theShootingRam);
         SmartDashboard.putData(theElevator);
         SmartDashboard.putData(theShifter);
