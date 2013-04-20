@@ -31,7 +31,7 @@ public class FanForFun extends Subsystem {
     }
     
     // TODO: Test this method for safe intereupting for calling two methods that require the same subsystem at the same time
-    public void setFanSoleniod() {
+    public void swapFanSoleniod() {
 	
 	if(setFanSoleniod) {
 	    fanSolenoid.set(true);
